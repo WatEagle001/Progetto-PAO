@@ -10,6 +10,6 @@ Funzionalità
 - dati salvati, caricati ed esportati in JSON
 
 
-Categorie veicoli: N, 4,3,2,1, X, B
+
 
 ![image](https://user-images.githubusercontent.com/93330631/205664281-8f6cfce4-dcc3-4e67-9da5-ed13c620244a.png)
