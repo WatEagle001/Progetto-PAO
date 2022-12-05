@@ -33,7 +33,16 @@ public:
 
 
    virtual ~veicolo();
-   veicolo(string _marca = "", string _modello = "", string _paese = "", string _descrizione = "", double _rapp_peso_pot = 0, unsigned int _cavalli = 0, unsigned int _peso = 0, unsigned int _nm = 0);
+   veicolo(
+       string _marca = "",
+       string _modello = "",
+       string _paese = "",
+       string _descrizione = "",
+       double _rapp_peso_pot = 0,
+       unsigned int _cavalli = 0,
+       unsigned int _peso = 0,
+       unsigned int _nm = 0
+    );
 
 
 };
