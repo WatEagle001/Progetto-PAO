@@ -7,7 +7,7 @@ enum alimentazione{
 };
 
 class motore_combustione: virtual public veicolo{
-protected:
+private:
     unsigned int cilindrata;
     unsigned int cilindri;
     unsigned int litri_serbatoio;

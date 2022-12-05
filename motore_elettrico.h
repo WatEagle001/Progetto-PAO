@@ -3,8 +3,7 @@
 #include "veicolo.h"
 
 class motore_elettrico: virtual public veicolo{
-protected:
-
+private:
     unsigned int cv_fiscali;
     unsigned int kw_batteria;
 public:
