@@ -6,8 +6,9 @@ Funzionalità
 - aggiunta veicoli (immagini, dati...)
 - rimozione veicolo
 - modifica dati veicoli
-- possibilità di convertire una veicolo di categoria X in categoria X+1 o X-1, non di più
 - dati salvati, caricati ed esportati in JSON
+
+
 
 
 
