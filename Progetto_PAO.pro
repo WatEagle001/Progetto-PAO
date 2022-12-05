@@ -9,27 +9,27 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    auto_elettrica.cpp \
-    auto_ibrida.cpp \
-    automobile.cpp \
+    Model/auto_elettrica.cpp \
+    Model/auto_ibrida.cpp \
+    Model/automobile.cpp \
     main.cpp \
     mainwindow.cpp \
-    moto.cpp \
-    moto_elettrica.cpp \
-    motore_combustione.cpp \
-    motore_elettrico.cpp \
-    veicolo.cpp
+    Model/moto.cpp \
+    Model/moto_elettrica.cpp \
+    Model/motore_combustione.cpp \
+    Model/motore_elettrico.cpp \
+    Model/veicolo.cpp
 
 HEADERS += \
-    auto_elettrica.h \
-    auto_ibrida.h \
-    automobile.h \
+    Model/auto_elettrica.h \
+    Model/auto_ibrida.h \
+    Model/automobile.h \
     mainwindow.h \
-    moto.h \
-    moto_elettrica.h \
-    motore_combustione.h \
-    motore_elettrico.h \
-    veicolo.h
+    Model/moto.h \
+    Model/moto_elettrica.h \
+    Model/motore_combustione.h \
+    Model/motore_elettrico.h \
+    Model/veicolo.h
 
 FORMS += \
     mainwindow.ui
