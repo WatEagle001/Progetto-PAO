@@ -13,7 +13,7 @@ public:
     unsigned int getKw_batteria() const;
     void setKw_batteria(unsigned int newKw_batteria);
 
-    motore_elettrico(unsigned int _cv_fiscali, unsigned int _kw_batteria);
+    motore_elettrico(std::string _marca, std::string _modello, std::string _paese, std::string _descrizione, double _rapp_peso_pot, unsigned int _cavalli, unsigned int _peso, unsigned int _nm, unsigned int _cv_fiscali, unsigned int _kw_batteria);
     virtual ~motore_elettrico();
 };
 

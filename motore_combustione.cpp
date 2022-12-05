@@ -40,8 +40,8 @@ void motore_combustione::setAlimentazione(alimentazione newAlimentazione)
     carburante  = newAlimentazione;
 }
 
-motore_combustione::motore_combustione(unsigned int _cilindrata, unsigned int _cilindri, unsigned int _litri_serbatoio, alimentazione _carburante):
-    veicolo(marca, modello, paese, descrizione, rapp_peso_pot, cavalli, peso, nm),
+motore_combustione::motore_combustione(std::string _marca, std::string _modello, std::string _paese, std::string _descrizione, double _rapp_peso_pot, unsigned int _cavalli, unsigned int _peso, unsigned int _nm, unsigned int _cilindrata, unsigned int _cilindri, unsigned int _litri_serbatoio, alimentazione _carburante):
+    veicolo(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm),
     cilindrata(_cilindrata), cilindri(_cilindri), litri_serbatoio(_litri_serbatoio), carburante(_carburante){}
 
 motore_combustione::~motore_combustione() = default;

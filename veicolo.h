@@ -4,7 +4,7 @@
 using std::string;
 
 class veicolo{
-protected:
+private:
    string marca;
    string modello;
    string paese;
