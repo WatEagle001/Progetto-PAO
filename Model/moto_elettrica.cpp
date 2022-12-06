@@ -1,6 +1,5 @@
 #include "moto_elettrica.h"
 
-
 moto_elettrica::moto_elettrica(
     string _marca,
     string _modello,

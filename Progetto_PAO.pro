@@ -41,3 +41,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     car-brands
+
+RESOURCES += \
+    resources.qrc

@@ -12,16 +12,9 @@ private:
     unsigned int cilindri;
     unsigned int litri_serbatoio;
     alimentazione carburante;
-public:
-    unsigned int getCilindrata() const;
-    void setCilindrata(unsigned int newCilindrata);
-    unsigned int getCilindri() const;
-    void setCilindri(unsigned int newCilindri);
-    unsigned int getLitri_serbatoio() const;
-    void setLitri_serbatoio(unsigned int newLitri_serbatoio);
-    char getAlimentazione() const;
-    void setAlimentazione(alimentazione newAlimentazione);
 
+public:
+    // Costruttore e Distruttore
     motore_combustione(
         std::string _marca,
         std::string _modello,
@@ -38,6 +31,16 @@ public:
     );
 
     virtual ~motore_combustione();
+
+    // Getter e Setter
+    unsigned int getCilindrata() const;
+    void setCilindrata(unsigned int newCilindrata);
+    unsigned int getCilindri() const;
+    void setCilindri(unsigned int newCilindri);
+    unsigned int getLitri_serbatoio() const;
+    void setLitri_serbatoio(unsigned int newLitri_serbatoio);
+    char getAlimentazione() const;
+    void setAlimentazione(alimentazione newAlimentazione);
 };
 
 #endif // MOTORE_COMBUSTIONE_H

@@ -1,5 +1,26 @@
 #include "veicolo.h"
 
+veicolo::veicolo(
+        std::string _marca,
+        std::string _modello,
+        std::string _paese,
+        std::string _descrizione,
+        double _rapp_peso_pot,
+        unsigned int _cavalli,
+        unsigned int _peso,
+        unsigned int _nm
+        ):
+ marca(_marca),
+ modello(_modello),
+ paese(_paese),
+ descrizione(_descrizione),
+ rapp_peso_pot(_rapp_peso_pot),
+ cavalli(_cavalli),
+ peso(_peso),
+ nm(_nm){};
+
+veicolo::~veicolo() = default;
+
 string veicolo::getModello() const{
     return modello;
 }
@@ -55,27 +76,6 @@ unsigned int veicolo::getNm() const{
 void veicolo::setNm(unsigned int newNm){
     nm = newNm;
 }
-
-veicolo::~veicolo() = default;
-
-veicolo::veicolo(
-        std::string _marca,
-        std::string _modello,
-        std::string _paese,
-        std::string _descrizione,
-        double _rapp_peso_pot,
-        unsigned int _cavalli,
-        unsigned int _peso,
-        unsigned int _nm
-        ):
- marca(_marca),
- modello(_modello),
- paese(_paese),
- descrizione(_descrizione),
- rapp_peso_pot(_rapp_peso_pot),
- cavalli(_cavalli),
- peso(_peso),
- nm(_nm){};
 
 string veicolo::getMarca() const{
     return marca;
