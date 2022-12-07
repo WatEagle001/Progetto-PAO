@@ -12,8 +12,6 @@ int main(int argc, char* argv[]){
     QApplication app(argc, argv);
     QMainWindow w;
     w.show();
-     return app.exec();
-
 
     motore_combustione carbone("BMW", "serie 3", "germania","ciao", 100,2000, 1000,280);
     motore_elettrico carbone2("Tesla", "model 3", "USA","ciao2", 150,2500, 300,800, 350);
@@ -43,4 +41,6 @@ int main(int argc, char* argv[]){
     e.setCavalli(20000);
     cout<<e.getMarca()<< " "<< e.getModello() << " " <<e.getPaese() << " "<<e.getDescrizione()<< " "<< e.getRapp_peso_pot() << " "<<
               e.getPeso() << " "<< e.getCavalli() <<  " "<< e.getNm()<<endl;
+
+    return app.exec();
 }

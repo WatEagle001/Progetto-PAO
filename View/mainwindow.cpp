@@ -8,15 +8,3 @@ mainwindow::mainwindow(QWidget *parent)
 mainwindow::~mainwindow()
 {
 }
-
-=======
-#include "mainwindow.h"
-
-mainwindow::mainwindow(QWidget *parent)
-    : QMainWindow(parent)
-{
-}
-
-mainwindow::~mainwindow()
-{
-}
