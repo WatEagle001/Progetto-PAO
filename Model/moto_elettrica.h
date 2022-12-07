@@ -13,7 +13,6 @@ public:
         unsigned int _cavalli,
         unsigned int _peso,
         unsigned int _nm,
-        unsigned int _cv_fiscali,
         unsigned int _kw_batteria
     );
 };

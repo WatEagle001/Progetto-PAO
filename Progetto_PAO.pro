@@ -12,8 +12,8 @@ SOURCES += \
     Model/auto_elettrica.cpp \
     Model/auto_ibrida.cpp \
     Model/automobile.cpp \
+    View/mainwindow.cpp \
     main.cpp \
-    mainwindow.cpp \
     Model/moto.cpp \
     Model/moto_elettrica.cpp \
     Model/motore_combustione.cpp \
@@ -24,15 +24,12 @@ HEADERS += \
     Model/auto_elettrica.h \
     Model/auto_ibrida.h \
     Model/automobile.h \
-    mainwindow.h \
+    View/mainwindow.h \
     Model/moto.h \
     Model/moto_elettrica.h \
     Model/motore_combustione.h \
     Model/motore_elettrico.h \
     Model/veicolo.h
-
-FORMS += \
-    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -41,3 +38,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     car-brands
+
+RESOURCES += \
+   # resources.qrc

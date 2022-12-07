@@ -17,8 +17,9 @@ public:
         unsigned int _cilindri = 0,
         unsigned int _litri_serbatoio =  0,
         alimentazione _carburante = benzina,
-        unsigned int _cv_fiscali = 0,
         unsigned int _kw_batteria = 0);
+
+    void setCavalli(unsigned int newCavalli);
 };
 
 #endif // AUTO_IBRIDA_H
