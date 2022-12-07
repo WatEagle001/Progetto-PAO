@@ -31,6 +31,7 @@ public:
     );
 
     virtual ~motore_combustione();
+    void setCavalli(unsigned int newCavalli);
 
     // Getter e Setter
     unsigned int getCilindrata() const;

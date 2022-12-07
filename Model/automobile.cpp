@@ -16,5 +16,6 @@ automobile::automobile(
     alimentazione _carburante
 ):
     veicolo(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm),
-    motore_combustione(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm, _cilindrata, _cilindri, _litri_serbatoio, _carburante){};
+    motore_combustione(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm, _cilindrata, _cilindri, _litri_serbatoio, _carburante){}
+
 

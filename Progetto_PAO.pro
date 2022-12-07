@@ -40,4 +40,4 @@ DISTFILES += \
     car-brands
 
 RESOURCES += \
-    resources.qrc
+   # resources.qrc

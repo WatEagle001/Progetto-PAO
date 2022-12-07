@@ -57,10 +57,10 @@ unsigned int veicolo::getCavalli() const{
     return cavalli;
 }
 
-void veicolo::setCavalli(unsigned int newCavalli){
+/*void veicolo::setCavalli(unsigned int newCavalli){
     cavalli = newCavalli;
 }
-
+*/
 unsigned int veicolo::getPeso() const{
     return peso;
 }

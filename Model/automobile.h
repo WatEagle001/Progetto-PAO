@@ -17,6 +17,8 @@ automobile(
     unsigned int _cilindri = 0,
     unsigned int _litri_serbatoio =  0,
     alimentazione _carburante = benzina);
+
+
 };
 
 #endif // AUTOMOBILE_H

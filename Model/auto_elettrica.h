@@ -13,7 +13,6 @@ public:
         unsigned int _cavalli = 0,
         unsigned int _peso = 0,
         unsigned int _nm = 0,
-        unsigned int _cv_fiscali = 0,
         unsigned int _kw_batteria = 0
     );
 

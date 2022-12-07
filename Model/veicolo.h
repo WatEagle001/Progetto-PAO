@@ -4,7 +4,7 @@
 using std::string;
 
 class veicolo{
-private:
+protected:
    string marca;
    string modello;
    string paese;
@@ -40,7 +40,7 @@ public:
    double getRapp_peso_pot() const;
    void setRapp_peso_pot(double newRapp_peso_pot);
    unsigned int getCavalli() const;
-   void setCavalli(unsigned int newCavalli);
+   virtual void setCavalli(unsigned int newCavalli) = 0;
    unsigned int getPeso() const;
    void setPeso(unsigned int newPeso);
    unsigned int getNm() const;

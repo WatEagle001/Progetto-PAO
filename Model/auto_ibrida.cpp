@@ -14,11 +14,15 @@ auto_ibrida::auto_ibrida(
     unsigned int _cilindri,
     unsigned int _litri_serbatoio,
     alimentazione _carburante,
-    unsigned int _cv_fiscali,
     unsigned int _kw_batteria
 ):
     veicolo(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm),
     motore_combustione(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm, _cilindrata, _cilindri, _litri_serbatoio, _carburante),
-    motore_elettrico(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm ,_cv_fiscali, _kw_batteria){};
+    motore_elettrico(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm, _kw_batteria){}
+
+void auto_ibrida::setCavalli(unsigned int newCavalli)
+{
+    cavalli = motore_combustione::cavalli + motore_elettrico::cavalli;
+};
 
 

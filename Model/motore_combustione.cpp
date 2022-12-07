@@ -17,6 +17,11 @@ motore_combustione::motore_combustione(
     veicolo(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm),
     cilindrata(_cilindrata), cilindri(_cilindri), litri_serbatoio(_litri_serbatoio), carburante(_carburante){}
 
+void motore_combustione::setCavalli(unsigned int newCavalli)
+{
+    cavalli = newCavalli;
+}
+
 motore_combustione::~motore_combustione() = default;
 
 unsigned int motore_combustione::getCilindrata() const
@@ -58,6 +63,3 @@ void motore_combustione::setAlimentazione(alimentazione newAlimentazione)
 {
     carburante  = newAlimentazione;
 }
-
-
-
