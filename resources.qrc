@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>Assets/docs/car-brands.txt</file>
+        <file>Assets/img/mercedes.png</file>
     </qresource>
 </RCC>
