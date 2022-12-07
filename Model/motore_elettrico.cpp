@@ -30,4 +30,3 @@ void motore_elettrico::setKw_batteria(unsigned int newKw_batteria)
     kw_batteria = newKw_batteria;
 }
 
-

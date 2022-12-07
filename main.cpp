@@ -44,6 +44,3 @@ int main(int argc, char* argv[]){
     cout<<e.getMarca()<< " "<< e.getModello() << " " <<e.getPaese() << " "<<e.getDescrizione()<< " "<< e.getRapp_peso_pot() << " "<<
               e.getPeso() << " "<< e.getCavalli() <<  " "<< e.getNm()<<endl;
 }
-
-
-

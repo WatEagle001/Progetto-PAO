@@ -63,6 +63,3 @@ void motore_combustione::setAlimentazione(alimentazione newAlimentazione)
 {
     carburante  = newAlimentazione;
 }
-
-
-
