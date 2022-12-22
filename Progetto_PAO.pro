@@ -9,9 +9,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Model/CostiViaggio.cpp \
     Model/auto_elettrica.cpp \
     Model/auto_ibrida.cpp \
     Model/automobile.cpp \
+    Model/emptyexception.cpp \
+    Model/garage.cpp \
+    Model/monopattino_elettrico.cpp \
+    Model/outofboundsexception.cpp \
     View/mainwindow.cpp \
     main.cpp \
     Model/moto.cpp \
@@ -21,9 +26,15 @@ SOURCES += \
     Model/veicolo.cpp
 
 HEADERS += \
+    Model/CostiViaggio.h \
+    Model/array.h \
     Model/auto_elettrica.h \
     Model/auto_ibrida.h \
     Model/automobile.h \
+    Model/emptyexception.h \
+    Model/garage.h \
+    Model/monopattino_elettrico.h \
+    Model/outofboundsexception.h \
     View/mainwindow.h \
     Model/moto.h \
     Model/moto_elettrica.h \

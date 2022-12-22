@@ -4,18 +4,15 @@
 automobile::automobile(
     std::string _marca,
     std::string _modello,
-    std::string _paese,
-    std::string _descrizione,
-    double _rapp_peso_pot,
-    unsigned int _cavalli,
-    unsigned int _peso,
-    unsigned int _nm,
+    string _targa,
+    int _km_odometro,
     unsigned int _cilindrata,
-    unsigned int _cilindri,
     unsigned int _litri_serbatoio,
-    alimentazione _carburante
+    alimentazione _carburante,
+    bool _manutenzione,
+    unsigned int _costo_manutenzione
 ):
-    veicolo(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm),
-    motore_combustione(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm, _cilindrata, _cilindri, _litri_serbatoio, _carburante){}
+    veicolo(_marca, _modello, _targa,_km_odometro),
+    motore_combustione(_marca, _modello,_targa,_km_odometro, _cilindrata, _litri_serbatoio, _carburante, _manutenzione, _costo_manutenzione){}
 
 

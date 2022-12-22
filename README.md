@@ -1,12 +1,16 @@
 # Progetto-PAO
 
 Funzionalità
-- gestione di un garage di auto normali/elettriche
-- crazione nuovo garage
-- caricamento garage preesistente
-- aggiunta veicoli alla flotta
-- rimozione veicoli dalla flotta
-- inserimento costo benzina/€ e kw/€
-- calcolo costo singolo viaggio
-- visualizzazione grafica andamento costi rispetto al mese, settimana o anno
+- comparazione tra tutti i parametri di performance di un veicolo: usiamo diagramma cartesiano, istogramma e (pie chart per le prformance di gruppi) barchart con visualizzazione incrementi/decrementi performance in base alle modifiche
+- visualizzazione dati singolo veicolo
+- aggiunta veicoli (immagini, dati...)
+- rimozione veicolo
+- modifica dati veicoli
+- dati salvati, caricati ed esportati in JSON
 
+
+
+
+
+
+![image](https://user-images.githubusercontent.com/93330631/205664281-8f6cfce4-dcc3-4e67-9da5-ed13c620244a.png)

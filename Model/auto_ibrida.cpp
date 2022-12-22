@@ -2,27 +2,22 @@
 
 
 auto_ibrida::auto_ibrida(
-    std::string _marca,
-    std::string _modello,
-    std::string _paese,
-    std::string _descrizione,
-    double _rapp_peso_pot,
-    unsigned int _cavalli,
-    unsigned int _peso,
-    unsigned int _nm,
+    string _marca,
+    string _modello,
+    string _targa,
+    int _km_odometro,
     unsigned int _cilindrata,
-    unsigned int _cilindri,
     unsigned int _litri_serbatoio,
     alimentazione _carburante,
-    unsigned int _kw_batteria
+    unsigned int _kw_batteria,
+    bool _manutenzione,
+    unsigned int _costo_manutenzione,
+    bool _ricaricare,
+    double _costo_ricarica
 ):
-    veicolo(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm),
-    motore_combustione(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm, _cilindrata, _cilindri, _litri_serbatoio, _carburante),
-    motore_elettrico(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm, _kw_batteria){}
+    veicolo(_marca, _modello, _targa,_km_odometro),
+    motore_combustione(_marca, _modello,_targa,_km_odometro, _cilindrata, _litri_serbatoio, _carburante, _manutenzione, _costo_manutenzione),
+    motore_elettrico(_marca, _modello,_km_odometro,_kw_batteria, _ricaricare, _costo_ricarica, _targa){}
 
-void auto_ibrida::setCavalli(unsigned int newCavalli)
-{
-    cavalli = motore_combustione::cavalli + motore_elettrico::cavalli;
-};
 
 

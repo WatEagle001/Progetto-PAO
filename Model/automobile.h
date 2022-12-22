@@ -1,22 +1,23 @@
 #ifndef AUTOMOBILE_H
 #define AUTOMOBILE_H
 #include "motore_combustione.h"
+#include <string>
+using std::string;
+
 
 class automobile: public motore_combustione{
 public:
 automobile(
-    std::string _marca,
-    std::string _modello,
-    std::string _paese,
-    std::string _descrizione,
-    double _rapp_peso_pot,
-    unsigned int _cavalli,
-    unsigned int _peso,
-    unsigned int _nm,
+    string _marca,
+    string _modello,
+    string _targa = "AA000BB",
+    int _km_odometro = 0,
     unsigned int _cilindrata = 0,
-    unsigned int _cilindri = 0,
     unsigned int _litri_serbatoio =  0,
-    alimentazione _carburante = benzina);
+    alimentazione _carburante = benzina,
+    bool _manutenzione = 0,
+    unsigned int _costo_manutenzione = 0
+    );
 
 
 };

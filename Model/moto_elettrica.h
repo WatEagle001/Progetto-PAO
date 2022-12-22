@@ -7,13 +7,12 @@ public:
     moto_elettrica(
         string _marca,
         string _modello,
-        string _paese,
-        string _descrizione,
-        double _rapp_peso_pot,
-        unsigned int _cavalli,
-        unsigned int _peso,
-        unsigned int _nm,
-        unsigned int _kw_batteria
+        int _km_odometro = 0,
+        unsigned int _kw_batteria = 0,
+        bool _ricaricare = 0,
+        double _costo_ricarica = 0,
+        string _targa = "AA000BB"
+
     );
 };
 
