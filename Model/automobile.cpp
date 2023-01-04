@@ -15,4 +15,6 @@ automobile::automobile(
     veicolo(_marca, _modello, _targa,_km_odometro),
     motore_combustione(_marca, _modello,_targa,_km_odometro, _cilindrata, _litri_serbatoio, _carburante, _manutenzione, _costo_manutenzione){}
 
+automobile::~automobile() = default;
+
 

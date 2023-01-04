@@ -22,7 +22,7 @@ public:
         bool _ricaricare = 0,
         double _costo_ricarica = 0
        );
-
+    virtual ~auto_ibrida();
 };
 
 #endif // AUTO_IBRIDA_H

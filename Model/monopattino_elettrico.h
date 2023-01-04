@@ -16,7 +16,7 @@ public:
             bool _ricaricare = 0,
             double _costo_ricarica = 0
             );
-    ~monopattino_elettrico();
+    virtual ~monopattino_elettrico();
 };
 
 #endif // MONOPATTINO_ELETTRICO_H

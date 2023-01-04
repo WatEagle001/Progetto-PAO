@@ -19,5 +19,7 @@ auto_ibrida::auto_ibrida(
     motore_combustione(_marca, _modello,_targa,_km_odometro, _cilindrata, _litri_serbatoio, _carburante, _manutenzione, _costo_manutenzione),
     motore_elettrico(_marca, _modello,_km_odometro,_kw_batteria, _ricaricare, _costo_ricarica, _targa){}
 
+auto_ibrida::~auto_ibrida() = default;
+
 
 

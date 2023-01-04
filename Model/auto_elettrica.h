@@ -16,7 +16,7 @@ public:
     );
 
 
-    ~auto_elettrica();
+    virtual ~auto_elettrica();
 };
 
 #endif // AUTO_ELETTRICA_H

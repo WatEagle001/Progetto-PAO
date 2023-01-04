@@ -15,4 +15,6 @@ moto::moto(
     unsigned int _costo_manutenzione
 ):
     veicolo(_marca, _modello,_targa,_km_odometro),
-    motore_combustione(_marca, _modello,_targa,_km_odometro, _cilindrata, _litri_serbatoio, _carburante, _manutenzione, _costo_manutenzione){};
+    motore_combustione(_marca, _modello,_targa,_km_odometro, _cilindrata, _litri_serbatoio, _carburante, _manutenzione, _costo_manutenzione){}
+
+moto::~moto() = default;

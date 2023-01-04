@@ -25,9 +25,10 @@ veicolo::veicolo(
         string _targa,
         int _km_odometro
         ):
- marca(_marca),modello(_modello),targa(_targa), km_odometro(_km_odometro){};
+    marca(_marca),modello(_modello),targa(_targa), km_odometro(_km_odometro){}
 
 veicolo::~veicolo() = default;
+
 
 string veicolo::getModello() const{
     return modello;

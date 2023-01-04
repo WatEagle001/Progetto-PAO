@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>Assets/docs/car-brands.txt</file>
-        <file>Assets/img/mercedes.png</file>
+        <file>Assets/docs/car-brands</file>
+        <file>Assets/image/logos/mercedes.png</file>
+        <file>Assets/image/logos/QFleetLogo.png</file>
+        <file>Assets/image/logos/appLogo.ico</file>
     </qresource>
 </RCC>

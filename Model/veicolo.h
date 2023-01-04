@@ -20,11 +20,11 @@ public:
     virtual ~veicolo();
    // Setter e Getter
    string getMarca() const;
-   void setMarca(const string &newMarca);
+   void setMarca(const string& newMarca);
    string getModello() const;
-   void setModello(const string &newModello);
+   void setModello(const string& newModello);
    string getTarga() const;
-   void setTarga(const string &newTarga);
+   void setTarga(const string& newTarga);
    int getKm_odometro() const;
    void setKm_odometro(int newKm_odometro);
 };

@@ -20,15 +20,13 @@ private:
     Array<veicolo*> _veicoli;
 public:
     garage(): _veicoli(nullptr){};
-    // ~garage() = 0;
+     virtual ~garage();
      void addVeicolo(veicolo* const veicolo);
      void deleteVeicolo(veicolo* veicolo);
      void printGarage() const;
      void eraseGarage();
      double getCostoGarage() const;
-     void orderGarage();
      void editVeicolo(veicolo *veicolo, string marca = "", string modello = "", string targa = "", alimentazione alim = benzina, unsigned int cilindrata = 0, unsigned int litri_serbatoio = 0, bool manutenzione = 0, unsigned int costo_manutenzione = 0, unsigned int kw_batteria = 0, double costo_ricarica = 0, bool ricaricare = 0);
-     void deleteVeicolo(Array<veicolo *>::iterator it);
 };
 
 #endif // GARAGE_H

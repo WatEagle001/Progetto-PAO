@@ -17,7 +17,7 @@ public:
         bool _manutenzione = 0,
         unsigned int _costo_manutenzione = 0
     );
-
+    virtual ~moto();
 };
 
 #endif // MOTO_H

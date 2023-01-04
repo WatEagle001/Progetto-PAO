@@ -19,6 +19,7 @@ automobile(
     unsigned int _costo_manutenzione = 0
     );
 
+    virtual ~automobile();
 
 };
 

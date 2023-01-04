@@ -14,6 +14,7 @@ public:
         string _targa = "AA000BB"
 
     );
+    virtual ~moto_elettrica();
 };
 
 #endif // MOTO_ELETTRICA_H

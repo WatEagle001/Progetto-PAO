@@ -13,7 +13,4 @@ auto_elettrica::auto_elettrica(
     veicolo(_marca, _modello, _targa, _km_odometro),
     motore_elettrico(_marca, _modello,_km_odometro,_kw_batteria, _ricaricare, _costo_ricarica, _targa){}
 
-auto_elettrica::~auto_elettrica()
-{
-
-}
+auto_elettrica::~auto_elettrica() = default;

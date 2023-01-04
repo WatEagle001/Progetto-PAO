@@ -1,5 +1,7 @@
 #include "Model/garage.h"
 
+garage::~garage()= default;
+
 void garage::addVeicolo(veicolo* const veicolo) {
     _veicoli.push_back(veicolo);
 }
@@ -10,11 +12,9 @@ void garage::deleteVeicolo(veicolo* veicolo){
         if(_veicoli[i]->getTarga() == veicolo->getTarga()){
             for(int j = i; j < _veicoli.size()-1; j++){
                 _veicoli[j] = _veicoli[i+1];
-
             }
-
-}
-}
+        }
+    }
     _veicoli.pop_back();
 }
 void garage::editVeicolo(veicolo* veicolo, string marca, string modello, string targa,  alimentazione alim, unsigned int cilindrata, unsigned int litri_serbatoio,
@@ -63,7 +63,6 @@ double garage::getCostoGarage() const{
         costi+=(ptr->getCosto_manutenzione());
          }
       }
-
       motore_elettrico* e = dynamic_cast<motore_elettrico*>(_veicoli[i]);
       if(dynamic_cast<auto_elettrica*>(e) || dynamic_cast<moto_elettrica*>(e) || dynamic_cast<monopattino_elettrico*>(e) || dynamic_cast<auto_ibrida*>(e)){
           if(e->getRicaricare() == 1){
