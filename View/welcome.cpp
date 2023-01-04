@@ -1,7 +1,7 @@
 #include "welcome.h"
 #include <QString>
 #include <iostream>
-#include "Model/garage.h"
+
 QLayout *welcome::configureFinalLayout(){
     // Creazione Layout
     QVBoxLayout* mainLayout = new QVBoxLayout();
