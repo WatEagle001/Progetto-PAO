@@ -1,6 +1,8 @@
 #include "Model/garage.h"
 
-garage::~garage()= default;
+//garage::~garage()= default;
+
+garage::garage(): _veicoli(nullptr){}
 
 void garage::addVeicolo(veicolo* const veicolo) {
     _veicoli.push_back(veicolo);
@@ -73,5 +75,4 @@ double garage::getCostoGarage() const{
 
     return costi;
 }
-
 

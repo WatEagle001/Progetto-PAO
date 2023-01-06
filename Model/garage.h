@@ -19,8 +19,8 @@ class garage{
 private:
     Array<veicolo*> _veicoli;
 public:
-    garage(): _veicoli(nullptr){};
-     virtual ~garage();
+     garage();
+     virtual ~garage() = default;
      void addVeicolo(veicolo* const veicolo);
      void deleteVeicolo(veicolo* veicolo);
      void printGarage() const;

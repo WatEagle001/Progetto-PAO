@@ -16,6 +16,7 @@ SOURCES += \
     Controller/welcomecontroller.cpp \
     Controller/controller.cpp \
     Model/model.cpp \
+    Model/CostiViaggio.cpp \
     View/vehiclelist.cpp \
     View/view.cpp \
     View/welcome.cpp \

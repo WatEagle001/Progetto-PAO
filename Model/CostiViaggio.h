@@ -17,11 +17,18 @@ private:
    Array<double> costo_carburante;
    Array<double> costo_elettricita;
 public:
-   CostiViaggio() : v(nullptr), costi(NULL), partenza(""), arrivo(""), km_percorsi(NULL), efficienza_riportata(NULL), costo_carburante(NULL), costo_elettricita(NULL){};
+   CostiViaggio() : v(0), costi(0), partenza(" "), arrivo(" "), km_percorsi(0), efficienza_riportata(0), costo_carburante(0), costo_elettricita(0){};
    void addViaggio(veicolo* veicolo,string part, string arr,int km,double efficienza, double carbur, double elett);
    double getCostiVeicolo(veicolo* c);
-   ~CostiViaggio();
-
+   double getCostiCombustione();
+   double getCostiElettrico();
+   Array<int> getKm_percorsi() const;
+   double getCostoMedio();
+   double getCostoMax();
+   double getCostoMin();
+   int getMaxDistanza();
+   int getMinDistanza();
+   int getMediaDistanza();
 };
 
 #endif // COSTIVIAGGIO_H
