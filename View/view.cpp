@@ -36,12 +36,12 @@ void view::setTitle(const QString &title)
 {
     setWindowTitle(title);
 }
-
+/*
 bool view::dialogPopUp_Question(unsigned int param, const QString &title, const QString &desc)
 {
 
 }
-
+*/
 void view::dialogPopUp_Warning(const QString &title, const QString &desc)
 {
     QMessageBox::warning(this, title, desc, QMessageBox::Ok);

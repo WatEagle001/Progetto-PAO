@@ -23,12 +23,12 @@ controller::~controller()
     delete m;
 }
 
-void controller::show() const
+void controller::showView() const
 {
     v->show();
 }
 
-void controller::hide() const
+void controller::hideView() const
 {
     v->hide();
 }

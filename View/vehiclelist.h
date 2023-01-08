@@ -1,3 +1,4 @@
+// Classe derivata da View che mostra i veicoli presenti nel garage, permettendo di crearne o caricare di nuovi e di visionare/modificare i veicoli esistenti
 #ifndef VEHICLELIST_H
 #define VEHICLELIST_H
 
@@ -13,7 +14,7 @@
 #include <QWidget>
 
 #include "view.h"
-#include "Controller/vehiclelistcontroller.h"
+
 
 class vehiclelist : public view
 {

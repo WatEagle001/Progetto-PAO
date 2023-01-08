@@ -28,7 +28,6 @@ SOURCES += \
        Model/garage.cpp \
        Model/monopattino_elettrico.cpp \
        Model/outofboundsexception.cpp \
-       View/mainwindow.cpp \
        Model/moto.cpp \
        Model/moto_elettrica.cpp \
        Model/motore_combustione.cpp \
@@ -45,7 +44,6 @@ HEADERS += \
    Model/garage.h \
    Model/monopattino_elettrico.h \
    Model/outofboundsexception.h \
-   View/mainwindow.h \
    Model/moto.h \
    Model/moto_elettrica.h \
    Model/motore_combustione.h \

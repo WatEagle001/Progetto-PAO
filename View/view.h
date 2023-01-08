@@ -1,3 +1,4 @@
+// Classe base astratta rappresentate una vista generica
 #ifndef VIEW_H
 #define VIEW_H
 
@@ -21,7 +22,7 @@ public:
     void setSize(const QSize& s);
     virtual void setTitle(const QString& title);
 
-    bool dialogPopUp_Question(unsigned int param, const QString& title, const QString& desc);
+    //bool dialogPopUp_Question(unsigned int param, const QString& title, const QString& desc);
     void dialogPopUp_Warning(const QString& title, const QString& desc);
     void dialogPopUp_Information(const QString& title, const QString& desc);
     void dialogPopUp_FatalError(const QString& title, const QString& desc);

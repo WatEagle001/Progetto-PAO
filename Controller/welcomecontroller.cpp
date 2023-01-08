@@ -1,14 +1,13 @@
+
 #include "welcomecontroller.h"
+#include "vehiclelistcontroller.h"
 #include "Model/garage.h"
-#include "Model/veicolo.h"
-#include "View/mainwindow.h"
 #include <iostream>
 
 void welcomeController::connectViewController() const
 {
     connect(v, SIGNAL(newGarage()), this, SLOT(NewGarage()));
     connect(v, SIGNAL(readGarage()), this, SLOT(OpenGarage()));
-    connect(v, SIGNAL(newGarage()), this, SLOT(OpenMainWindow()));
 }
 
 welcomeController::welcomeController(welcome *v, controller *parent) : controller(v, nullptr, parent)
@@ -32,15 +31,11 @@ void welcomeController::NewGarage() const
     garage* g = new garage();
 
     // Apri nuova vista del garage e mostrala
-    vehiclelist* vehicle = new vehiclelist();
+    vehiclelist* vehicle = new vehiclelist(v->size(), v);
     vehicle->setTitle("Nuovo Garage");
-
-
-    /*
-     * vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, new model qualcosa, const_cast<controller*>(static_cast<const controller*>(this)));
-     * vehiclecontroller->show();
-     * v->hide();
-    */
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclecontroller->showView();
+    v->hide();
 }
 
 void welcomeController::OpenGarage() const
@@ -67,11 +62,4 @@ void welcomeController::OpenGarage() const
 void welcomeController::onClosedView() const
 {
     delete this;
-}
-
-void welcomeController::OpenMainWindow() const
-{
-    mainwindow* w = new mainwindow;
-    w->show();
-
 }

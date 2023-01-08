@@ -7,6 +7,6 @@ int main(int argc, char* argv[]){
     QApplication app(argc, argv);
     welcome* w = new welcome(QSize(500,500));
     welcomeController* c = new welcomeController(w);
-    c->show();
+    c->showView();
     return app.exec();
 }

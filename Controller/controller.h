@@ -21,8 +21,8 @@ public:
     virtual ~controller();
     virtual view* getView() const = 0;
     virtual model* getModel() const = 0;
-    virtual void show() const;
-    virtual void hide() const;
+    virtual void showView() const;
+    virtual void hideView() const;
 
 signals:
 

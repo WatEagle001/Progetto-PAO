@@ -30,9 +30,6 @@ public slots:
     void NewGarage() const;
     void OpenGarage() const;
     void onClosedView() const override;
-    void OpenMainWindow() const;
-
-
 };
 
 #endif // WELCOMECONTROLLER_H
