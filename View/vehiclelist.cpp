@@ -13,27 +13,18 @@ void vehiclelist::closeEvent(QCloseEvent *event)
 
 vehiclelist::vehiclelist(const QSize &s, view *parent) : view(s, parent), layout(new QHBoxLayout(this))
 {
-    // Creazione Barra dei Menu
-    QMenuBar* menu = new QMenuBar;
+    //Aggiunta dei pulsanti
+    QHBoxLayout* buttons = new QHBoxLayout();
+    QPushButton* add = new QPushButton("Aggiungi Veicolo", this);
+    QPushButton* load = new QPushButton("Carica Veicolo", this);
 
-    file = new QMenu("File", menu);
-    garage = new QMenu("Garage", menu);
+    buttons->addWidget(add);
+    buttons->addWidget(load);
 
-    menu->addMenu(file);
-    menu->addMenu(garage);
+    layout->addLayout(buttons);
 
-    file->addAction(new QAction("Chiudi", file));
-
-    garage->addAction(new QAction("Importa Garage", garage));
-    garage->addAction(new QAction("Esporta Garage", garage));
-
-    // Definizione del resto del layout
+    // Sistemazione Finale del layout
     setLayout(layout);
     connectViewSignals();
-
-}
-
-void vehiclelist::setTitle(const QString &title)
-{
 
 }

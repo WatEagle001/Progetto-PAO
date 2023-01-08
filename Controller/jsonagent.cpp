@@ -15,6 +15,8 @@ QString JSONAgent::selectFile()
 
 QJsonDocument *JSONAgent::getData(const QString &filePath)
 {
+    if(filePath.isNull()) return new QJsonDocument();
+
     QString data;
     QFile file;
 
@@ -27,14 +29,79 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
     QJsonDocument* doc = new QJsonDocument(QJsonDocument::fromJson(data.toLocal8Bit()));
     QJsonObject obj = doc->object();
 
-    //Controllo che i dati del documento siano corretti
+    if(!obj.contains("veicoli")){
+        delete doc;
+        return new QJsonDocument();
+    }
 
-    // Ritorno del documento corretto
+    return doc;
 
-    return new QJsonDocument();
 }
 
-QStringList *JSONAgent::getVehicleList(QJsonDocument *file)
+garage JSONAgent::getVehicleList(QJsonDocument *file)
 {
+    garage g;
+    QJsonObject data = file->object();
+    QJsonArray list = data["veicoli"].toArray();
 
+    for(const QJsonValue& vehicle : list){
+        if(vehicle.toObject().value("tipo").toString() == QString("auto elettrica")){
+            break;
+        }
+        else
+            if(vehicle.toObject().value("tipo").toString() == QString("auto ibrida")){
+                break;
+            }
+            else
+                if(vehicle.toObject().value("tipo").toString() == QString("automobile")){
+
+                    alimentazione carburante;
+
+
+                    if(vehicle.toObject().value("carburante").toString().toStdString() == "benzina")
+                        carburante = benzina;
+
+                    if(vehicle.toObject().value("carburante").toString().toStdString() == "diesel")
+                        carburante = diesel;
+
+                    if(vehicle.toObject().value("carburante").toString().toStdString() == "metano")
+                        carburante = metano;
+
+                    if(vehicle.toObject().value("carburante").toString().toStdString() == "gpl")
+                        carburante = gpl;
+
+                    if(vehicle.toObject().value("carburante").toString().toStdString() == "biodiesel")
+                        carburante = biodisel;
+
+                    if(vehicle.toObject().value("carburante").toString().toStdString() == "idrogeno")
+                        carburante = idrogeno;
+
+
+                    automobile* a = new automobile(
+                        vehicle.toObject().value("marca").toString().toStdString(),
+                        vehicle.toObject().value("modello").toString().toStdString(),
+                        vehicle.toObject().value("targa").toString().toStdString(),
+                        vehicle.toObject().value("km").toInt(),
+                        static_cast<unsigned int>(vehicle.toObject().value("cilindrata").toInt()),
+                        static_cast<unsigned int>(vehicle.toObject().value("litri_serbatoio").toInt()),
+                        carburante,
+                        vehicle.toObject().value("manutenzione").toBool(),
+                        static_cast<unsigned int>(vehicle.toObject().value("costo").toInt())
+                    );
+                }
+                else
+                    if(vehicle.toObject().value("tipo").toString() == QString("monopattino elettrico")){
+                        break;
+                    }
+                    else
+                        if(vehicle.toObject().value("tipo").toString() == QString("moto")){
+                            break;
+                        }
+                        else
+                            if(vehicle.toObject().value("tipo").toString() == QString("moto elettrica")){
+                                break;
+                            }
+    }
+
+    return g;
 }

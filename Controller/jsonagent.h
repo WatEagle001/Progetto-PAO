@@ -6,6 +6,10 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <string>
+
+#include "Model/garage.h"
+#include "Model/veicolo.h"
 
 class JSONAgent
 {
@@ -16,7 +20,7 @@ public:
 
     static QString selectFile();
     static QJsonDocument* getData(const QString& filePath);
-    static QStringList* getVehicleList(QJsonDocument* file);
+    static garage getVehicleList(QJsonDocument* file);
     // static std::vector<Record*> getRecords(QJsonDocument* file) ???
 
     static bool saveGarage(const QJsonDocument& file, const QString& filePath);

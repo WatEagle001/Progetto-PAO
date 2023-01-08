@@ -12,6 +12,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QGridLayout>
 
 #include "view.h"
 
@@ -32,7 +33,6 @@ protected:
 
 public:
     explicit vehiclelist(const QSize& s = QSize(), view* parent = nullptr);
-    void setTitle(const QString &title) override;
 
 // DA INSERIRE SIGNAL E SLOT DELLA CLASSE
 };

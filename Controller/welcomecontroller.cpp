@@ -28,12 +28,10 @@ model *welcomeController::getModel() const
 
 void welcomeController::NewGarage() const
 {
-    garage* g = new garage();
-
     // Apri nuova vista del garage e mostrala
     vehiclelist* vehicle = new vehiclelist(v->size(), v);
-    vehicle->setTitle("Nuovo Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, new garage(), const_cast<controller*>(static_cast<const controller*>(this)));
     vehiclecontroller->showView();
     v->hide();
 }
