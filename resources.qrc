@@ -5,5 +5,6 @@
         <file>Assets/image/logos/QFleetLogo.png</file>
         <file>Assets/image/logos/appLogo.ico</file>
         <file>Assets/docs/test.json</file>
+        <file>Assets/docs/veicoli.json</file>
     </qresource>
 </RCC>
