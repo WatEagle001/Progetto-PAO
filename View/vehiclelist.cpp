@@ -11,37 +11,17 @@ void vehiclelist::closeEvent(QCloseEvent *event)
 
 }
 
-vehiclelist::vehiclelist(const QSize &s, view *parent) : view(s, parent), layout(new QVBoxLayout(this))
+vehiclelist::vehiclelist(const QSize &s, view *parent) : view(s, parent), layout(new QHBoxLayout(this))
 {
     //Aggiunta dei pulsanti
     QHBoxLayout* buttons = new QHBoxLayout();
-    add = new QPushButton("Aggiungi Veicolo", this);
-    load = new QPushButton("Carica Veicolo", this);
+     add = new QPushButton("Aggiungi Veicolo", this);
+     load = new QPushButton("Carica Veicolo", this);
 
     buttons->addWidget(add);
     buttons->addWidget(load);
 
     layout->addLayout(buttons);
-
-    // Aggiunda dei Veicoli
-    QVBoxLayout* list = new QVBoxLayout();
-    listview = new QListWidget();
-
-
-    for(int i = 0; i < 10; i++){
-        listview->addItem(QString("Melassa"));
-    }
-
-    list->addWidget(listview);
-
-    layout->addLayout(list);
-
-    /*
-    // Aggiunta della Barra di Scroll
-    scroll = new QScrollBar(this);
-    list->addWidget(scroll);
-    layout->addWidget(scroll);
-    */
 
     // Sistemazione Finale del layout
     setLayout(layout);

@@ -1,5 +1,7 @@
 #include "vehiclelistcontroller.h"
 #include "QDebug"
+#include "View/editorvehicle.h"
+#include "Controller/editorvehiclecontroller.h"
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
@@ -37,6 +39,10 @@ void vehiclelistcontroller::loadVehicleSlot() const
 
 void vehiclelistcontroller::newVehicleSlot() const
 {
+    editorvehicle* vehicle = new editorvehicle(v->size(), v);
+    editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, new garage(), const_cast<controller*>(static_cast<const controller*>(this)));
+    editor->showView();
+    v->hide();
 
 
 }
