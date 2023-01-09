@@ -18,6 +18,7 @@ SOURCES += \
     Model/model.cpp \
     Model/CostiViaggio.cpp \
     View/vehiclelist.cpp \
+    View/veicololistitem.cpp \
     View/view.cpp \
     View/welcome.cpp \
     main.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
     Controller/controller.h \
     Model/model.h \
     View/vehiclelist.h \
+    View/veicololistitem.h \
     View/view.h \
     View/welcome.h
 

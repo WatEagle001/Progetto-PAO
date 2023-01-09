@@ -78,7 +78,7 @@ void welcome::close(QCloseEvent *event)
 
 welcome::welcome(const QSize &s, view *parent) : view(s, parent)
 {
-    QVBoxLayout* main = new QVBoxLayout;
+    QBoxLayout* main = new QVBoxLayout;
     main->addLayout(configureFinalLayout());
 
     setLayout(main);

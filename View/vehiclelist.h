@@ -13,6 +13,9 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QGridLayout>
+#include <QScrollBar>
+#include <QListView>
+#include <QListWidget>
 
 #include "view.h"
 
@@ -23,10 +26,12 @@ class vehiclelist : public view
     Q_OBJECT
 
 private:
-    QHBoxLayout* layout;
+    QBoxLayout* layout;
     QMenu *file, *garage;
     QPushButton* add;
     QPushButton* load;
+    QScrollBar* scroll;
+    QListWidget* listview;
 
     void connectViewSignals() const override;
 
