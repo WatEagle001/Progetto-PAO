@@ -4,12 +4,18 @@
 #include <QWidget>
 #include <QListWidgetItem>
 #include <Model/veicolo.h>
+#include <Model/automobile.h>
+#include <Model/auto_elettrica.h>
+#include <Model/auto_ibrida.h>
+#include <Model/moto_elettrica.h>
+#include <Model/monopattino_elettrico.h>
+#include <Model/moto.h>
+#include <QIcon>
 
 class veicoloListItem : public QListWidgetItem
 {
-    Q_OBJECT
 private:
-
+    QString marcamodello, targa, km;
 
 public:
     veicoloListItem(veicolo& v);
