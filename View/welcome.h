@@ -4,7 +4,6 @@
 
 #include "view.h"
 #include <QWidget>
-#include <QBoxLayout>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>

@@ -52,7 +52,7 @@ void welcomeController::OpenGarage() const
     // Prendi i dati dal file (se corretto)
     QJsonDocument* data = JSONAgent::getData(path);
     if(data->isNull()){
-        v->dialogPopUp_Warning("Reading Error", "Seleziona un file con un formato valido");
+        v->dialogPopUp_Warning("Reading Error", "Seleziona un file valido (.json)");
         return;
     }
 
