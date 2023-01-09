@@ -38,21 +38,50 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
 
 }
 
-garage JSONAgent::getVehicleList(QJsonDocument *file)
-{
+garage JSONAgent::getVehicleList(QJsonDocument *file){
     garage g;
     QJsonObject data = file->object();
     QJsonArray list = data["veicoli"].toArray();
 
     for(const QJsonValue& vehicle : list){
-        if(vehicle.toObject().value("tipo").toString() == QString("auto elettrica")){
-            break;
-        }
-        else
             if(vehicle.toObject().value("tipo").toString() == QString("auto ibrida")){
-                break;
+                alimentazione carburante;
+
+                if(vehicle.toObject().value("carburante").toString().toStdString() == "benzina")
+                    carburante = benzina;
+
+                if(vehicle.toObject().value("carburante").toString().toStdString() == "diesel")
+                    carburante = diesel;
+
+                if(vehicle.toObject().value("carburante").toString().toStdString() == "metano")
+                    carburante = metano;
+
+                if(vehicle.toObject().value("carburante").toString().toStdString() == "gpl")
+                    carburante = gpl;
+
+                if(vehicle.toObject().value("carburante").toString().toStdString() == "biodiesel")
+                    carburante = biodisel;
+
+                if(vehicle.toObject().value("carburante").toString().toStdString() == "idrogeno")
+                    carburante = idrogeno;
+
+
+                auto_ibrida* a = new auto_ibrida(
+                    vehicle.toObject().value("marca").toString().toStdString(),
+                    vehicle.toObject().value("modello").toString().toStdString(),
+                    vehicle.toObject().value("targa").toString().toStdString(),
+                    vehicle.toObject().value("km").toInt(),
+                    static_cast<unsigned int>(vehicle.toObject().value("cilindrata").toInt()),
+                    static_cast<unsigned int>(vehicle.toObject().value("litri_serbatoio").toInt()),
+                    carburante,
+                    vehicle.toObject().value("kw").toInt(),
+                    vehicle.toObject().value("manutenzione").toBool(),
+                    static_cast<unsigned int>(vehicle.toObject().value("ricaricare").toInt()),
+                    static_cast<unsigned int>(vehicle.toObject().value("costo").toDouble()),
+                    static_cast<unsigned int>(vehicle.toObject().value("costo_ricarica").toDouble()));
+                g.addVeicolo(a);
+                delete a;
             }
-            else
                 if(vehicle.toObject().value("tipo").toString() == QString("automobile")){
 
                     alimentazione carburante;
@@ -90,18 +119,80 @@ garage JSONAgent::getVehicleList(QJsonDocument *file)
                     g.addVeicolo(a);
                     delete a;
                 }
-                else
                     if(vehicle.toObject().value("tipo").toString() == QString("monopattino elettrico")){
-                        break;
+                        monopattino_elettrico* a = new monopattino_elettrico(
+                            vehicle.toObject().value("marca").toString().toStdString(),
+                            vehicle.toObject().value("modello").toString().toStdString(),
+                            vehicle.toObject().value("targa").toString().toStdString(),
+                            vehicle.toObject().value("km").toInt(),
+                            vehicle.toObject().value("kw").toInt(),
+                            static_cast<unsigned int>(vehicle.toObject().value("ricaricare").toInt()),
+                            static_cast<unsigned int>(vehicle.toObject().value("costo_ricarica").toDouble()));
+
+                        g.addVeicolo(a);
+                        delete a;
                     }
-                    else
                         if(vehicle.toObject().value("tipo").toString() == QString("moto")){
-                            break;
+
+                            alimentazione carburante;
+
+
+                            if(vehicle.toObject().value("carburante").toString().toStdString() == "benzina")
+                                carburante = benzina;
+
+                            if(vehicle.toObject().value("carburante").toString().toStdString() == "diesel")
+                                carburante = diesel;
+
+                            if(vehicle.toObject().value("carburante").toString().toStdString() == "metano")
+                                carburante = metano;
+
+                            if(vehicle.toObject().value("carburante").toString().toStdString() == "gpl")
+                                carburante = gpl;
+
+                            if(vehicle.toObject().value("carburante").toString().toStdString() == "biodiesel")
+                                carburante = biodisel;
+
+                            if(vehicle.toObject().value("carburante").toString().toStdString() == "idrogeno")
+                                carburante = idrogeno;
+
+                            moto* a = new moto(
+                                vehicle.toObject().value("marca").toString().toStdString(),
+                                vehicle.toObject().value("modello").toString().toStdString(),
+                                vehicle.toObject().value("targa").toString().toStdString(),
+                                vehicle.toObject().value("km").toInt(),
+                                static_cast<unsigned int>(vehicle.toObject().value("cilindrata").toInt()),
+                                static_cast<unsigned int>(vehicle.toObject().value("litri_serbatoio").toInt()),
+                                carburante,
+                                vehicle.toObject().value("manutenzione").toBool(),
+                                static_cast<unsigned int>(vehicle.toObject().value("costo").toInt()));
+                            g.addVeicolo(a);
+                            delete a;
                         }
-                        else
                             if(vehicle.toObject().value("tipo").toString() == QString("moto elettrica")){
-                                break;
+                                moto_elettrica* a = new moto_elettrica(
+                                    vehicle.toObject().value("marca").toString().toStdString(),
+                                    vehicle.toObject().value("modello").toString().toStdString(),
+                                    vehicle.toObject().value("km").toInt(),
+                                    vehicle.toObject().value("kw").toInt(),
+                                    static_cast<unsigned int>(vehicle.toObject().value("ricaricare").toInt()),
+                                    static_cast<unsigned int>(vehicle.toObject().value("costo_ricarica").toDouble()));
+                                vehicle.toObject().value("targa").toString().toStdString(),
+                                g.addVeicolo(a);
+                                delete a;
                             }
+                                if(vehicle.toObject().value("tipo").toString() == QString("auto elettrica")){
+                                    auto_elettrica* a = new auto_elettrica(
+                                        vehicle.toObject().value("marca").toString().toStdString(),
+                                        vehicle.toObject().value("modello").toString().toStdString(),
+                                        vehicle.toObject().value("targa").toString().toStdString(),
+                                        vehicle.toObject().value("km").toInt(),
+                                        vehicle.toObject().value("kw").toInt(),
+                                        static_cast<unsigned int>(vehicle.toObject().value("ricaricare").toInt()),
+                                        static_cast<unsigned int>(vehicle.toObject().value("costo_ricarica").toDouble()));
+
+                                    g.addVeicolo(a);
+                                    delete a;
+                                }
     }
 
     return g;

@@ -48,7 +48,7 @@ void garage::editVeicolo(veicolo* veicolo, string marca, string modello, string 
 
 void garage::printGarage() const{
     for(int i = 0; i < _veicoli.size(); i++){
-        cout<<_veicoli[i]->getTarga()<< " "<<_veicoli[i]->getMarca()<< " " << _veicoli[i]->getKm_odometro() << endl;
+        cout<<_veicoli[i]->getTarga()<< " "<<_veicoli[i]->getMarca()<< " " << _veicoli[i]->getModello() << " " << _veicoli[i]->getKm_odometro() << endl;
     }
 }
 

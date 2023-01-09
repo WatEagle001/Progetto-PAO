@@ -1,5 +1,7 @@
 {"veicoli":[  
     {"tipo": "automobile", "marca":"Audi", "modello":"A4", "targa": "AA111BB", "km":"1000","cilindrata": "2000","litri_sebatorio": "45", "manutenzione": "0", "costo": "0" },
-    {"tipo":"automobile","marca":"BMW", "modello":"M5", "targa": "BB222CC", "km":"167634", "cilindrata": "4000","litri_sebatorio": "90", "manutenzione": "0", "costo": "0"}
+    {"tipo":"automobile","marca":"BMW", "modello":"M5", "targa": "BB222CC", "km":"167634", "cilindrata": "4000","litri_sebatorio": "90", "manutenzione": "0", "costo": "0"},
+    {"tipo": "moto", "marca":"Ducati", "modello":"Panigale", "targa": "PP333CC", "km":"500","cilindrata": "2000","litri_sebatorio": "20", "manutenzione": "1", "costo": "100" },
+    {"tipo": "auto elettrica", "marca":"Tesla", "modello":"Model 3", "targa": "EE99900", "km":"999999","kw": "2000","ricaricare": "0", "costo_ricarica": "0"}
    
 ]}  
