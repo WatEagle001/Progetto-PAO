@@ -3,6 +3,7 @@
 #include "vehiclelistcontroller.h"
 #include "Model/garage.h"
 #include <iostream>
+#include "QDebug"
 
 void welcomeController::connectViewController() const
 {
@@ -28,6 +29,8 @@ model *welcomeController::getModel() const
 
 void welcomeController::NewGarage() const
 {
+    garage * g = new garage;
+    g->printGarage();
     // Apri nuova vista del garage e mostrala
     vehiclelist* vehicle = new vehiclelist(v->size(), v);
     vehicle->setTitle("Garage");

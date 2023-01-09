@@ -86,8 +86,9 @@ garage JSONAgent::getVehicleList(QJsonDocument *file)
                         static_cast<unsigned int>(vehicle.toObject().value("litri_serbatoio").toInt()),
                         carburante,
                         vehicle.toObject().value("manutenzione").toBool(),
-                        static_cast<unsigned int>(vehicle.toObject().value("costo").toInt())
-                    );
+                        static_cast<unsigned int>(vehicle.toObject().value("costo").toInt()));
+                    g.addVeicolo(a);
+                    delete a;
                 }
                 else
                     if(vehicle.toObject().value("tipo").toString() == QString("monopattino elettrico")){

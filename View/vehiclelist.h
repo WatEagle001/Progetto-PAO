@@ -25,6 +25,8 @@ class vehiclelist : public view
 private:
     QHBoxLayout* layout;
     QMenu *file, *garage;
+    QPushButton* add;
+    QPushButton* load;
 
     void connectViewSignals() const override;
 
@@ -33,6 +35,10 @@ protected:
 
 public:
     explicit vehiclelist(const QSize& s = QSize(), view* parent = nullptr);
+
+signals:
+    void loadVehicleSignal();
+    void newVehicleSignal();
 
 // DA INSERIRE SIGNAL E SLOT DELLA CLASSE
 };

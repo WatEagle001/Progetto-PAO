@@ -4,6 +4,8 @@
 #include "controller.h"
 #include "View/vehiclelist.h"
 #include "Model/garage.h"
+#include "Controller/jsonagent.h"
+#include <iostream>
 
 class vehiclelistcontroller : public controller
 {
@@ -15,13 +17,15 @@ private:
 
 public:
     vehiclelistcontroller(vehiclelist* v, garage* g, controller* parent = nullptr);
-    view* getView() const;
-    model* getModel() const;
+    view* getView() const override;
+    model* getModel() const override;
 
 signals:
 
 public slots:
-    virtual void onClosedView() const;
+    virtual void onClosedView() const override;
+    void loadVehicleSlot() const;
+    void newVehicleSlot() const;
 };
 
 #endif // VEHICLELISTCONTROLLER_H

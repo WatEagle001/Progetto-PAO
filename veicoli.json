@@ -1,0 +1,5 @@
+{"veicoli":[  
+    {"tipo": "automobile", "marca":"Audi", "modello":"A4", "targa": "AA111BB", "km":"1000","cilindrata": "2000","litri_sebatorio": "45", "manutenzione": "0", "costo": "0" },
+    {"tipo":"automobile","marca":"BMW", "modello":"M5", "targa": "BB222CC", "km":"167634", "cilindrata": "4000","litri_sebatorio": "90", "manutenzione": "0", "costo": "0"}
+   
+]}  
