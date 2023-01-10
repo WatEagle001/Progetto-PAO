@@ -9,16 +9,22 @@
 #include <QLabel>
 #include <QPixmap>
 #include <QCloseEvent>
+#include <QFormLayout>
+#include <QComboBox>
 
 class editorvehicle:public view{
     Q_OBJECT
 private:
         QPushButton* save;
         QPushButton* clear;
-
+        QComboBox* tipoVeicolo;
+        QFormLayout* layout;
+        QComboBox* tipoAlimentazione;
         QLayout* configureFinalLayout();
-        QVBoxLayout* configureEditor();
+        QFormLayout* configureEditor();
         QHBoxLayout* configureButtons();
+        void addMoreOptions();
+        void deleteOptions();
         void connectViewSignals() const override;
 protected:
     void close(QCloseEvent* event);
@@ -29,6 +35,8 @@ public:
 signals:
     void saveSignal();
     void clearSignal();
+    void selectedTypeVehicle();
+
 };
 
 #endif // EDITORVEHICLE_H
