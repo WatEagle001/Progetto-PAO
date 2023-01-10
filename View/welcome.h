@@ -10,6 +10,7 @@
 #include <QLabel>
 #include <QPixmap>
 #include <QCloseEvent>
+#include <QBoxLayout>
 
 class welcome : public view
 {

@@ -19,6 +19,7 @@ public:
     vehiclelistcontroller(vehiclelist* v, garage* g, controller* parent = nullptr);
     view* getView() const override;
     model* getModel() const override;
+    void loadGarage(garage& g) const;
 
 signals:
 

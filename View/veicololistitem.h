@@ -11,11 +11,18 @@
 #include <Model/monopattino_elettrico.h>
 #include <Model/moto.h>
 #include <QIcon>
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QBoxLayout>
 
 class veicoloListItem : public QListWidgetItem
 {
 private:
     QString marcamodello, targa, km;
+    QPushButton aggiungiViaggio, modifica, elimina;
+    QHBoxLayout id;
+    QVBoxLayout pulsanti;
 
 public:
     veicoloListItem(veicolo& v);

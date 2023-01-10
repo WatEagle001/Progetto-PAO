@@ -2,6 +2,7 @@
 #include "QDebug"
 #include "View/editorvehicle.h"
 #include "Controller/editorvehiclecontroller.h"
+
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
@@ -21,6 +22,11 @@ view *vehiclelistcontroller::getView() const
 model *vehiclelistcontroller::getModel() const
 {
     return static_cast<model*>(m);
+}
+
+void vehiclelistcontroller::loadGarage(garage& g) const
+{
+
 }
 
 void vehiclelistcontroller::onClosedView() const
@@ -44,5 +50,6 @@ void vehiclelistcontroller::newVehicleSlot() const
     editor->showView();
     v->hide();
 
-
 }
+
+

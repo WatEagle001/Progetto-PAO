@@ -34,7 +34,9 @@ SOURCES += \
        Model/moto_elettrica.cpp \
        Model/motore_combustione.cpp \
        Model/motore_elettrico.cpp \
-       Model/veicolo.cpp
+       Model/veicolo.cpp \
+       View/veicololistitem.cpp
+
 
 HEADERS += \
     Controller/editorvehiclecontroller.h \
@@ -60,7 +62,8 @@ HEADERS += \
     View/editorvehicle.h \
     View/vehiclelist.h \
     View/view.h \
-    View/welcome.h
+    View/welcome.h \
+    View/veicololistitem.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
