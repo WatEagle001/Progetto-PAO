@@ -14,19 +14,19 @@ class vehiclelistcontroller : public controller
 
 private:
     void connectViewController() const;
-
+    garage* g;
 public:
-    vehiclelistcontroller(vehiclelist* v, garage* g, controller* parent = nullptr);
+    explicit vehiclelistcontroller(vehiclelist* v, garage* m, controller* parent = nullptr);
     view* getView() const override;
-    model* getModel() const override;
+    garage* getModel() const override;
     void loadGarage(garage& g) const;
 
 signals:
 
 public slots:
     virtual void onClosedView() const override;
-    void loadVehicleSlot() const;
-    void newVehicleSlot() const;
+    void loadVehicleSlot();
+    void newVehicleSlot();
 };
 
 #endif // VEHICLELISTCONTROLLER_H

@@ -11,13 +11,17 @@
 #include <QCloseEvent>
 #include <QFormLayout>
 #include <QComboBox>
+#include <Model/garage.h>
+#include <Model/veicolo.h>
 
 class editorvehicle:public view{
     Q_OBJECT
 private:
+        garage* g;
+        veicolo * v =  new veicolo("tesla", "model3", "QQ099AA", 1000);
         QPushButton* save;
         QPushButton* clear;
-        QComboBox* tipoVeicolo;
+        QLineEdit* marca;
         QFormLayout* layout;
         QComboBox* tipoAlimentazione;
         QLayout* configureFinalLayout();

@@ -2,6 +2,17 @@
 
 //garage::~garage()= default;
 
+Array<veicolo *> garage::getVeicoli(string targa) const
+{
+    for(int i = 0; i < _veicoli.size(); i++){
+        if(_veicoli[i]->getTarga() == targa){
+            return _veicoli[i];
+        }
+    }
+
+}
+
+
 garage::garage(): _veicoli(nullptr){}
 
 void garage::addVeicolo(veicolo* const veicolo) {

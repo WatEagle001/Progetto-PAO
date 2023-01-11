@@ -4,8 +4,9 @@
 
 class model
 {
+protected:
+    explicit model();
 public:
-    model();
+    virtual ~model() = default;
 };
-
 #endif // MODEL_H

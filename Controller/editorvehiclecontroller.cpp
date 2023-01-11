@@ -11,8 +11,9 @@ void editorvehiclecontroller::connectViewController() const
     connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
 }
 
-editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v,garage *g, controller *parent) : controller(v, m, parent)
+editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v,garage *m,controller *parent) : controller(v, m, parent)
 {
+    g = m;
     connectViewController();
 }
 
@@ -21,29 +22,22 @@ view *editorvehiclecontroller::getView() const
     return static_cast<editorvehicle*>(v);
 }
 
-model *editorvehiclecontroller::getModel() const
+garage *editorvehiclecontroller::getModel() const
 {
-    return static_cast<model*>(m);
+    return static_cast<garage*>(m);
 }
 
 
 void editorvehiclecontroller::saveSlot() const
 {
-    /*garage * g = new garage;
-    g->printGarage();
-    // Apri nuova vista del garage e mostrala
-    vehiclelist* vehicle = new vehiclelist(v->size(), v);
-    vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, new garage(), const_cast<controller*>(static_cast<const controller*>(this)));
-    vehiclecontroller->showView();
-    v->hide();
-    */
+    /*getModel()->printGarage();
     qDebug()<< "premuto Salva";
+    */
+    g->printGarage();
 }
 
 void editorvehiclecontroller::clearSlot() const
 {
-
     // Fai il pick del file con la libreria apposita
     /*QString path = JSONAgent::selectFile();
     if(path.isNull()){

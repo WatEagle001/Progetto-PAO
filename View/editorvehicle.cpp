@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QLineEdit>
 #include <QComboBox>
+#include <Model/automobile.h>
 #include <QFormLayout>
 
 QLayout* editorvehicle::configureFinalLayout(){
@@ -18,34 +19,16 @@ QLayout* editorvehicle::configureFinalLayout(){
 }
 
 QFormLayout *editorvehicle::configureEditor(){
-     tipoVeicolo = new QComboBox;
-     tipoAlimentazione = new QComboBox;
-        layout = new QFormLayout;
-       layout->addWidget(tipoVeicolo);
-       layout->insertRow(1,new QLabel(tr("Tipologia Veicolo")), tipoVeicolo);
-       layout->insertRow(2,new QLabel(tr("Marca")), new QLineEdit);
-       layout->insertRow(3,new QLabel(tr("Modello")), new QLineEdit);
-       layout->insertRow(4,new QLabel(tr("Targa")), new QLineEdit);
-       layout->insertRow(5,new QLabel(tr("Km Odometro")), new QLineEdit);
-       layout->insertRow(6,new QLabel(tr("Cilindrata")), new QLineEdit);
-       layout->insertRow(7,new QLabel(tr("Litri Carburante")), new QLineEdit);
-       layout->insertRow(8,new QLabel(tr("Carburante")), tipoAlimentazione);
-       layout->insertRow(9,new QLabel(tr("Manutenzione")), new QLineEdit);
-       layout->insertRow(10,new QLabel(tr("Costo Manutenzione")), new QLineEdit);
-       layout->insertRow(11,new QLabel(tr("KW Batteria")), new QLineEdit);
-       layout->insertRow(12,new QLabel(tr("Ricaricare")), new QLineEdit);
-       layout->insertRow(13,new QLabel(tr("Costo Ricarica")), new QLineEdit);
+       tipoAlimentazione = new QComboBox;
+       layout = new QFormLayout;
+       layout->insertRow(1,new QLabel(tr("Marca")),  marca = new QLineEdit(QString::fromStdString(v->getMarca())));
+       layout->insertRow(2,new QLabel(tr("Modello")), new QLineEdit(QString::fromStdString(v->getModello())));
+       layout->insertRow(3,new QLabel(tr("Targa")), new QLineEdit(QString::fromStdString(v->getTarga())));;
+       layout->insertRow(4,new QLabel(tr("Km Odometro")), new QLineEdit(QString::fromStdString(v->getTarga())));
+       //v->setMarca(marca->text().toStdString());
 
-
-       connect(tipoVeicolo, QOverload<int>::of(&QComboBox::currentIndexChanged),
-           [=](int index){addMoreOptions(); });
-
-    tipoVeicolo->addItem(QString("Automobile"));
-    tipoVeicolo->addItem(QString("Automobile elettrica"));
-    tipoVeicolo->addItem(QString("Automobile ibrida"));
-    tipoVeicolo->addItem(QString("Moto"));
-    tipoVeicolo->addItem(QString("Moto elettrica"));
-    tipoVeicolo->addItem(QString("Monopattino elettrico"));
+       //addMoreOptions();
+      // g->printGarage();
 
     tipoAlimentazione->addItem(QString("Benzina"));
     tipoAlimentazione->addItem(QString("Diesel"));
@@ -75,29 +58,22 @@ QHBoxLayout *editorvehicle::configureButtons()
     return buttons;
 }
 
-void editorvehicle::addMoreOptions()
-{
-
-        deleteOptions();
-
-}
-
-void editorvehicle::deleteOptions()
-{
-    if(tipoVeicolo->currentIndex() == 1
-            || tipoVeicolo->currentIndex() == 4 || tipoVeicolo->currentIndex() == 5){
-    layout->removeRow(6);
-    layout->removeRow(7);
-    layout->removeRow(8);
-    layout->removeRow(9);
-    layout->removeRow(10);
-
+void editorvehicle::addMoreOptions(){
+    //automobile* a = new automobile("Fiat", "punto","AO111OA", 125000,1200,45,benzina,0,0);
+    //g = new garage();
+    //g->addVeicolo(a);
+    //g->printGarage();
+    if(dynamic_cast<automobile*>(v) || dynamic_cast<moto*>(v) || dynamic_cast<auto_ibrida*>(v)){
+    layout->insertRow(5,new QLabel(tr("Cilindrata")), new QLineEdit);
+    layout->insertRow(6,new QLabel(tr("Litri Carburante")), new QLineEdit);
+    layout->insertRow(7,new QLabel(tr("Carburante")), tipoAlimentazione);
+    layout->insertRow(8,new QLabel(tr("Manutenzione")), new QLineEdit);
+    layout->insertRow(9,new QLabel(tr("Costo Manutenzione")), new QLineEdit);
     }
-    if(tipoVeicolo->currentIndex() == 0 || tipoVeicolo->currentIndex() == 2 ||tipoVeicolo->currentIndex() == 3){
-        layout->removeRow(11);
-        layout->removeRow(12);
-        layout->removeRow(13);
-    }
+     if(dynamic_cast<auto_elettrica*>(v) || dynamic_cast<moto_elettrica*>(v) || dynamic_cast<monopattino_elettrico*>(v))
+    layout->insertRow(10,new QLabel(tr("KW Batteria")), new QLineEdit);
+    layout->insertRow(11,new QLabel(tr("Ricaricare")), new QLineEdit);
+    layout->insertRow(12,new QLabel(tr("Costo Ricarica")), new QLineEdit);
 }
 
 void editorvehicle::connectViewSignals() const
@@ -120,6 +96,7 @@ void editorvehicle::close(QCloseEvent *event)
 
 editorvehicle::editorvehicle(const QSize &s, view *parent) : view(s, parent)
 {
+   // g->addVeicolo(v);
     QVBoxLayout* main = new QVBoxLayout;
     main->addLayout(configureFinalLayout());
 

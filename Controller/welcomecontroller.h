@@ -18,16 +18,16 @@ class welcomeController : public controller
 
 private:
     void connectViewController() const;
-
+    garage* g;
 public:
-    explicit welcomeController(welcome* v, controller* parent = nullptr);
+    explicit welcomeController(welcome* v,garage* dati, controller* parent = nullptr);
     welcome* getView() const override;
     model* getModel() const override;
 
 signals:
 
 public slots:
-    void NewGarage() const;
+    void NewGarage();
     void OpenGarage() const;
     void onClosedView() const override;
 };

@@ -4,7 +4,7 @@
 
 QLayout *welcome::configureFinalLayout(){
     // Creazione Layout
-    QBoxLayout* mainLayout = new QVBoxLayout();
+    QVBoxLayout* mainLayout = new QVBoxLayout();
 
     // Aggiunta dei Vari Componenti al Layout
     mainLayout->addLayout(configureDescription());
@@ -78,7 +78,7 @@ void welcome::close(QCloseEvent *event)
 
 welcome::welcome(const QSize &s, view *parent) : view(s, parent)
 {
-    QBoxLayout* main = new QVBoxLayout;
+    QVBoxLayout* main = new QVBoxLayout;
     main->addLayout(configureFinalLayout());
 
     setLayout(main);
