@@ -14,10 +14,12 @@ SOURCES += \
     Controller/editorvehiclecontroller.cpp \
     Controller/jsonagent.cpp \
     Controller/vehiclelistcontroller.cpp \
+    Controller/vehiclelistitemcontroller.cpp \
     Controller/welcomecontroller.cpp \
     Controller/controller.cpp \
     Model/model.cpp \
     Model/CostiViaggio.cpp \
+    Model/veicolowidget.cpp \
     View/editorvehicle.cpp \
     View/vehiclelist.cpp \
     View/vehiclelistitem.cpp \
@@ -39,6 +41,7 @@ SOURCES += \
 
 HEADERS += \
     Controller/editorvehiclecontroller.h \
+    Controller/vehiclelistitemcontroller.h \
    Model/CostiViaggio.h \
    Model/array.h \
    Model/auto_elettrica.h \
@@ -58,6 +61,7 @@ HEADERS += \
     Controller/welcomecontroller.h \
     Controller/controller.h \
     Model/model.h \
+    Model/veicolowidget.h \
     View/editorvehicle.h \
     View/vehiclelist.h \
     View/vehiclelistitem.h \

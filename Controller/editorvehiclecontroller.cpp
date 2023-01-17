@@ -9,6 +9,7 @@ void editorvehiclecontroller::connectViewController() const
 {
     connect(v, SIGNAL(saveSignal()), this, SLOT(saveSlot()));
     connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
+    connect(v, SIGNAL(editVehicleSignal()), this, SLOT(editVehicleSlot()));
 }
 
 editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v,garage *m,controller *parent) : controller(v, m, parent)
@@ -61,4 +62,8 @@ void editorvehiclecontroller::clearSlot() const
 void editorvehiclecontroller::onClosedView() const
 {
     delete this;
+}
+
+void editorvehiclecontroller::editVehicleSlot() const{
+    qDebug() << "Premuto editor veicoli";
 }

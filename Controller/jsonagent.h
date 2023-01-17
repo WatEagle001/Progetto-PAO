@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <string>
+#include <QDebug>
 
 #include "Model/garage.h"
 #include "Model/veicolo.h"
@@ -20,7 +21,7 @@ public:
 
     static QString selectFile();
     static QJsonDocument* getData(const QString& filePath);
-    static garage getVehicleList(QJsonDocument* file);
+    static void getVehicleList(QJsonDocument* file, garage &g);
     // static std::vector<Record*> getRecords(QJsonDocument* file) ???
 
     static bool saveGarage(const QJsonDocument& file, const QString& filePath);
