@@ -94,8 +94,8 @@ void editorvehicle::close(QCloseEvent *event)
         }
 }
 
-editorvehicle::editorvehicle(const QSize &s, view *parent) : view(s, parent)
-{
+editorvehicle::editorvehicle(veicolo* veic,const QSize &s, view *parent) : view(s, parent)
+{   v = veic;
    // g->addVeicolo(v);
     QVBoxLayout* main = new QVBoxLayout;
     main->addLayout(configureFinalLayout());

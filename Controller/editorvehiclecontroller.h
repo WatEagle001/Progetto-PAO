@@ -17,9 +17,10 @@ class editorvehiclecontroller : public controller
 private:
     void connectViewController() const;
     garage* g;
+    veicolo* veic;
 
 public:
-    editorvehiclecontroller(editorvehicle* v, garage* g,controller* parent = nullptr);
+    editorvehiclecontroller(editorvehicle* v, garage* m,controller* parent = nullptr);
     view* getView() const override;
     garage* getModel() const override;
 

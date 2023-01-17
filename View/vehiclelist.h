@@ -46,13 +46,13 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 public:
     explicit vehiclelist(garage* garage = nullptr,const QSize& s = QSize(), view* parent = nullptr);
-    QHBoxLayout *configureButtons();
+    QHBoxLayout *configureButtons(veicolo* veic);
     QWidget *configureVheicleItem(veicolo* veic);
 signals:
     void loadVehicleSignal();
     void newVehicleSignal();
     void addNewViaggioSignal();
-    void editVehicleDetailsSignal();
+    void editVehicleDetailsSignal(veicolo * v);
     void deleteVehicleSignal();
 };
 #endif // VEHICLELIST_H

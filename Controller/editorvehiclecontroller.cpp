@@ -9,7 +9,6 @@ void editorvehiclecontroller::connectViewController() const
 {
     connect(v, SIGNAL(saveSignal()), this, SLOT(saveSlot()));
     connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
-    connect(v, SIGNAL(editVehicleSignal()), this, SLOT(editVehicleSlot()));
 }
 
 editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v,garage *m,controller *parent) : controller(v, m, parent)
@@ -39,23 +38,7 @@ void editorvehiclecontroller::saveSlot() const
 
 void editorvehiclecontroller::clearSlot() const
 {
-    // Fai il pick del file con la libreria apposita
-    /*QString path = JSONAgent::selectFile();
-    if(path.isNull()){
-        v->dialogPopUp_Warning("File Error", "Seleziona un file per procedere");
-        return;
-    }
 
-    // Prendi i dati dal file (se corretto)
-    QJsonDocument* data = JSONAgent::getData(path);
-    if(data->isNull()){
-        v->dialogPopUp_Warning("Reading Error", "Seleziona un file valido (.json)");
-        return;
-    }
-
-    // Apri nuova vista del garage con i dati inseriti
-    // Nascondi la vista della pagina di benvenuto
-    */
     qDebug() << "premuto clear";
 }
 

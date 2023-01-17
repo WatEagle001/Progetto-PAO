@@ -12,16 +12,16 @@
 #include "Model/garage.h"
 #include "Model/veicolo.h"
 
-class JSONAgent
-{
-
+class JSONAgent{
+private:
+        garage* g;
 public:
-    explicit JSONAgent() = delete;
+    explicit JSONAgent(garage * gar);
     explicit JSONAgent(const JSONAgent&) = delete;
 
     static QString selectFile();
     static QJsonDocument* getData(const QString& filePath);
-    static void getVehicleList(QJsonDocument* file, garage &g);
+    void getVehicleList(QJsonDocument* file, garage* gar);
     // static std::vector<Record*> getRecords(QJsonDocument* file) ???
 
     static bool saveGarage(const QJsonDocument& file, const QString& filePath);

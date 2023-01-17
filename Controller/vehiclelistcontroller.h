@@ -13,6 +13,7 @@ class vehiclelistcontroller : public controller
 private:
     void connectViewController() const;
     garage* g;
+    veicolo* veic;
 public:
     explicit vehiclelistcontroller(vehiclelist* v, garage* m, controller* parent = nullptr);
     view* getView() const override;
@@ -26,7 +27,7 @@ public slots:
     void loadVehicleSlot();
     void newVehicleSlot();
     void addViaggioSlot();
-    void editVehicleSlot();
+    void editVehicleSlot(veicolo* veic);
     void deleteVehicleSlot();
 };
 

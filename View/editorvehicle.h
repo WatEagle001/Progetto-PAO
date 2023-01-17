@@ -17,8 +17,7 @@
 class editorvehicle:public view{
     Q_OBJECT
 private:
-        garage* g;
-        veicolo * v =  new veicolo("tesla", "model3", "QQ099AA", 1000);
+        veicolo * v;
         QPushButton* save;
         QPushButton* clear;
         QLineEdit* marca;
@@ -33,7 +32,7 @@ private:
 protected:
     void close(QCloseEvent* event);
 public:
-    explicit editorvehicle(const QSize& s = QSize(), view* parent = nullptr);
+    explicit editorvehicle(veicolo* veic,const QSize& s = QSize(), view* parent = nullptr);
     virtual ~editorvehicle() = default;
 
 signals:
