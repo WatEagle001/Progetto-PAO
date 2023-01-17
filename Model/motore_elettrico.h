@@ -2,23 +2,21 @@
 #define MOTORE_ELETTRICO_H
 #include "veicolo.h"
 
-class motore_elettrico: virtual public veicolo{
-private:
-    unsigned int cv_fiscali;
+class motore_elettrico:virtual public veicolo{
+protected:
     unsigned int kw_batteria;
-
+    double costo_ricarica;
+    bool ricaricare;
 public:
     // Costruttore e Distruttore
     motore_elettrico(
-        std::string _marca,
-        std::string _modello,
-        std::string _paese,
-        std::string _descrizione,
-        double _rapp_peso_pot,
-        unsigned int _cavalli,
-        unsigned int _peso,
-        unsigned int _nm,
-        unsigned int _kw_batteria
+        string _marca,
+        string _modello,
+        int _km_odometro,
+        unsigned int _kw_batteria,
+        bool _ricaricare,
+        double _costo_ricarica,
+        string _targa
     );
     virtual ~motore_elettrico();
     void setCavalli(unsigned int newCavalli);
@@ -26,6 +24,10 @@ public:
     // Getter e Setter
     unsigned int getKw_batteria() const;
     void setKw_batteria(unsigned int newKw_batteria);
+    bool getRicaricare() const;
+    void setRicaricare(bool newRicaricare);
+    double getCosto_ricarica() const;
+    void setCosto_ricarica(double newCosto_ricarica);
 };
 
 #endif // MOTORE_ELETTRICO_H

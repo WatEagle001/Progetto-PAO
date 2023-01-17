@@ -4,18 +4,13 @@
 auto_elettrica::auto_elettrica(
     string _marca,
     string _modello,
-    string _paese,
-    string _descrizione,
-    double _rapp_peso_pot,
-    unsigned int _cavalli,
-    unsigned int _peso,
-    unsigned int _nm,
-    unsigned int _kw_batteria
+    string _targa,
+    int _km_odometro,
+    unsigned int _kw_batteria,
+    bool _ricaricare,
+   double _costo_ricarica
 ):
-    veicolo(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm),
-    motore_elettrico(_marca, _modello, _paese, _descrizione, _rapp_peso_pot, _cavalli, _peso, _nm, _kw_batteria){}
+    veicolo(_marca, _modello, _targa, _km_odometro),
+    motore_elettrico(_marca, _modello,_km_odometro,_kw_batteria, _ricaricare, _costo_ricarica, _targa){}
 
-auto_elettrica::~auto_elettrica()
-{
-
-}
+auto_elettrica::~auto_elettrica() = default;

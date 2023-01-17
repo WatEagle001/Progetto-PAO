@@ -1,46 +1,28 @@
 #include <QApplication>
 #include <iostream>
-#include "Model/auto_elettrica.h"
-#include "Model/automobile.h"
-#include "Model/motore_combustione.h"
-#include "Model/motore_elettrico.h"
-using std::cout;
-using std::endl;
-#include <QMainWindow>
+#include "View/welcome.h"
+#include "Controller/welcomecontroller.h"
+#include "Controller/vehiclelistcontroller.h"
 
 int main(int argc, char* argv[]){
     QApplication app(argc, argv);
-    QMainWindow w;
-    w.show();
-
-    motore_combustione carbone("BMW", "serie 3", "germania","ciao", 100,2000, 1000,280);
-    motore_elettrico carbone2("Tesla", "model 3", "USA","ciao2", 150,2500, 300,800, 350);
-
-    cout<<carbone.getMarca()<< " "<< carbone.getModello() << " " <<carbone.getPaese() << " "<<carbone.getDescrizione()<< " "<< carbone.getRapp_peso_pot() << " "<<
-          carbone.getPeso() << " "<< carbone.getCavalli() <<  " "<< carbone.getNm() << endl;
-
-    cout<<carbone2.getMarca()<< " "<< carbone2.getModello() << " " <<carbone2.getPaese() << " "<<carbone2.getDescrizione()<< " "<< carbone2.getRapp_peso_pot() << " "<<
-          carbone2.getPeso() << " "<< carbone2.getCavalli() <<  " "<< carbone2.getNm()<<endl;
-
-    carbone2.setCavalli(10000);
-    cout<<carbone2.getMarca()<< " "<< carbone2.getModello() << " " <<carbone2.getPaese() << " "<<carbone2.getDescrizione()<< " "<< carbone2.getRapp_peso_pot() << " "<<
-          carbone2.getPeso() << " "<< carbone2.getCavalli() <<  " "<< carbone2.getNm() <<endl;
-
-    automobile a("a","b","c", "d", 100,190, 1200, 230);
-    cout<<a.getMarca()<< " "<< a.getModello() << " " <<a.getPaese() << " "<<a.getDescrizione()<< " "<< a.getRapp_peso_pot() << " "<<
-              a.getPeso() << " "<< a.getCavalli() <<  " "<< a.getNm()<<endl;
-
-    a.setCavalli(200);
-
-    cout<<a.getMarca()<< " "<< a.getModello() << " " <<a.getPaese() << " "<<a.getDescrizione()<< " "<< a.getRapp_peso_pot() << " "<<
-              a.getPeso() << " "<< a.getCavalli() <<  " "<< a.getNm()<<endl;
-    auto_elettrica e("w","x","y", "z", 100,190, 1200, 230);
-    cout<<e.getMarca()<< " "<< e.getModello() << " " <<e.getPaese() << " "<<e.getDescrizione()<< " "<< e.getRapp_peso_pot() << " "<<
-              e.getPeso() << " "<< e.getCavalli() <<  " "<< e.getNm()<<endl;
-
-    e.setCavalli(20000);
-    cout<<e.getMarca()<< " "<< e.getModello() << " " <<e.getPaese() << " "<<e.getDescrizione()<< " "<< e.getRapp_peso_pot() << " "<<
-              e.getPeso() << " "<< e.getCavalli() <<  " "<< e.getNm()<<endl;
-
+    welcome* w = new welcome(QSize(500,500));
+    garage* g = new garage;
+    //vehiclelist* l = new vehiclelist();
+    automobile* a = new automobile("Fiat", "punto","AO111OA", 125000,1200,45,benzina,0,0);
+    automobile* a1 = new automobile("Ferrari", "California", "AA111BB", 1000);
+    auto_elettrica* a2 = new auto_elettrica("Opel", "Astra", "BB333ZZ", 12500);
+    auto_elettrica* a3 = new auto_elettrica("Fiat", "126", "WW555PP", 30000);
+    auto_elettrica* a4 = new auto_elettrica("Gino", "Pino", "1111111", 30000);
+    auto_elettrica* a5 = new auto_elettrica("Pino", "a", "ZZ444PP", 30000);
+    g->addVeicolo(a);
+     g->addVeicolo(a1);
+      g->addVeicolo(a2);
+       g->addVeicolo(a3);
+        g->addVeicolo(a4);
+         g->addVeicolo(a5);
+    welcomeController* c = new welcomeController(w,g);
+    //vehiclelistcontroller* v = new vehiclelistcontroller(l,g);
+    c->showView();
     return app.exec();
 }

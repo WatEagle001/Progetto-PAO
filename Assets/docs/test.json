@@ -1,0 +1,19 @@
+{
+    "veicoli" : [
+        {
+            "tipo" : "automobile",
+            "marca" : "Peugeot",
+            "modello" : "308",
+            "targa" : "GK126MV",
+            "km" : "0"
+        }
+
+        {
+            "tipo" : "moto",
+            "marca" : "Kawasaki",
+            "modello" : "Z650",
+            "targa" : "EP89126",
+            "km" : "4500",
+        }
+    ]
+}

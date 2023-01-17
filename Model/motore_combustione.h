@@ -1,47 +1,48 @@
 #ifndef MOTORE_COMBUSTIONE_H
 #define MOTORE_COMBUSTIONE_H
 #include "veicolo.h"
+using std::string;
 
 enum alimentazione{
-    benzina, diesel, metano, gpl, biodisel, idrogeno
+    benzina = 0, diesel = 1, metano = 2, gpl = 3, biodisel = 4, idrogeno = 5, undefined = 9
 };
 
-class motore_combustione: virtual public veicolo{
-private:
+class motore_combustione : virtual public veicolo{
+protected:
     unsigned int cilindrata;
-    unsigned int cilindri;
     unsigned int litri_serbatoio;
     alimentazione carburante;
+    bool manutenzione;
+    unsigned int costo_manutenzione;
 
 public:
     // Costruttore e Distruttore
     motore_combustione(
-        std::string _marca,
-        std::string _modello,
-        std::string _paese,
-        std::string _descrizione,
-        double _rapp_peso_pot,
-        unsigned int _cavalli,
-        unsigned int _peso,
-        unsigned int _nm,
+        string _marca = "",
+        string _modello = "",
+        string _targa = "AA000BB",
+        int _km_odometro = 0,
         unsigned int _cilindrata = 0,
-        unsigned int _cilindri = 0,
         unsigned int _litri_serbatoio = 0,
-        alimentazione _carburante = benzina
+        alimentazione _carburante = benzina,
+        bool _manutenzione = 0,
+        unsigned int _costo_manutenzione = 0
     );
 
     virtual ~motore_combustione();
-    void setCavalli(unsigned int newCavalli);
 
     // Getter e Setter
     unsigned int getCilindrata() const;
     void setCilindrata(unsigned int newCilindrata);
-    unsigned int getCilindri() const;
-    void setCilindri(unsigned int newCilindri);
     unsigned int getLitri_serbatoio() const;
     void setLitri_serbatoio(unsigned int newLitri_serbatoio);
     char getAlimentazione() const;
     void setAlimentazione(alimentazione newAlimentazione);
+    bool getManutenzione() const;
+    void setManutenzione(bool newManutenzione);
+    unsigned int getCosto_manutenzione() const;
+    void setCosto_manutenzione(unsigned int newCosto_manutenzione);
+
 };
 
 #endif // MOTORE_COMBUSTIONE_H

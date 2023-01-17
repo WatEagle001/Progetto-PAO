@@ -1,6 +1,22 @@
 <RCC>
     <qresource prefix="/">
-        <file>Assets/docs/car-brands.txt</file>
-        <file>Assets/img/mercedes.png</file>
+        <file>Assets/docs/car-brands</file>
+        <file>Assets/image/logos/mercedes.png</file>
+        <file>Assets/image/logos/QFleetLogo.png</file>
+        <file>Assets/image/logos/appLogo.ico</file>
+        <file>Assets/docs/test.json</file>
+        <file>Assets/docs/veicoli.json</file>
+        <file>Assets/image/icons/auto_elettrica.png</file>
+        <file>Assets/image/icons/auto_ibrida.png</file>
+        <file>Assets/image/icons/automobile.png</file>
+        <file>Assets/image/icons/available.png</file>
+        <file>Assets/image/icons/delete.png</file>
+        <file>Assets/image/icons/false.png</file>
+        <file>Assets/image/icons/help.png</file>
+        <file>Assets/image/icons/manutenzione.png</file>
+        <file>Assets/image/icons/monopattino.png</file>
+        <file>Assets/image/icons/moto_elettrica.png</file>
+        <file>Assets/image/icons/moto.png</file>
+        <file>Assets/image/icons/true.png</file>
     </qresource>
 </RCC>
