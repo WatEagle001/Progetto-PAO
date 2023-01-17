@@ -1,6 +1,6 @@
 #ifndef VEHICLELISTCONTROLLER_H
 #define VEHICLELISTCONTROLLER_H
-
+#pragma once
 #include "controller.h"
 #include "View/vehiclelist.h"
 #include "Model/garage.h"
@@ -9,9 +9,7 @@
 
 class vehiclelistcontroller : public controller
 {
-
     Q_OBJECT
-
 private:
     void connectViewController() const;
     garage* g;
@@ -27,6 +25,9 @@ public slots:
     virtual void onClosedView() const override;
     void loadVehicleSlot();
     void newVehicleSlot();
+    void addViaggioSlot();
+    void editVehicleSlot();
+    void deleteVehicleSlot();
 };
 
 #endif // VEHICLELISTCONTROLLER_H

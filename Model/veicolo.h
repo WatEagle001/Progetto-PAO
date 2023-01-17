@@ -1,9 +1,11 @@
 #ifndef VEICOLO_H
 #define VEICOLO_H
 #include <string>
+#include "View/view.h"
 using std::string;
 
-class veicolo{
+class veicolo
+{
 private:
    string marca;
    string modello;

@@ -12,6 +12,11 @@ Array<veicolo *> garage::getVeicoli(string targa) const
 
 }
 
+int garage::size() const
+{
+return _veicoli.size();
+}
+
 
 garage::garage(): _veicoli(nullptr){}
 
@@ -86,4 +91,11 @@ double garage::getCostoGarage() const{
 
     return costi;
 }
+
+veicolo *garage::getVeicolo(int n)
+{
+ return _veicoli[n];
+}
+
+
 

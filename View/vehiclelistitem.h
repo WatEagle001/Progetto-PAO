@@ -14,16 +14,26 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QBoxLayout>
-
-class veicoloListItem : public QListWidgetItem
+#include <QDebug>
+#include "view.h"
+class vehicleListItem: public QListWidgetItem
 {
 private:
-    QString marcamodello, targa, km;
-    QPushButton aggiungiViaggio, modifica, elimina;
+    QString marcamodello;
+    QString targa;
+    QString km;
+    QPushButton* aggiungiViaggio;
+    QPushButton* modifica;
+    QPushButton* elimina;
     QHBoxLayout id;
-    QVBoxLayout pulsanti;
+    QHBoxLayout* pulsanti;
 
 public:
-    veicoloListItem(veicolo& v);
+    vehicleListItem(veicolo& v);
+    ~vehicleListItem() = default;
+    QHBoxLayout* confugureButtons();
+signals:
+    void editVehicleSignal(veicolo& v);
+    void newVehicleSignal(veicolo& v);
 };
 #endif // VEICOLOLISTITEM_H
