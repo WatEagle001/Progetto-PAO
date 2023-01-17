@@ -19,6 +19,8 @@ class welcomeController : public controller
 private:
     void connectViewController() const;
     garage* g;
+    vehiclelistcontroller* c;
+    vehiclelist* vehicle;
 public:
     explicit welcomeController(welcome* v,garage* dati, controller* parent = nullptr);
     welcome* getView() const override;

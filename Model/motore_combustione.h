@@ -4,10 +4,10 @@
 using std::string;
 
 enum alimentazione{
-    benzina = 0, diesel = 1, metano = 2, gpl = 3, biodisel = 4, idrogeno = 5
+    benzina = 0, diesel = 1, metano = 2, gpl = 3, biodisel = 4, idrogeno = 5, undefined = 9
 };
 
-class motore_combustione:virtual public veicolo{
+class motore_combustione : virtual public veicolo{
 protected:
     unsigned int cilindrata;
     unsigned int litri_serbatoio;

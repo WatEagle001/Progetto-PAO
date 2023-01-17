@@ -5,7 +5,7 @@ veicoloListItem::veicoloListItem(veicolo &v)
 
     marcamodello = QString::fromUtf8(v.getMarca()) + QString::fromUtf8(v.getModello());
     targa = QString::fromUtf8(v.getTarga());
-    km = v.getKm_odometro();
+    km = QString::number(v.getKm_odometro());
 
     if(dynamic_cast<automobile*>(&v)){
         setIcon(QIcon("Assets/image/icons/automobile.png"));

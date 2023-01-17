@@ -6,6 +6,9 @@ void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
     connect(v, SIGNAL(newVehicleSignal()), this, SLOT(newVehicleSlot()));
+    connect(v, SIGNAL(addNewViaggioSignal()), this, SLOT(loadVehicleSlot()));
+    connect(v, SIGNAL(editVehicleDetailsSignal()), this, SLOT(newVehicleSlot()));
+    connect(v, SIGNAL(deleteVehicleSignal()), this, SLOT(newVehicleSlot()));
 }
 
 vehiclelistcontroller::vehiclelistcontroller(vehiclelist *v, garage* m, controller *parent) : controller(v,m, parent)
@@ -38,8 +41,16 @@ void vehiclelistcontroller::loadVehicleSlot()
 {
     QString path = JSONAgent::selectFile();
     QJsonDocument* veicoli = JSONAgent::getData(path);
-//    *g  = JSONAgent::getVehicleList(veicoli);
-//    g->printGarage();
+    JSONAgent::getVehicleList(veicoli, *g);
+    qDebug() << "stampa da dopo caricamento";
+    g->printGarage();
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+       qDebug() << "stampa dopo aver caricato i veicoli";
+       g->printGarage();
+       vehiclecontroller->showView();
+       v->hide();
     //manca da implementare la creazione dei veicolo in base a quanto letto dal JSON
 }
 
@@ -53,5 +64,22 @@ void vehiclelistcontroller::newVehicleSlot()
     editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
     editor->showView();
     v->hide();
+
+}
+
+void vehiclelistcontroller::addViaggioSlot()
+{
+
+}
+
+void vehiclelistcontroller::editVehicleSlot()
+{
+    editorvehicle* vehicle = new editorvehicle(v->size(), v);
+    editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    editor->showView();
+}
+
+void vehiclelistcontroller::deleteVehicleSlot()
+{
 
 }
