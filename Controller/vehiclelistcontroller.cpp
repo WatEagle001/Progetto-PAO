@@ -73,8 +73,11 @@ void vehiclelistcontroller::addViaggioSlot(veicolo * veic)
     int newkm = QInputDialog::getInt(v, tr("Aggiungi Viaggio"), QString::fromStdString(s), veic->getKm_odometro(), veic->getKm_odometro(), INT_MAX, 1);
 
     if(newkm >= veic->getKm_odometro()){
+        int diff = newkm - veic->getKm_odometro();
         veic->setKm_odometro(newkm);
         // Bisogna ricaricare il garage
+
+        v->dialogPopUp_Information("Conferma Inserimento", "Il viggio dalla lunghezza di " + QString::fromStdString(std::to_string(diff)) +" km è stato inserito con successo nel sistema");
     }
     else {
         // Teoricamente questo errore non è raggiungibile, ma non si sa mai cosa si inventa l'utente
