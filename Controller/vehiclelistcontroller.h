@@ -6,6 +6,7 @@
 #include "Model/garage.h"
 #include "Controller/jsonagent.h"
 #include <iostream>
+#include <QInputDialog>
 
 class vehiclelistcontroller : public controller
 {
@@ -26,7 +27,7 @@ public slots:
     virtual void onClosedView() const override;
     void loadVehicleSlot();
     void newVehicleSlot();
-    void addViaggioSlot();
+    void addViaggioSlot(veicolo * veic);
     void editVehicleSlot(veicolo* veic);
     void deleteVehicleSlot();
 };

@@ -51,7 +51,7 @@ public:
 signals:
     void loadVehicleSignal();
     void newVehicleSignal();
-    void addNewViaggioSignal();
+    void addNewViaggioSignal(veicolo * v);
     void editVehicleDetailsSignal(veicolo * v);
     void deleteVehicleSignal();
 };

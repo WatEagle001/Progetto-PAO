@@ -36,7 +36,7 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
     detailedView = new QPushButton(QString("Dettagli"));
     detailedView->setFixedSize(60,40);
 
-    connect(aggiungiViaggio, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
+    connect(aggiungiViaggio, &QPushButton::clicked, (bind(&vehiclelist::addNewViaggioSignal, this, veic)));
     connect(elimina, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
     connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editVehicleDetailsSignal, this, veic)));
     connect(detailedView, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));

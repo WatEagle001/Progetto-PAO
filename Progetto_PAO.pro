@@ -20,6 +20,7 @@ SOURCES += \
     Model/model.cpp \
     Model/CostiViaggio.cpp \
     Model/veicolowidget.cpp \
+    View/dialogviaggio.cpp \
     View/editorvehicle.cpp \
     View/vehiclelist.cpp \
     View/vehiclelistitem.cpp \
@@ -62,6 +63,7 @@ HEADERS += \
     Controller/controller.h \
     Model/model.h \
     Model/veicolowidget.h \
+    View/dialogviaggio.h \
     View/editorvehicle.h \
     View/vehiclelist.h \
     View/vehiclelistitem.h \

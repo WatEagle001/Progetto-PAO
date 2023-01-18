@@ -3,6 +3,7 @@
 #include "View/welcome.h"
 #include "Controller/welcomecontroller.h"
 #include "Controller/vehiclelistcontroller.h"
+#include "View/dialogviaggio.h"
 
 int main(int argc, char* argv[]){
     QApplication app(argc, argv);
@@ -22,6 +23,10 @@ int main(int argc, char* argv[]){
         g->addVeicolo(a4);
          g->addVeicolo(a5);
     welcomeController* c = new welcomeController(w,g);
+    /*
+    DialogViaggio* d = new DialogViaggio(a1);
+    d->show();
+    */
     //vehiclelistcontroller* v = new vehiclelistcontroller(l,g);
     c->showView();
     return app.exec();
