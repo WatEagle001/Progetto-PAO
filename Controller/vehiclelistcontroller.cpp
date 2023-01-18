@@ -52,8 +52,8 @@ void vehiclelistcontroller::loadVehicleSlot()
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
 
-       vehiclecontroller->showView();
-       v->hide();
+    vehiclecontroller->showView();
+    v->hide();
 
 }
 
