@@ -13,8 +13,6 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QListWidget>
-
-#include "View/vehiclelistitem.h"
 #include "Model/garage.h"
 #include "view.h"
 #include <Model/veicolowidget.h>
@@ -53,6 +51,7 @@ signals:
     void newVehicleSignal();
     void addNewViaggioSignal();
     void editVehicleDetailsSignal(veicolo * v);
-    void deleteVehicleSignal();
+    void deleteVehicleSignal(veicolo* v);
+    void showVehicleDetails(veicolo* v);
 };
 #endif // VEHICLELIST_H

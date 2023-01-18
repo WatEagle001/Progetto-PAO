@@ -2,13 +2,16 @@
 #include "QDebug"
 #include "View/editorvehicle.h"
 #include "Controller/editorvehiclecontroller.h"
+#include "View/detailedvehicleview.h"
+#include "Controller/detailedvehicleviewcontroller.h"
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
     connect(v, SIGNAL(newVehicleSignal()), this, SLOT(newVehicleSlot()));
     connect(v, SIGNAL(addNewViaggioSignal()), this, SLOT(loadVehicleSlot()));
     connect(static_cast<vehiclelist*>(v), &vehiclelist::editVehicleDetailsSignal, this, &vehiclelistcontroller::editVehicleSlot);
-    connect(v, SIGNAL(deleteVehicleSignal()), this, SLOT(newVehicleSlot()));
+    connect(static_cast<vehiclelist*>(v), &vehiclelist::deleteVehicleSignal, this, &vehiclelistcontroller::deleteVehicleSlot);
+    connect(static_cast<vehiclelist*>(v), &vehiclelist::showVehicleDetails, this, &vehiclelistcontroller::detailedVehicleViewSlot);
 }
 
 vehiclelistcontroller::vehiclelistcontroller(vehiclelist *v, garage* m, controller *parent) : controller(v,m, parent)
@@ -79,7 +82,24 @@ void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
     editor->showView();
 }
 
-void vehiclelistcontroller::deleteVehicleSlot()
+void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
 {
+   g->deleteVeicolo(veic);
+   g->printGarage();
+
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+
+       vehiclecontroller->showView();
+       v->hide();
+}
+
+void vehiclelistcontroller::detailedVehicleViewSlot(veicolo *veic)
+{
+    qDebug() << QString::fromStdString(veic->getTarga());
+    detailedvehicleview* vehicledetails = new detailedvehicleview(veic,v->size(), v);
+    detailedvehicleviewcontroller* detailedController = new detailedvehicleviewcontroller(vehicledetails, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    detailedController->showView();
 
 }

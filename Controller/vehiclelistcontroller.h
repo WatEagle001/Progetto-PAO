@@ -28,7 +28,8 @@ public slots:
     void newVehicleSlot();
     void addViaggioSlot();
     void editVehicleSlot(veicolo* veic);
-    void deleteVehicleSlot();
+    void deleteVehicleSlot(veicolo* veic);
+    void detailedVehicleViewSlot(veicolo* veic);
 };
 
 #endif // VEHICLELISTCONTROLLER_H

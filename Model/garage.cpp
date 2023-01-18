@@ -26,14 +26,20 @@ void garage::addVeicolo(veicolo* const veicolo) {
 
 
 void garage::deleteVeicolo(veicolo* veicolo){
+    if(_veicoli.size() == 0){
+        qDebug()<< QString("Garage ora vuoto");
+    }
+    else{
     for(int i = 0; i < _veicoli.size(); i++){
         if(_veicoli[i]->getTarga() == veicolo->getTarga()){
             for(int j = i; j < _veicoli.size()-1; j++){
                 _veicoli[j] = _veicoli[i+1];
+                i++;
             }
         }
     }
     _veicoli.pop_back();
+    }
 }
 void garage::editVeicolo(veicolo* veicolo, string marca, string modello, string targa,  alimentazione alim, unsigned int cilindrata, unsigned int litri_serbatoio,
                         bool manutenzione, unsigned int costo_manutenzione, unsigned int kw_batteria, double costo_ricarica, bool ricaricare){

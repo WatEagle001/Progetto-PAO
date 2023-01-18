@@ -25,10 +25,7 @@ QFormLayout *editorvehicle::configureEditor(){
        layout->insertRow(2,new QLabel(tr("Modello")), new QLineEdit(QString::fromStdString(v->getModello())));
        layout->insertRow(3,new QLabel(tr("Targa")), new QLineEdit(QString::fromStdString(v->getTarga())));;
        layout->insertRow(4,new QLabel(tr("Km Odometro")), new QLineEdit(QString::fromStdString(v->getTarga())));
-       //v->setMarca(marca->text().toStdString());
-
-       //addMoreOptions();
-      // g->printGarage();
+    addMoreOptions();
 
     tipoAlimentazione->addItem(QString("Benzina"));
     tipoAlimentazione->addItem(QString("Diesel"));

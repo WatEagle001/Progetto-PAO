@@ -11,18 +11,18 @@ CONFIG += c++17
 RC_ICONS = Assets/image/logos/appLogo.ico
 
 SOURCES += \
+    Controller/detailedvehicleviewcontroller.cpp \
     Controller/editorvehiclecontroller.cpp \
     Controller/jsonagent.cpp \
     Controller/vehiclelistcontroller.cpp \
-    Controller/vehiclelistitemcontroller.cpp \
     Controller/welcomecontroller.cpp \
     Controller/controller.cpp \
     Model/model.cpp \
     Model/CostiViaggio.cpp \
     Model/veicolowidget.cpp \
+    View/detailedvehicleview.cpp \
     View/editorvehicle.cpp \
     View/vehiclelist.cpp \
-    View/vehiclelistitem.cpp \
     View/view.cpp \
     View/welcome.cpp \
     main.cpp \
@@ -40,8 +40,8 @@ SOURCES += \
        Model/veicolo.cpp
 
 HEADERS += \
+    Controller/detailedvehicleviewcontroller.h \
     Controller/editorvehiclecontroller.h \
-    Controller/vehiclelistitemcontroller.h \
    Model/CostiViaggio.h \
    Model/array.h \
    Model/auto_elettrica.h \
@@ -62,9 +62,9 @@ HEADERS += \
     Controller/controller.h \
     Model/model.h \
     Model/veicolowidget.h \
+    View/detailedvehicleview.h \
     View/editorvehicle.h \
     View/vehiclelist.h \
-    View/vehiclelistitem.h \
     View/view.h \
     View/welcome.h
 
