@@ -26,10 +26,10 @@ public slots:
     virtual void onClosedView() const override;
     void loadVehicleSlot();
     void newVehicleSlot();
-    void addViaggioSlot();
     void editVehicleSlot(veicolo* veic);
     void deleteVehicleSlot(veicolo* veic);
     void detailedVehicleViewSlot(veicolo* veic);
+    void addViaggioSlot(veicolo *veic);
 };
 
 #endif // VEHICLELISTCONTROLLER_H

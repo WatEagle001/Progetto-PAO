@@ -7,7 +7,7 @@
 
 void editorvehiclecontroller::connectViewController() const
 {
-    connect(v, SIGNAL(saveSignal()), this, SLOT(saveSlot()));
+   connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &editorvehiclecontroller::saveSlot);
     connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
 }
 
@@ -28,15 +28,19 @@ garage *editorvehiclecontroller::getModel() const
 }
 
 
-void editorvehiclecontroller::saveSlot() const
+void editorvehiclecontroller::saveSlot(veicolo* veic)
 {
-    /*getModel()->printGarage();
-    qDebug()<< "premuto Salva";
-    */
-    g->printGarage();
+
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+
+       vehiclecontroller->showView();
+       v->hide();
+
 }
 
-void editorvehiclecontroller::clearSlot() const
+void editorvehiclecontroller::clearSlot()
 {
 
     qDebug() << "premuto clear";
@@ -47,6 +51,6 @@ void editorvehiclecontroller::onClosedView() const
     delete this;
 }
 
-void editorvehiclecontroller::editVehicleSlot() const{
+void editorvehiclecontroller::editVehicleSlot(){
     qDebug() << "Premuto editor veicoli";
 }

@@ -4,11 +4,12 @@
 #include "Controller/editorvehiclecontroller.h"
 #include "View/detailedvehicleview.h"
 #include "Controller/detailedvehicleviewcontroller.h"
+#include <QInputDialog>
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
     connect(v, SIGNAL(newVehicleSignal()), this, SLOT(newVehicleSlot()));
-    connect(v, SIGNAL(addNewViaggioSignal()), this, SLOT(loadVehicleSlot()));
+    connect(static_cast<vehiclelist*>(v), &vehiclelist::addNewViaggioSignal, this, &vehiclelistcontroller::addViaggioSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::editVehicleDetailsSignal, this, &vehiclelistcontroller::editVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::deleteVehicleSignal, this, &vehiclelistcontroller::deleteVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::showVehicleDetails, this, &vehiclelistcontroller::detailedVehicleViewSlot);
@@ -70,9 +71,29 @@ void vehiclelistcontroller::newVehicleSlot()
 
 }
 
-void vehiclelistcontroller::addViaggioSlot()
+void vehiclelistcontroller::addViaggioSlot(veicolo * veic)
 {
+    string s = "Chilometri in Partenza: " + std::to_string(veic->getKm_odometro()) + "\nChilometri all'Arrivo: ";
+    int newkm = QInputDialog::getInt(v, tr("Aggiungi Viaggio"), QString::fromStdString(s), veic->getKm_odometro(), veic->getKm_odometro(), INT_MAX, 1);
 
+    if(newkm >= veic->getKm_odometro()){
+        int diff = newkm - veic->getKm_odometro();
+        veic->setKm_odometro(newkm);
+        // Bisogna ricaricare il garage
+
+        v->dialogPopUp_Information("Conferma Inserimento", "Il viggio dalla lunghezza di " + QString::fromStdString(std::to_string(diff)) +" km è stato inserito con successo nel sistema");
+    }
+    else {
+        // Teoricamente questo errore non è raggiungibile, ma non si sa mai cosa si inventa l'utente
+        v->dialogPopUp_Warning("Errore", "I chilometri finali non possono essere inferiori a quelli iniziali");
+    }
+
+    vehiclelist* veh = new vehiclelist(g,v->size(), v);
+    veh->setTitle("Garage");
+    vehiclelistcontroller* vc = new vehiclelistcontroller(veh, g, const_cast<controller*>(static_cast<const controller*>(this)));
+
+    vc->showView();
+    v->hide();
 }
 
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)

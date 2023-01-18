@@ -17,16 +17,28 @@
 class editorvehicle:public view{
     Q_OBJECT
 private:
-        veicolo * v;
+        veicolo* v;
+        veicolo* nuovo;
         QPushButton* save;
         QPushButton* clear;
         QLineEdit* marca;
+        QLineEdit* modello;
+        QLineEdit* targa;
+        QLineEdit* km;
+        QLineEdit* cilindrata;
+        QLineEdit* manutenzione_bool;
+        QLineEdit* costo_manutenzione;
+        QLineEdit* kw;
+        QLineEdit* ricaricare_bool;
+        QLineEdit* costo_ricarica;
+        QLineEdit* litri_carburante;
+        QLineEdit* carburante;
         QFormLayout* layout;
         QComboBox* tipoAlimentazione;
         QLayout* configureFinalLayout();
         QFormLayout* configureEditor();
         QHBoxLayout* configureButtons();
-        void addMoreOptions();
+        QFormLayout* addMoreOptions();
         void deleteOptions();
         void connectViewSignals() const override;
 protected:
@@ -36,7 +48,7 @@ public:
     virtual ~editorvehicle() = default;
 
 signals:
-    void saveSignal();
+    void saveSignal(veicolo* v);
     void clearSignal();
     void selectedTypeVehicle();
 

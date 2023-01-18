@@ -1,7 +1,5 @@
 #ifndef EDITORVEHICLECONTROLLER_H
 #define EDITORVEHICLECONTROLLER_H
-
-
 #include "controller.h"
 #include "View/vehiclelist.h"
 #include "Model/garage.h"
@@ -28,9 +26,9 @@ signals:
 
 public slots:
     virtual void onClosedView() const override;
-    void saveSlot() const;
-    void clearSlot() const;
-    void editVehicleSlot() const;
+    void saveSlot(veicolo* veic);
+    void clearSlot();
+    void editVehicleSlot();
 };
 
 

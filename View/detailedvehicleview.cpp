@@ -3,32 +3,59 @@
 #include <iostream>
 #include <QFormLayout>
 #include <QLineEdit>
+#include <QComboBox>
+#include <Model/veicolo.h>
+#include <Model/automobile.h>
+#include <Model/moto.h>
+#include <Model/auto_ibrida.h>
+#include <Model/moto_elettrica.h>
+#include <Model/monopattino_elettrico.h>
+#include <Model/auto_elettrica.h>
 
 QLayout *detailedvehicleview::configureFinalLayout(){
     // Creazione Layout
     QBoxLayout* mainLayout = new QVBoxLayout();
-
+    mainLayout->addLayout(configureEditor());
     // Aggiunta dei Vari Componenti al Layout
 
     return mainLayout;
 }
-QVBoxLayout *detailedvehicleview::configureDescription()
-{
 
+QFormLayout *detailedvehicleview::configureEditor(){
+       tipoAlimentazione = new QComboBox;
+       layout = new QFormLayout;
+       layout->insertRow(1,new QLabel(tr("Marca")), new QLabel(QString::fromStdString(v->getMarca())));
+       layout->insertRow(2,new QLabel(tr("Modello")), new QLabel(QString::fromStdString(v->getModello())));
+       layout->insertRow(3,new QLabel(tr("Targa")), new QLabel(QString::fromStdString(v->getTarga())));;
+       layout->insertRow(4,new QLabel(tr("Km Odometro")), new QLabel(QString::number(v->getKm_odometro())));
+    addMoreOptions();
+
+    tipoAlimentazione->addItem(QString("Benzina"));
+    tipoAlimentazione->addItem(QString("Diesel"));
+    tipoAlimentazione->addItem(QString("Metano"));
+    tipoAlimentazione->addItem(QString("GPL"));
+    tipoAlimentazione->addItem(QString("BioDiesel"));
+    tipoAlimentazione->addItem(QString("Idrogeno"));
+
+
+    return layout;
 }
-QHBoxLayout *detailedvehicleview::configureButtons()
-{
-    /*QHBoxLayout* buttons = new QHBoxLayout();
-    // Creazione Pulsanti
-    createGarage = new QPushButton("Crea Nuovo Garage", this);
-    createGarage->setFixedSize(150, 70);
-    //openGarage = new QPushButton("Apri Garage Esistente", this);
-    //openGarage->setFixedSize(150, 70);
-    // Aggiunta dei Bottoni al Layout Secondario
-    buttons->addWidget(createGarage);
-    //buttons->addWidget(openGarage);
-    return buttons;
-    */
+QFormLayout* detailedvehicleview::addMoreOptions(){
+    motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
+    if(dynamic_cast<automobile*>(ptr) || dynamic_cast<moto*>(ptr) || dynamic_cast<auto_ibrida*>(ptr)){
+    layout->insertRow(5,new QLabel(tr("Cilindrata")), new QLabel(QString::number(ptr->getCilindrata())));
+    layout->insertRow(6,new QLabel(tr("Litri Carburante")), new QLabel(QString::number(ptr->getLitri_serbatoio())));
+    layout->insertRow(7,new QLabel(tr("Carburante")), tipoAlimentazione);
+    layout->insertRow(8,new QLabel(tr("Manutenzione")), new QLabel(QString::number(ptr->getManutenzione())));
+    layout->insertRow(9,new QLabel(tr("Costo Manutenzione")), new QLabel(QString::number(ptr->getCosto_manutenzione())));
+    }
+    motore_elettrico* e = dynamic_cast<motore_elettrico*>(v);
+    if(dynamic_cast<auto_elettrica*>(e) || dynamic_cast<moto_elettrica*>(e) || dynamic_cast<monopattino_elettrico*>(e)){
+    layout->insertRow(10,new QLabel(tr("KW Batteria")), new QLabel(QString::number(e->getKw_batteria())));
+    layout->insertRow(11,new QLabel(tr("Ricaricare")), new QLabel(QString::number(e->getRicaricare())));
+    layout->insertRow(12,new QLabel(tr("Costo Ricarica")), new QLabel(QString::number(e->getCosto_ricarica())));
+    }
+    return layout;
 }
 
 void detailedvehicleview::connectViewSignals() const
@@ -51,16 +78,8 @@ void detailedvehicleview::close(QCloseEvent *event)
 detailedvehicleview::detailedvehicleview(veicolo* veic,const QSize &s, view *parent) : view(s, parent)
 {
     v = veic;
-    qDebug() << QString::fromStdString("stampa targa de detailed view");
-                qDebug() <<QString::fromStdString(veic->getTarga());
     QBoxLayout* main = new QVBoxLayout;
-    //main->addLayout(configureFinalLayout());
-    QFormLayout* info = new QFormLayout;
-    info->insertRow(1,new QLabel(tr("Marca")), new QLabel(QString::fromStdString(veic->getMarca())));
-    info->insertRow(2,new QLabel(tr("Modello")), new QLabel(QString::fromStdString(veic->getModello())));
-    info->insertRow(3,new QLabel(tr("Targa")), new QLabel(QString::fromStdString(veic->getTarga())));
-    //info->insertRow(4,new QLabel(tr("KM Odometro")), new QLabel(QString::fromStdString(veic->getKm_odometro())));
-    main->addLayout(info);
+    main->addLayout(configureFinalLayout());
     setLayout(main);
     setFixedSize(s);
     setTitle("Dettaglio Veicolo");
