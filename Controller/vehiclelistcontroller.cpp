@@ -81,8 +81,15 @@ void vehiclelistcontroller::addViaggioSlot(veicolo * veic)
     }
     else {
         // Teoricamente questo errore non è raggiungibile, ma non si sa mai cosa si inventa l'utente
-        v->dialogPopUp_Warning("Errore", "I chilometri finali non possono essere inferiori a quelli iniziali");
+        v->dialogPopUp_Warning("Errore", "Nessun viaggio inserito");
     }
+
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+
+    vehiclecontroller->showView();
+    v->hide();
 }
 
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)

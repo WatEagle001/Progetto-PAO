@@ -14,7 +14,6 @@
 #include <QGridLayout>
 #include <QListWidget>
 
-#include "View/vehiclelistitem.h"
 #include "Model/garage.h"
 #include "view.h"
 #include <Model/veicolowidget.h>
