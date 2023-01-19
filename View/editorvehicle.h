@@ -63,10 +63,11 @@ signals:
     //void saveSignal(veicolo* veic,automobile* nuovoa);
 
     //void saveSignal();
-    void clearSignal();
+
     void selectedTypeVehicle();
 public slots:
     void checkSignal();
+    void clearSlot();
 
 };
 

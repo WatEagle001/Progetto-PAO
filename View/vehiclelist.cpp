@@ -54,6 +54,7 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
 QWidget* vehiclelist::configureVheicleItem(veicolo* veic){
     qDebug() << "tipo veicolo passato al widget";
     qDebug() << typeid(*veic).name();
+    qDebug() << typeid(veic).name();
     QWidget* test = new QWidget;
     QHBoxLayout* list = new QHBoxLayout;
     veicoloWidget* wid = new veicoloWidget(veic);
@@ -92,13 +93,11 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, 
             automobile* tmp = new automobile(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
             QWidget* wtmp =configureVheicleItem(tmp);
             l->addWidget(wtmp);
-
         }
         /*else if(dynamic_cast<veicolo*>(g->getVeicolo(i))){
             veicolo* tmp1 = new veicolo(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
             QWidget* wtmp =configureVheicleItem(tmp1);
             l->addWidget(wtmp);
-
         }
         */
         else if(dynamic_cast<auto_elettrica*>(g->getVeicolo(i))){
@@ -129,7 +128,6 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, 
         }
         else{
             qDebug() <<"Fallito tutto";
-            qDebug() << QString::fromStdString(g->getVeicolo(i)->getMarca()) << " " <<QString::fromStdString(g->getVeicolo(i)->getModello())<< " "<< QString::fromStdString(g->getVeicolo(i)->getTarga());
         }
     }
 

@@ -81,14 +81,14 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("modello").toString().toStdString(),
                         vehicle.toObject().value("targa").toString().toStdString(),
                         vehicle.toObject().value("km").toInt(),
-                        static_cast<unsigned int>(vehicle.toObject().value("cilindrata").toInt()),
-                        static_cast<unsigned int>(vehicle.toObject().value("litri_serbatoio").toInt()),
+                        vehicle.toObject().value("cilindrata").toString().toUInt(),
+                        vehicle.toObject().value("litri_serbatoio").toString().toUInt(),
                         carburante,
                         vehicle.toObject().value("kw").toInt(),
                         vehicle.toObject().value("manutenzione").toBool(),
-                        static_cast<unsigned int>(vehicle.toObject().value("ricaricare").toInt()),
-                        static_cast<unsigned int>(vehicle.toObject().value("costo").toDouble()),
-                        static_cast<unsigned int>(vehicle.toObject().value("costo_ricarica").toDouble()));
+                        vehicle.toObject().value("ricaricare").toString().toInt(),
+                        vehicle.toObject().value("costo").toString().toDouble(),
+                        vehicle.toObject().value("costo_ricarica").toString().toDouble());
             g->addVeicolo(a);
 
         }
@@ -97,12 +97,12 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("marca").toString().toStdString(),
                         vehicle.toObject().value("modello").toString().toStdString(),
                         vehicle.toObject().value("targa").toString().toStdString(),
-                        vehicle.toObject().value("km").toInt(),
-                        static_cast<unsigned int>(vehicle.toObject().value("cilindrata").toInt()),
-                        static_cast<unsigned int>(vehicle.toObject().value("litri_serbatoio").toInt()),
+                        vehicle.toObject().value("km").toString().toInt(),
+                        vehicle.toObject().value("cilindrata").toString().toUInt(),
+                        vehicle.toObject().value("litri_serbatoio").toString().toUInt(),
                         carburante,
                         vehicle.toObject().value("manutenzione").toBool(),
-                        static_cast<unsigned int>(vehicle.toObject().value("costo").toInt()));
+                        vehicle.toObject().value("costo").toString().toUInt());
             g->addVeicolo(a);
 
         }
@@ -113,8 +113,8 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("targa").toString().toStdString(),
                         vehicle.toObject().value("km").toInt(),
                         vehicle.toObject().value("kw").toInt(),
-                        static_cast<unsigned int>(vehicle.toObject().value("ricaricare").toInt()),
-                        static_cast<unsigned int>(vehicle.toObject().value("costo_ricarica").toDouble()));
+                        vehicle.toObject().value("ricaricare").toString().toUInt(),
+                        vehicle.toObject().value("costo_ricarica").toString().toDouble());
 
             g->addVeicolo(a);
 
@@ -125,11 +125,11 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("modello").toString().toStdString(),
                         vehicle.toObject().value("targa").toString().toStdString(),
                         vehicle.toObject().value("km").toInt(),
-                        static_cast<unsigned int>(vehicle.toObject().value("cilindrata").toInt()),
-                        static_cast<unsigned int>(vehicle.toObject().value("litri_serbatoio").toInt()),
+                        vehicle.toObject().value("cilindrata").toString().toUInt(),
+                        vehicle.toObject().value("litri_serbatoio").toString().toUInt(),
                         carburante,
                         vehicle.toObject().value("manutenzione").toBool(),
-                        static_cast<unsigned int>(vehicle.toObject().value("costo").toInt()));
+                        vehicle.toObject().value("costo").toString().toDouble());
             g->addVeicolo(a);
 
         }
@@ -139,8 +139,8 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("modello").toString().toStdString(),
                         vehicle.toObject().value("km").toInt(),
                         vehicle.toObject().value("kw").toInt(),
-                        static_cast<unsigned int>(vehicle.toObject().value("ricaricare").toInt()),
-                        static_cast<unsigned int>(vehicle.toObject().value("costo_ricarica").toDouble()));
+                        vehicle.toObject().value("ricaricare").toString().toInt(),
+                        vehicle.toObject().value("costo_ricarica").toString().toDouble());
                         vehicle.toObject().value("targa").toString().toStdString();
             g->addVeicolo(a);
 
@@ -152,8 +152,8 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("targa").toString().toStdString(),
                         vehicle.toObject().value("km").toInt(),
                         vehicle.toObject().value("kw").toInt(),
-                        static_cast<unsigned int>(vehicle.toObject().value("ricaricare").toInt()),
-                        static_cast<unsigned int>(vehicle.toObject().value("costo_ricarica").toDouble()));
+                        vehicle.toObject().value("ricaricare").toString().toInt(),
+                        vehicle.toObject().value("costo_ricarica").toString().toDouble());
 
             g->addVeicolo(a);
 

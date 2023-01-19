@@ -25,19 +25,7 @@ editorvehicle::editorvehicle(garage* gar,veicolo* veic,const QSize &s, view *par
     g = gar;
     qDebug() << "tipo veicolo passato all'editor";
      qDebug() << typeid(*veic).name();
-    /*if(cilindrata->isModified() == true || litri_carburante->isModified() == true
-            || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true){
-    ptr->setCilindrata(cilindrata->text().toInt());
-    ptr->setLitri_serbatoio(litri_carburante->text().toInt());
-    ptr->setManutenzione(manutenzione_bool->text().toInt());
-    ptr->setCosto_manutenzione(costo_manutenzione->text().toInt());
-
-    }
-    */
-
-   // g->addVeicolo(v);
     QVBoxLayout* main = new QVBoxLayout;
-   // main->addLayout(configureFinalLayout());
     main->addLayout(configureEditor());
     main->addLayout(configureButtons());
 
@@ -99,25 +87,25 @@ void editorvehicle::chechIfDataIsModified() {
             || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true
             || kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true ){
         qDebug() << "Modifiche";
-        if(dynamic_cast<veicolo*>(v)){
+        /*if(dynamic_cast<veicolo*>(v)){
             qDebug() << "ok creo nuovo veicolo normale";
             nuovo = new veicolo(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
             qDebug() << typeid(nuovo).name();
          }
-           if(dynamic_cast<automobile*>(v)){
+          else if(dynamic_cast<automobile*>(v)){
                qDebug() << "ok creo nuovo auto";
                nuovoa = new automobile(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt(),cilindrata->text().toInt());
                qDebug() << typeid(nuovoa).name();
             }
-           if(dynamic_cast<moto*>(v)){
+          else if(dynamic_cast<moto*>(v)){
                qDebug() << "ok creo nuovo moto";
                nuovo = new moto(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
             }
-           if(dynamic_cast<auto_elettrica*>(v)){
+          else if(dynamic_cast<auto_elettrica*>(v)){
                qDebug() << "ok creo nuovo auto_e";
                nuovo = new auto_elettrica(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
             }
-           if(dynamic_cast<auto_ibrida*>(v)){
+          else if(dynamic_cast<auto_ibrida*>(v)){
                qDebug() << "ok creo nuovo auto_i";
                nuovo = new auto_ibrida(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
             }
@@ -125,21 +113,26 @@ void editorvehicle::chechIfDataIsModified() {
                qDebug() << "ok creo nuovo veicolo";
                nuovo = new moto_elettrica(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
             }
-            */
-           if(dynamic_cast<monopattino_elettrico*>(v)){
+
+         else  if(dynamic_cast<monopattino_elettrico*>(v)){
                qDebug() << "ok creo nuovo monopattino";
                nuovo = new monopattino_elettrico(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
             }
-
-           /* qDebug() << "stampa garage da editor dopo modifica";
-            g->printGarage();
-           // automobile* tmp = new automobile(v->getMarca(),v->getModello(),v->getTarga(),v->getKm_odometro());
-           // g->addVeicolo(tmp);
-            g->printGarage();
-            */
+    */
+        qDebug() << "tipo veicolo dopo salvataggio";
+                    qDebug() <<typeid(v).name();
+        v->setMarca(marca->text().toStdString());
+        v->setModello(modello->text().toStdString());
+        v->setTarga(v->getTarga());
+        v->setKm_odometro(km->text().toInt());
+        motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
+        if(ptr){
+            qDebug() << "ok cast";
+            ptr->setCilindrata(cilindrata->text().toInt());
+        }
     }
-    //qDebug() << QString::fromStdString(v->getMarca()) + " "<< QString::fromStdString(v->getModello()) + " " << QString::number(v->getKm_odometro());
-    connect(save, &QPushButton::clicked,(bind(&editorvehicle::saveSignal, this, v,nuovo)));
+
+    connect(save, &QPushButton::clicked,(bind(&editorvehicle::saveSignal, this, v,v)));
     //connect(save, &QPushButton::clicked,(bind(&editorvehicle::saveSignalAuto, this, v,nuovoa)));
 }
 
@@ -148,11 +141,19 @@ void editorvehicle::checkSignal(){
     chechIfDataIsModified();
 }
 
+void editorvehicle::clearSlot()
+{
+marca->setText(QString::fromStdString(v->getMarca()));
+modello->setText(QString::fromStdString(v->getModello()));
+km->setText(QString::number(v->getKm_odometro()));
+targa->setText(QString::fromStdString(v->getTarga()));
+//mancherebbero tutti gli altri campi dati
+}
+
 void editorvehicle::connectViewSignals() const
 {
-    connect(clear, SIGNAL(clicked()), this, SIGNAL(clearSignal()));
+    connect(clear, SIGNAL(clicked()), this, SLOT(clearSlot()));
     connect(confermaDati, SIGNAL(clicked()), this, SLOT(checkSignal()));
-    //connect(save, SIGNAL(clicked()), this, SIGNAL(saveSignal()));
 }
 
 QHBoxLayout *editorvehicle::configureButtons()
@@ -162,7 +163,7 @@ QHBoxLayout *editorvehicle::configureButtons()
     // Creazione Pulsanti
     save = new QPushButton("Salva", this);
     save->setFixedSize(150, 70);
-    clear = new QPushButton("Elimina tutti i campi dati", this);
+    clear = new QPushButton("Elimina le modifiche", this);
     clear->setFixedSize(150, 70);
     confermaDati = new QPushButton("Conferma Dati",this);
     confermaDati->setFixedSize(150, 70);
