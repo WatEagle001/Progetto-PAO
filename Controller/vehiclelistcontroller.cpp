@@ -67,9 +67,13 @@ void vehiclelistcontroller::newVehicleSlot()
 
 }
 
-void vehiclelistcontroller::addViaggioSlot(veicolo * veic)
+void vehiclelistcontroller::addViaggioSlot(veicolo * vec)
 {
-    string s = "Chilometri in Partenza: " + std::to_string(veic->getKm_odometro()) + "\nChilometri all'Arrivo: ";
+    DialogViaggio* dv = new DialogViaggio(vec, v->size(), v);
+    dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, vec, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    dvc->showView();
+    /* VERSIONE DI PROVA */
+    /*   string s = "Chilometri in Partenza: " + std::to_string(veic->getKm_odometro()) + "\nChilometri all'Arrivo: ";
     int newkm = QInputDialog::getInt(v, tr("Aggiungi Viaggio"), QString::fromStdString(s), veic->getKm_odometro(), veic->getKm_odometro(), INT_MAX, 1);
 
     if(newkm >= veic->getKm_odometro()){
@@ -90,6 +94,7 @@ void vehiclelistcontroller::addViaggioSlot(veicolo * veic)
 
     vehiclecontroller->showView();
     v->hide();
+    */
 }
 
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)

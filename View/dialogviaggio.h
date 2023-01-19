@@ -8,7 +8,7 @@
 
 #include "Model/veicolo.h"
 
-class DialogViaggio : public QDialog
+class DialogViaggio : public view
 {
 
     Q_OBJECT
@@ -16,9 +16,12 @@ class DialogViaggio : public QDialog
 private:
     QFormLayout* layout;
     QList<QLineEdit*>* campidati;
+    QDialogButtonBox* buttonbox;
+
+    void connectViewSignals() const;
 
 public:
-    DialogViaggio(veicolo* veic);
+    DialogViaggio(veicolo* veic, const QSize& s = QSize(), view* parent = nullptr);
 
 signals:
     void tryAddViaggio();

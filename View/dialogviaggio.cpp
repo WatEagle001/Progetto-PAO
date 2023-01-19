@@ -1,6 +1,11 @@
 #include "dialogviaggio.h"
 
-DialogViaggio::DialogViaggio(veicolo *veic)
+void DialogViaggio::connectViewSignals() const
+{
+    connect(buttonbox, SIGNAL(accepted()), this, SIGNAL(tryAddViaggio()));
+}
+
+DialogViaggio::DialogViaggio(veicolo *veic, const QSize &s, view *parent) : view(s, parent)
 {
     layout = new QFormLayout(this);
     layout->addRow(new QLabel("Inserimento Viaggio"));
@@ -21,7 +26,7 @@ DialogViaggio::DialogViaggio(veicolo *veic)
     layout->addRow("Costo Carburante", costoCarburante);
     layout->addRow("Costo Elettricità", costoElettricita);
 
-    QDialogButtonBox* buttonbox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
+    buttonbox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, this);
     buttonbox->centerButtons();
     layout->addRow(buttonbox);
 

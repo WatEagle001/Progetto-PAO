@@ -5,6 +5,7 @@
 #include "View/vehiclelist.h"
 #include "Model/garage.h"
 #include "Controller/jsonagent.h"
+#include "Controller/dialogviaggiocontroller.h"
 #include <iostream>
 #include <QInputDialog>
 

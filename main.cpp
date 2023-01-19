@@ -24,9 +24,6 @@ int main(int argc, char* argv[]){
          g->addVeicolo(a5);
     welcomeController* c = new welcomeController(w,g);
 
-    DialogViaggio* d = new DialogViaggio(a1);
-    d->show();
-
     //vehiclelistcontroller* v = new vehiclelistcontroller(l,g);
     c->showView();
     return app.exec();
