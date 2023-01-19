@@ -5,6 +5,8 @@
 #include "View/detailedvehicleview.h"
 #include "Controller/detailedvehicleviewcontroller.h"
 #include <QInputDialog>
+#include "View/newvehicle.h"
+#include "Controller/newvehiclecontroller.h"
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
@@ -63,11 +65,12 @@ void vehiclelistcontroller::loadVehicleSlot()
 
 void vehiclelistcontroller::newVehicleSlot()
 {
-    /*editorvehicle* vehicle = new editorvehicle(veic,v->size(), v);
-    editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
-    editor->showView();
-    v->hide();
-    */
+    newvehicle* vehicle = new newvehicle(g,nullptr,v->size(), v);
+    vehicle->setTitle("Aggiunta Veicolo");
+    newvehiclecontroller* vehiclecontroller = new newvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+
+    vehiclecontroller->showView();
+       v->hide();
 
 }
 

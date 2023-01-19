@@ -45,7 +45,7 @@ QFormLayout* detailedvehicleview::addMoreOptions(){
     if(dynamic_cast<automobile*>(ptr) || dynamic_cast<moto*>(ptr) || dynamic_cast<auto_ibrida*>(ptr)){
     layout->insertRow(5,new QLabel(tr("Cilindrata")), new QLabel(QString::number(ptr->getCilindrata())));
     layout->insertRow(6,new QLabel(tr("Litri Carburante")), new QLabel(QString::number(ptr->getLitri_serbatoio())));
-    layout->insertRow(7,new QLabel(tr("Carburante")), tipoAlimentazione);
+    layout->insertRow(7,new QLabel(tr("Carburante")), new QLabel(QString(tipoAlimentazione->currentText())));
     layout->insertRow(8,new QLabel(tr("Manutenzione")), new QLabel(QString::number(ptr->getManutenzione())));
     layout->insertRow(9,new QLabel(tr("Costo Manutenzione")), new QLabel(QString::number(ptr->getCosto_manutenzione())));
     }

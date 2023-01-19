@@ -1,13 +1,14 @@
-#ifndef EDITORVEHICLECONTROLLER_H
-#define EDITORVEHICLECONTROLLER_H
+#ifndef NEWVEHICLECONTROLLER_H
+#define NEWVEHICLECONTROLLER_H
 #include "controller.h"
 #include "View/vehiclelist.h"
 #include "Model/garage.h"
 #include "Controller/jsonagent.h"
 #include <iostream>
 #include "View/editorvehicle.h"
+#include "View/newvehicle.h"
 
-class editorvehiclecontroller : public controller
+class newvehiclecontroller : public controller
 {
 
     Q_OBJECT
@@ -16,11 +17,10 @@ private:
     void connectViewController() const;
     garage* g;
     veicolo* veic;
-    veicolo* nuovo;
     automobile* nuovoa;
 
 public:
-    editorvehiclecontroller(editorvehicle* v, garage* m,controller* parent = nullptr,veicolo* n = nullptr);
+    newvehiclecontroller(newvehicle* v, garage* m,controller* parent = nullptr);
     view* getView() const override;
     garage* getModel() const override;
 
@@ -32,8 +32,8 @@ public slots:
     void saveSlotAuto(veicolo* veic,automobile* nuovoa);
     //void saveSlot();
     void clearSlot();
-    void editVehicleSlot();
+    void newVehicleSlot();
 };
 
 
-#endif // EDITORVEHICLECONTROLLER_H
+#endif // NEWVEHICLECONTROLLER_H

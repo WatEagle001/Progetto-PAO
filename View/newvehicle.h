@@ -1,5 +1,5 @@
-#ifndef EDITORVEHICLE_H
-#define EDITORVEHICLE_H
+#ifndef NEWVEHICLE_H
+#define NEWVEHICLE_H
 #include <QPushButton>
 #include "view.h"
 #include <QWidget>
@@ -14,7 +14,7 @@
 #include <Model/garage.h>
 #include <Model/veicolo.h>
 
-class editorvehicle:public view{
+class newvehicle:public view{
     Q_OBJECT
 private:
         veicolo* v;
@@ -44,6 +44,7 @@ private:
         QLineEdit* carburante;
         QFormLayout* layout;
         QComboBox* tipoAlimentazione;
+        QComboBox* tipoVeicolo;
         QLayout* configureFinalLayout();
         QFormLayout* configureEditor();
         QHBoxLayout* configureButtons();
@@ -53,8 +54,8 @@ private:
 protected:
     void close(QCloseEvent* event);
 public:
-    explicit editorvehicle(garage* gar,veicolo* veic,const QSize& s = QSize(), view* parent = nullptr);
-    virtual ~editorvehicle() = default;
+    explicit newvehicle(garage* gar,veicolo* veic,const QSize& s = QSize(), view* parent = nullptr);
+    virtual ~newvehicle() = default;
 
     void chechIfDataIsModified();
 signals:
@@ -70,4 +71,4 @@ public slots:
 
 };
 
-#endif // EDITORVEHICLE_H
+#endif // NEWVEHICLE_H

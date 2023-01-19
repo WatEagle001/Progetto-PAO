@@ -40,6 +40,7 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
     connect(aggiungiViaggio,&QPushButton::clicked, (bind(&vehiclelist::addNewViaggioSignal, this, veic)));
     connect(elimina, &QPushButton::clicked, (bind(&vehiclelist::deleteVehicleSignal, this, veic)));
     connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editVehicleDetailsSignal, this, veic)));
+    // connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editAutoDetailsSignal, this, veic)));
     connect(detailedView, &QPushButton::clicked,(bind(&vehiclelist::showVehicleDetails, this, veic)));
 
 
@@ -51,6 +52,8 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
 }
 
 QWidget* vehiclelist::configureVheicleItem(veicolo* veic){
+    qDebug() << "tipo veicolo passato al widget";
+    qDebug() << typeid(*veic).name();
     QWidget* test = new QWidget;
     QHBoxLayout* list = new QHBoxLayout;
     veicoloWidget* wid = new veicoloWidget(veic);
@@ -65,8 +68,7 @@ QWidget* vehiclelist::configureVheicleItem(veicolo* veic){
 vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, parent), layout(new QVBoxLayout(this))
 {
     g = garage;
-    //qDebug() << "stampa da costruttore di vehiclelist";
-    //g->printGarage();
+
     QHBoxLayout* buttons = new QHBoxLayout();
     add = new QPushButton("Aggiungi Veicolo", this);
     load = new QPushButton("Carica Veicolo", this);
@@ -76,32 +78,32 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, 
     buttons->addWidget(load);
     buttons->addWidget(costi);
 
-     QVBoxLayout* l = new QVBoxLayout;
+    QVBoxLayout* l = new QVBoxLayout;
 
     layout->addLayout(buttons);
     QScrollArea* scrollArea = new QScrollArea();
-     layout->addWidget(scrollArea);
-     //qDebug() << "dimensione garage in vehiclelist" << g->size();
-     //g->printGarage();
-     qDebug() << "--------------";
+    layout->addWidget(scrollArea);
+
+
     for(int i = 0; i < g->size(); i++){
-        //cout<<i<<endl;
-        //cout << typeid(*(g)->getVeicolo(i)).name();
+        qDebug() << typeid(*(g)->getVeicolo(i)).name();
+        qDebug() << "-----------------------------------------------";
         if(dynamic_cast<automobile*>(g->getVeicolo(i))){
             automobile* tmp = new automobile(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
             QWidget* wtmp =configureVheicleItem(tmp);
             l->addWidget(wtmp);
 
         }
-        else if(dynamic_cast<veicolo*>(g->getVeicolo(i))){
-            veicolo* tmp = new veicolo(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
-            QWidget* wtmp =configureVheicleItem(tmp);
+        /*else if(dynamic_cast<veicolo*>(g->getVeicolo(i))){
+            veicolo* tmp1 = new veicolo(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
+            QWidget* wtmp =configureVheicleItem(tmp1);
             l->addWidget(wtmp);
 
         }
+        */
         else if(dynamic_cast<auto_elettrica*>(g->getVeicolo(i))){
-            auto_elettrica* tmp = new auto_elettrica(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
-            QWidget* wtmp  =configureVheicleItem(tmp);
+            auto_elettrica* tmp2 = new auto_elettrica(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
+            QWidget* wtmp  =configureVheicleItem(tmp2);
             l->addWidget(wtmp);
         }
        /*if(dynamic_cast<moto_elettrica*>(g->getVeicolo(i))){

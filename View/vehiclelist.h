@@ -51,6 +51,7 @@ signals:
     void newVehicleSignal();
     void addNewViaggioSignal(veicolo * v);
     void editVehicleDetailsSignal(veicolo * v);
+    //void editAutoDetailsSignal(automobile * v);
     void deleteVehicleSignal(veicolo* v);
     void showVehicleDetails(veicolo* v);
 };

@@ -1,36 +1,35 @@
-#include "editorvehiclecontroller.h"
+#include "newvehiclecontroller.h"
 #include "View/editorvehicle.h"
 #include "vehiclelistcontroller.h"
 #include "Model/garage.h"
 #include <iostream>
 #include "QDebug"
 
-void editorvehiclecontroller::connectViewController() const
+void newvehiclecontroller::connectViewController() const
 {
-   connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &editorvehiclecontroller::saveSlot);
-   //connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignalAuto, this, &editorvehiclecontroller::saveSlotAuto);
-    connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
+   //connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &newvehiclecontroller::saveSlot);
+   //connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignalAuto, this, &newvehiclecontroller::saveSlotAuto);
+   // connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
 }
 
-editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v,garage *m,controller *parent,veicolo* n) : controller(v, m, parent)
+newvehiclecontroller::newvehiclecontroller(newvehicle *v,garage *m,controller *parent) : controller(v, m, parent)
 {
     g = m;
-    nuovo = n;
     connectViewController();
 }
 
-view *editorvehiclecontroller::getView() const
+view *newvehiclecontroller::getView() const
 {
     return static_cast<editorvehicle*>(v);
 }
 
-garage *editorvehiclecontroller::getModel() const
+garage *newvehiclecontroller::getModel() const
 {
     return static_cast<garage*>(m);
 }
 
 
-void editorvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
+void newvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
 {
    qDebug() << "test nuovo veicolo" ;
                qDebug() << QString::fromStdString(nuovo->getMarca());
@@ -50,7 +49,7 @@ void editorvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
        v->hide();
 
 }
-void editorvehiclecontroller::saveSlotAuto(veicolo* veic,automobile* nuovoa)
+void newvehiclecontroller::saveSlotAuto(veicolo* veic,automobile* nuovoa)
 {
    qDebug() << "test nuovo veicolo auto" ;
                qDebug() << QString::fromStdString(nuovoa->getMarca());
@@ -71,17 +70,17 @@ void editorvehiclecontroller::saveSlotAuto(veicolo* veic,automobile* nuovoa)
 
 }
 
-void editorvehiclecontroller::clearSlot()
+void newvehiclecontroller::clearSlot()
 {
 
     qDebug() << "premuto clear";
 }
 
-void editorvehiclecontroller::onClosedView() const
+void newvehiclecontroller::onClosedView() const
 {
     delete this;
 }
 
-void editorvehiclecontroller::editVehicleSlot(){
-    qDebug() << "Premuto editor veicoli";
+void newvehiclecontroller::newVehicleSlot(){
+    qDebug() << "Premuto aggiunta veicoli";
 }
