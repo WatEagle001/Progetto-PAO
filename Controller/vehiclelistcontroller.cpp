@@ -98,7 +98,7 @@ void vehiclelistcontroller::addViaggioSlot(veicolo * veic)
 
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
 {
-    editorvehicle* vehicle = new editorvehicle(veic,v->size(), v);
+    editorvehicle* vehicle = new editorvehicle(g,veic,v->size(), v);
     editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
     editor->showView();
 }

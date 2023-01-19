@@ -70,23 +70,31 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, 
     QHBoxLayout* buttons = new QHBoxLayout();
     add = new QPushButton("Aggiungi Veicolo", this);
     load = new QPushButton("Carica Veicolo", this);
+    QLabel* costi = new QLabel("Costo gestione garage: " + QString::number(g->getCostoGarage()) + " €");
 
     buttons->addWidget(add);
     buttons->addWidget(load);
+    buttons->addWidget(costi);
 
      QVBoxLayout* l = new QVBoxLayout;
 
     layout->addLayout(buttons);
     QScrollArea* scrollArea = new QScrollArea();
      layout->addWidget(scrollArea);
-     qDebug() << "dimensione garage in vehiclelist" << g->size();
-     g->printGarage();
+     //qDebug() << "dimensione garage in vehiclelist" << g->size();
+     //g->printGarage();
      qDebug() << "--------------";
     for(int i = 0; i < g->size(); i++){
-        cout<<i<<endl;
-        cout << typeid(*(g)->getVeicolo(i)).name();
+        //cout<<i<<endl;
+        //cout << typeid(*(g)->getVeicolo(i)).name();
         if(dynamic_cast<automobile*>(g->getVeicolo(i))){
             automobile* tmp = new automobile(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
+            QWidget* wtmp =configureVheicleItem(tmp);
+            l->addWidget(wtmp);
+
+        }
+        else if(dynamic_cast<veicolo*>(g->getVeicolo(i))){
+            veicolo* tmp = new veicolo(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
             QWidget* wtmp =configureVheicleItem(tmp);
             l->addWidget(wtmp);
 

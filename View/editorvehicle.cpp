@@ -20,11 +20,25 @@ QLayout* editorvehicle::configureFinalLayout(){
     return mainLayout;
 }
 
-editorvehicle::editorvehicle(veicolo* veic,const QSize &s, view *parent) : view(s, parent)
+editorvehicle::editorvehicle(garage* gar,veicolo* veic,const QSize &s, view *parent) : view(s, parent)
 {   v = veic;
+    g = gar;
+
+    /*if(cilindrata->isModified() == true || litri_carburante->isModified() == true
+            || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true){
+    ptr->setCilindrata(cilindrata->text().toInt());
+    ptr->setLitri_serbatoio(litri_carburante->text().toInt());
+    ptr->setManutenzione(manutenzione_bool->text().toInt());
+    ptr->setCosto_manutenzione(costo_manutenzione->text().toInt());
+
+    }
+    */
+
    // g->addVeicolo(v);
     QVBoxLayout* main = new QVBoxLayout;
-    main->addLayout(configureFinalLayout());
+   // main->addLayout(configureFinalLayout());
+    main->addLayout(configureEditor());
+    main->addLayout(configureButtons());
 
     setLayout(main);
     setFixedSize(s);
@@ -37,8 +51,10 @@ QFormLayout *editorvehicle::configureEditor(){
        layout = new QFormLayout;
        layout->insertRow(1,new QLabel(tr("Marca")),  marca = new QLineEdit(QString::fromStdString(v->getMarca())));
        layout->insertRow(2,new QLabel(tr("Modello")), modello = new QLineEdit(QString::fromStdString(v->getModello())));
-       layout->insertRow(3,new QLabel(tr("Targa")), targa = new QLineEdit(QString::fromStdString(v->getTarga())));;
+       layout->insertRow(3,new QLabel(tr("Targa")), targa = new QLineEdit(QString::fromStdString(v->getTarga())));
        layout->insertRow(4,new QLabel(tr("Km Odometro")), km = new QLineEdit(QString::number(v->getKm_odometro())));
+       targa->setReadOnly(true);
+
     addMoreOptions();
 
     tipoAlimentazione->addItem(QString("Benzina"));
@@ -52,23 +68,7 @@ QFormLayout *editorvehicle::configureEditor(){
     return layout;
 }
 
-QHBoxLayout *editorvehicle::configureButtons()
-{
-    QHBoxLayout* buttons = new QHBoxLayout();
 
-    // Creazione Pulsanti
-    save = new QPushButton("Salva", this);
-    save->setFixedSize(150, 70);
-    clear = new QPushButton("Elimina tutti i campi dati", this);
-    clear->setFixedSize(150, 70);
-
-    // Aggiunta dei Bottoni al Layout Secondario
-    connect(save, &QPushButton::clicked,(bind(&editorvehicle::saveSignal, this, v)));
-    buttons->addWidget(save);
-    buttons->addWidget(clear);
-
-    return buttons;
-}
 
 QFormLayout* editorvehicle::addMoreOptions(){
     motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
@@ -78,12 +78,6 @@ QFormLayout* editorvehicle::addMoreOptions(){
     layout->insertRow(7,new QLabel(tr("Carburante")), tipoAlimentazione);
     layout->insertRow(8,new QLabel(tr("Manutenzione")), manutenzione_bool = new QLineEdit(QString::number(ptr->getManutenzione())));
     layout->insertRow(9,new QLabel(tr("Costo Manutenzione")), costo_manutenzione= new QLineEdit(QString::number(ptr->getCosto_manutenzione())));
-    /*v->setMarca(marca->text().toStdString());
-    v->setModello(modello->text().toStdString());
-    qDebug() << "test" << QString::fromStdString(modello->text().toStdString());
-    v->setTarga(targa->text().toStdString());
-    v->setKm_odometro(km->text().toInt());
-    */
 
     }
     motore_elettrico* e = dynamic_cast<motore_elettrico*>(v);
@@ -95,10 +89,77 @@ QFormLayout* editorvehicle::addMoreOptions(){
 
     return layout;
 }
+void editorvehicle::chechIfDataIsModified() {
+
+        //buttons->addWidget(check);
+    qDebug() << "No modifiche";
+    if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true){
+        qDebug() << "Modifiche";
+           if(dynamic_cast<automobile*>(v)){
+               qDebug() << "ok creo nuovo veicolo";
+               nuovo = new automobile(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
+            }
+           if(dynamic_cast<moto*>(v)){
+               qDebug() << "ok creo nuovo veicolo";
+               nuovo = new moto(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
+            }
+           if(dynamic_cast<auto_elettrica*>(v)){
+               qDebug() << "ok creo nuovo veicolo";
+               nuovo = new auto_elettrica(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
+            }
+           if(dynamic_cast<auto_ibrida*>(v)){
+               qDebug() << "ok creo nuovo veicolo";
+               nuovo = new auto_ibrida(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
+            }
+           /*if(dynamic_cast<moto_elettrica*>(v)){
+               qDebug() << "ok creo nuovo veicolo";
+               nuovo = new moto_elettrica(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
+            }
+            */
+           if(dynamic_cast<monopattino_elettrico*>(v)){
+               qDebug() << "ok creo nuovo veicolo";
+               nuovo = new monopattino_elettrico(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
+            }
+
+           /* qDebug() << "stampa garage da editor dopo modifica";
+            g->printGarage();
+           // automobile* tmp = new automobile(v->getMarca(),v->getModello(),v->getTarga(),v->getKm_odometro());
+           // g->addVeicolo(tmp);
+            g->printGarage();
+            */
+    }
+    //qDebug() << QString::fromStdString(v->getMarca()) + " "<< QString::fromStdString(v->getModello()) + " " << QString::number(v->getKm_odometro());
+    connect(save, &QPushButton::clicked,(bind(&editorvehicle::saveSignal, this, v,nuovo)));
+}
+
+void editorvehicle::checkSignal(){
+    qDebug() << "premuto check";
+    chechIfDataIsModified();
+}
 
 void editorvehicle::connectViewSignals() const
 {
     connect(clear, SIGNAL(clicked()), this, SIGNAL(clearSignal()));
+    connect(confermaDati, SIGNAL(clicked()), this, SLOT(checkSignal()));
+    //connect(save, SIGNAL(clicked()), this, SIGNAL(saveSignal()));
+}
+
+QHBoxLayout *editorvehicle::configureButtons()
+{
+    QHBoxLayout* buttons = new QHBoxLayout();
+
+    // Creazione Pulsanti
+    save = new QPushButton("Salva", this);
+    save->setFixedSize(150, 70);
+    clear = new QPushButton("Elimina tutti i campi dati", this);
+    clear->setFixedSize(150, 70);
+    confermaDati = new QPushButton("Conferma Dati",this);
+    confermaDati->setFixedSize(150, 70);
+    buttons->addWidget(confermaDati);
+    buttons->addWidget(save);
+    buttons->addWidget(clear);
+
+    return buttons;
 }
 
 void editorvehicle::close(QCloseEvent *event)

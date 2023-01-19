@@ -11,7 +11,7 @@ int main(int argc, char* argv[]){
     garage* g = new garage;
     //vehiclelist* l = new vehiclelist();
     CostiViaggio* costi = new CostiViaggio;
-    automobile* a = new automobile("Fiat", "punto","AO111OA", 125000,1200,45,benzina,0,0);
+    automobile* a = new automobile("Fiat", "punto","AO111OA", 125000,1200,45,benzina,1,100);
     auto_elettrica* a1 = new auto_elettrica("Ferrari", "California", "AA111BB", 1000);
    automobile* a2 = new automobile("Opel", "Astra", "BB333ZZ", 12500);
     automobile* a3 = new automobile("Fiat", "126", "WW555PP", 30000);

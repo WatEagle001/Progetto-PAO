@@ -19,8 +19,17 @@ class editorvehicle:public view{
 private:
         veicolo* v;
         veicolo* nuovo;
+        automobile* nuovoa;
+        moto* nuovom;
+        auto_elettrica* nuovoe;
+        monopattino_elettrico* nuovomon;
+        auto_ibrida* nuovoai;
+        moto_elettrica* nuovome;
+        garage* g;
+       // motore_combustione* ptr;
         QPushButton* save;
         QPushButton* clear;
+        QPushButton* confermaDati;
         QLineEdit* marca;
         QLineEdit* modello;
         QLineEdit* targa;
@@ -44,13 +53,19 @@ private:
 protected:
     void close(QCloseEvent* event);
 public:
-    explicit editorvehicle(veicolo* veic,const QSize& s = QSize(), view* parent = nullptr);
+    explicit editorvehicle(garage* gar,veicolo* veic,const QSize& s = QSize(), view* parent = nullptr);
     virtual ~editorvehicle() = default;
 
+    void chechIfDataIsModified();
 signals:
-    void saveSignal(veicolo* v);
+    void saveSignal(veicolo* veic,veicolo* nuovo);
+    //void saveSignal(veicolo* veic,automobile* nuovoa);
+
+    //void saveSignal();
     void clearSignal();
     void selectedTypeVehicle();
+public slots:
+    void checkSignal();
 
 };
 

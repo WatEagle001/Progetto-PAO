@@ -11,9 +11,10 @@ void editorvehiclecontroller::connectViewController() const
     connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
 }
 
-editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v,garage *m,controller *parent) : controller(v, m, parent)
+editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v,garage *m,controller *parent,veicolo* n) : controller(v, m, parent)
 {
     g = m;
+    nuovo = n;
     connectViewController();
 }
 
@@ -28,8 +29,17 @@ garage *editorvehiclecontroller::getModel() const
 }
 
 
-void editorvehiclecontroller::saveSlot(veicolo* veic)
+void editorvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
 {
+   qDebug() << "test nuovo veicolo" ;
+               qDebug() << QString::fromStdString(nuovo->getMarca());
+    // g->addVeicolo(veic);
+    g->deleteVeicolo(veic);
+    g->addVeicolo(nuovo);
+    //g->editVeicolo(veic,marca.toStdString(), modello.toStdString(), veic->getTarga(),km);
+    qDebug() << "Stampa garage aggiornato";
+    g->printGarage();
+    //qDebug()<< QString::fromStdString(g->getVeicolo(0)->getMarca()) + QString::fromStdString(g->getVeicolo(0)->getModello());
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");

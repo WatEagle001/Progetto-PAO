@@ -41,13 +41,14 @@ void garage::deleteVeicolo(veicolo* veicolo){
     _veicoli.pop_back();
     }
 }
-void garage::editVeicolo(veicolo* veicolo, string marca, string modello, string targa,  alimentazione alim, unsigned int cilindrata, unsigned int litri_serbatoio,
+void garage::editVeicolo(veicolo* veicolo, string marca, string modello, string targa,int km_odometro, alimentazione alim, unsigned int cilindrata, unsigned int litri_serbatoio,
                         bool manutenzione, unsigned int costo_manutenzione, unsigned int kw_batteria, double costo_ricarica, bool ricaricare){
     for(int i = 0; i < _veicoli.size(); i++){
         if(_veicoli[i]->getTarga() == veicolo->getTarga()){
             _veicoli[i]->setMarca(marca);
             _veicoli[i]->setModello(modello);
             _veicoli[i]->setTarga(targa);
+             _veicoli[i]->setKm_odometro(km_odometro);
             motore_combustione* ptr = dynamic_cast<motore_combustione*>(_veicoli[i]);
             if(dynamic_cast<automobile*>(ptr) || dynamic_cast<moto*>(ptr) || dynamic_cast<auto_ibrida*>(ptr)){
                 ptr->setAlimentazione(alim);
