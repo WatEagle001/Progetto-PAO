@@ -12,6 +12,7 @@ RC_ICONS = Assets/image/logos/appLogo.ico
 
 SOURCES += \
     Controller/detailedvehicleviewcontroller.cpp \
+    Controller/dialogviaggiocontroller.cpp \
     Controller/editorvehiclecontroller.cpp \
     Controller/jsonagent.cpp \
     Controller/newvehiclecontroller.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
     Model/CostiViaggio.cpp \
     Model/veicolowidget.cpp \
     View/detailedvehicleview.cpp \
+    View/dialogviaggio.cpp \
     View/editorvehicle.cpp \
     View/newvehicle.cpp \
     View/vehiclelist.cpp \
@@ -43,6 +45,7 @@ SOURCES += \
 
 HEADERS += \
     Controller/detailedvehicleviewcontroller.h \
+    Controller/dialogviaggiocontroller.h \
     Controller/editorvehiclecontroller.h \
     Controller/newvehiclecontroller.h \
    Model/CostiViaggio.h \
@@ -66,6 +69,7 @@ HEADERS += \
     Model/model.h \
     Model/veicolowidget.h \
     View/detailedvehicleview.h \
+    View/dialogviaggio.h \
     View/editorvehicle.h \
     View/newvehicle.h \
     View/vehiclelist.h \

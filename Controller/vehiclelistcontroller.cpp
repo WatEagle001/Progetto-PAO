@@ -10,7 +10,7 @@
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
-    connect(v, SIGNAL(newVehicleSignal()), this, SLOT(newVehicleSlot()));
+    connect(static_cast<vehiclelist*>(v), &vehiclelist::newVehicleSignal, this, &vehiclelistcontroller::newVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::addNewViaggioSignal, this, &vehiclelistcontroller::addViaggioSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::editVehicleDetailsSignal, this, &vehiclelistcontroller::editVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::deleteVehicleSignal, this, &vehiclelistcontroller::deleteVehicleSlot);
@@ -65,7 +65,7 @@ void vehiclelistcontroller::loadVehicleSlot()
 
 void vehiclelistcontroller::newVehicleSlot()
 {
-    newvehicle* vehicle = new newvehicle(g,nullptr,v->size(), v);
+    newvehicle* vehicle = new newvehicle(g,v->size(), v);
     vehicle->setTitle("Aggiunta Veicolo");
     newvehiclecontroller* vehiclecontroller = new newvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
 

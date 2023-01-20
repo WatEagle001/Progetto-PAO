@@ -12,15 +12,16 @@ void newvehiclecontroller::connectViewController() const
    // connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
 }
 
-newvehiclecontroller::newvehiclecontroller(newvehicle *v,garage *m,controller *parent) : controller(v, m, parent)
+newvehiclecontroller::newvehiclecontroller(newvehicle *v,garage *m,controller *parent, veicolo* veicol) : controller(v, m, parent)
 {
+    veic = veicol;
     g = m;
     connectViewController();
 }
 
 view *newvehiclecontroller::getView() const
 {
-    return static_cast<editorvehicle*>(v);
+    return static_cast<newvehicle*>(v);
 }
 
 garage *newvehiclecontroller::getModel() const

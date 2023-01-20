@@ -20,7 +20,7 @@ private:
     automobile* nuovoa;
 
 public:
-    newvehiclecontroller(newvehicle* v, garage* m,controller* parent = nullptr);
+    newvehiclecontroller(newvehicle* v, garage* m,controller* parent = nullptr, veicolo* veicol= nullptr);
     view* getView() const override;
     garage* getModel() const override;
 

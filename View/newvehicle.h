@@ -54,7 +54,7 @@ private:
 protected:
     void close(QCloseEvent* event);
 public:
-    explicit newvehicle(garage* gar,veicolo* veic,const QSize& s = QSize(), view* parent = nullptr);
+    explicit newvehicle(garage* gar,const QSize& s = QSize(), view* parent = nullptr);
     virtual ~newvehicle() = default;
 
     void chechIfDataIsModified();

@@ -52,9 +52,9 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
 }
 
 QWidget* vehiclelist::configureVheicleItem(veicolo* veic){
-    qDebug() << "tipo veicolo passato al widget";
-    qDebug() << typeid(*veic).name();
-    qDebug() << typeid(veic).name();
+    //qDebug() << "tipo veicolo passato al widget";
+    //qDebug() << typeid(*veic).name();
+   // qDebug() << typeid(veic).name();
     QWidget* test = new QWidget;
     QHBoxLayout* list = new QHBoxLayout;
     veicoloWidget* wid = new veicoloWidget(veic);
@@ -87,10 +87,10 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, 
 
 
     for(int i = 0; i < g->size(); i++){
-        qDebug() << typeid(*(g)->getVeicolo(i)).name();
-        qDebug() << "-----------------------------------------------";
+       // qDebug() << typeid(*(g)->getVeicolo(i)).name();
+       // qDebug() << "-----------------------------------------------";
         if(dynamic_cast<automobile*>(g->getVeicolo(i))){
-            automobile* tmp = new automobile(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
+            automobile* tmp = dynamic_cast<automobile*>(g->getVeicolo(i));
             QWidget* wtmp =configureVheicleItem(tmp);
             l->addWidget(wtmp);
         }
@@ -101,34 +101,35 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, 
         }
         */
         else if(dynamic_cast<auto_elettrica*>(g->getVeicolo(i))){
-            auto_elettrica* tmp2 = new auto_elettrica(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
+            auto_elettrica* tmp2 = dynamic_cast<auto_elettrica*>(g->getVeicolo(i));
             QWidget* wtmp  =configureVheicleItem(tmp2);
             l->addWidget(wtmp);
         }
-       /*if(dynamic_cast<moto_elettrica*>(g->getVeicolo(i))){
-            moto_elettrica* tmp = new moto_elettrica(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getKm_odometro(),g->getVeicolo(i)->getTarga());
+       if(dynamic_cast<moto_elettrica*>(g->getVeicolo(i))){
+            moto_elettrica* tmp = dynamic_cast<moto_elettrica*>(g->getVeicolo(i));
             QWidget* wtmp  =configureVheicleItem(tmp);
             l->addWidget(wtmp);
         }
-        */
+
         else if(dynamic_cast<auto_ibrida*>(g->getVeicolo(i))){
-            auto_ibrida* tmp = new auto_ibrida(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
-            QWidget* wtmp  =configureVheicleItem(tmp);
+            auto_ibrida* tmp3 = dynamic_cast<auto_ibrida*>(g->getVeicolo(i));
+            QWidget* wtmp  =configureVheicleItem(tmp3);
             l->addWidget(wtmp);
         }
         else if(dynamic_cast<monopattino_elettrico*>(g->getVeicolo(i))){
-            monopattino_elettrico* tmp = new monopattino_elettrico(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
-            QWidget* wtmp  =configureVheicleItem(tmp);
+            monopattino_elettrico* tmp4 = dynamic_cast<monopattino_elettrico*>(g->getVeicolo(i));
+            QWidget* wtmp  =configureVheicleItem(tmp4);
             l->addWidget(wtmp);
         }
         else if(dynamic_cast<moto*>(g->getVeicolo(i))){
-            moto* tmp = new moto(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
+            moto* tmp = dynamic_cast<moto*>(g->getVeicolo(i));
             QWidget* wtmp  =configureVheicleItem(tmp);
             l->addWidget(wtmp);
         }
-        else{
+        /*else{
             qDebug() <<"Fallito tutto";
         }
+        */
     }
 
     scrollArea->setLayout(l);

@@ -129,7 +129,16 @@ void editorvehicle::chechIfDataIsModified() {
         if(ptr){
             qDebug() << "ok cast";
             ptr->setCilindrata(cilindrata->text().toInt());
+             ptr->setLitri_serbatoio(litri_carburante->text().toInt());
+              ptr->setManutenzione(manutenzione_bool->text().toInt());
+               ptr->setCosto_manutenzione(costo_manutenzione->text().toInt());
         }
+        motore_elettrico* e = dynamic_cast<motore_elettrico*>(v);
+        if(e){
+            e->setKw_batteria(kw->text().toUInt());
+            e->setRicaricare(ricaricare_bool->text().toInt());
+            e->setCosto_ricarica(costo_ricarica->text().toDouble());
+    }
     }
 
     connect(save, &QPushButton::clicked,(bind(&editorvehicle::saveSignal, this, v,v)));
