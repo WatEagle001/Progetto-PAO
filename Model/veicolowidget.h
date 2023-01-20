@@ -11,6 +11,7 @@ class veicoloWidget: public QVBoxLayout
 {
     Q_OBJECT
 private:
+    QImage Qimg;
     QPixmap* immagine;
     QLabel* marcamodello;
     QLabel* targa;
