@@ -16,8 +16,10 @@ private:
     void connectViewController() const;
     garage* g;
     veicolo* veic;
+    CostiViaggio* c;
+
 public:
-    explicit vehiclelistcontroller(vehiclelist* v, garage* m, controller* parent = nullptr);
+    explicit vehiclelistcontroller(vehiclelist* v, garage* m,CostiViaggio* costi, controller* parent = nullptr);
     view* getView() const override;
     garage* getModel() const override;
     void loadGarage(garage& g) const;
@@ -28,7 +30,7 @@ public slots:
     virtual void onClosedView() const override;
     void loadVehicleSlot();
     void newVehicleSlot();
-    void addViaggioSlot(veicolo * veic);
+    void addViaggioSlot(veicolo * veic, CostiViaggio* costi);
     void editVehicleSlot(veicolo* veic);
     void deleteVehicleSlot();
 };

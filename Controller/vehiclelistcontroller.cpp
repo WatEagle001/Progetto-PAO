@@ -11,9 +11,10 @@ void vehiclelistcontroller::connectViewController() const
     connect(v, SIGNAL(deleteVehicleSignal()), this, SLOT(newVehicleSlot()));
 }
 
-vehiclelistcontroller::vehiclelistcontroller(vehiclelist *v, garage* m, controller *parent) : controller(v,m, parent)
+vehiclelistcontroller::vehiclelistcontroller(vehiclelist *v, garage* m, CostiViaggio* costi,controller *parent) : controller(v,m, parent)
 {
     g = m;
+    c = costi;
     connectViewController();
 }
 
@@ -50,7 +51,7 @@ void vehiclelistcontroller::loadVehicleSlot()
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
 
     vehiclecontroller->showView();
     v->hide();
@@ -67,34 +68,11 @@ void vehiclelistcontroller::newVehicleSlot()
 
 }
 
-void vehiclelistcontroller::addViaggioSlot(veicolo * vec)
+void vehiclelistcontroller::addViaggioSlot(veicolo * vec, CostiViaggio* costi)
 {
-    DialogViaggio* dv = new DialogViaggio(vec, v->size(), v);
-    dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, vec, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    DialogViaggio* dv = new DialogViaggio(vec, costi, v->size(), v);
+    dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, vec, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
     dvc->showView();
-    /* VERSIONE DI PROVA */
-    /*   string s = "Chilometri in Partenza: " + std::to_string(veic->getKm_odometro()) + "\nChilometri all'Arrivo: ";
-    int newkm = QInputDialog::getInt(v, tr("Aggiungi Viaggio"), QString::fromStdString(s), veic->getKm_odometro(), veic->getKm_odometro(), INT_MAX, 1);
-
-    if(newkm >= veic->getKm_odometro()){
-        int diff = newkm - veic->getKm_odometro();
-        veic->setKm_odometro(newkm);
-        // Bisogna ricaricare il garage
-
-        v->dialogPopUp_Information("Conferma Inserimento", "Il viggio dalla lunghezza di " + QString::fromStdString(std::to_string(diff)) +" km è stato inserito con successo nel sistema");
-    }
-    else {
-        // Teoricamente questo errore non è raggiungibile, ma non si sa mai cosa si inventa l'utente
-        v->dialogPopUp_Warning("Errore", "Nessun viaggio inserito");
-    }
-
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
-    vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
-
-    vehiclecontroller->showView();
-    v->hide();
-    */
 }
 
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)

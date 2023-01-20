@@ -9,6 +9,7 @@ int main(int argc, char* argv[]){
     QApplication app(argc, argv);
     welcome* w = new welcome(QSize(500,500));
     garage* g = new garage;
+    CostiViaggio* cost = new CostiViaggio;
     //vehiclelist* l = new vehiclelist();
     automobile* a = new automobile("Fiat", "punto","AO111OA", 125000,1200,45,benzina,0,0);
     automobile* a1 = new automobile("Ferrari", "California", "AA111BB", 1000);
@@ -22,7 +23,7 @@ int main(int argc, char* argv[]){
        g->addVeicolo(a3);
         g->addVeicolo(a4);
          g->addVeicolo(a5);
-    welcomeController* c = new welcomeController(w,g);
+    welcomeController* c = new welcomeController(w,g, cost);
 
     //vehiclelistcontroller* v = new vehiclelistcontroller(l,g);
     c->showView();

@@ -17,6 +17,7 @@
 #include "Model/garage.h"
 #include "view.h"
 #include <Model/veicolowidget.h>
+#include "Model/CostiViaggio.h"
 
 
 class vehiclelistcontroller;
@@ -27,6 +28,7 @@ class vehiclelist : public view
 
 private:
     garage* g;
+    CostiViaggio* c;
     QBoxLayout* layout;
     QMenu *file, *gar;
     QPushButton* add;
@@ -50,7 +52,7 @@ public:
 signals:
     void loadVehicleSignal();
     void newVehicleSignal();
-    void addNewViaggioSignal(veicolo * v);
+    void addNewViaggioSignal(veicolo * v, CostiViaggio* costi);
     void editVehicleDetailsSignal(veicolo * v);
     void deleteVehicleSignal();
 };

@@ -5,6 +5,7 @@
 #include <Controller/vehiclelistcontroller.h>
 #include <Controller/welcomecontroller.h>
 #include <iostream>
+
 using std::bind;
 
 void vehiclelist::connectViewSignals() const{
@@ -36,7 +37,7 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
     detailedView = new QPushButton(QString("Dettagli"));
     detailedView->setFixedSize(60,40);
 
-    connect(aggiungiViaggio, &QPushButton::clicked, (bind(&vehiclelist::addNewViaggioSignal, this, veic)));
+    connect(aggiungiViaggio, &QPushButton::clicked, (bind(&vehiclelist::addNewViaggioSignal, this, veic, c)));
     connect(elimina, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
     connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editVehicleDetailsSignal, this, veic)));
     connect(detailedView, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));

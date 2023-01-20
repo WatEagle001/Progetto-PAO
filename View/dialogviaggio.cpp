@@ -2,11 +2,14 @@
 
 void DialogViaggio::connectViewSignals() const
 {
-    connect(buttonbox, SIGNAL(accepted()), this, SIGNAL(tryAddViaggio()));
+    connect(buttonbox, &QDialogButtonBox::clicked, (bind(&DialogViaggio::tryAddViaggio, this, vec, c)));
 }
 
-DialogViaggio::DialogViaggio(veicolo *veic, const QSize &s, view *parent) : view(s, parent)
+DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s, view *parent) : view(s, parent)
 {
+    vec = veic;
+    c = costi;
+
     layout = new QFormLayout(this);
     layout->addRow(new QLabel("Inserimento Viaggio"));
 
@@ -30,6 +33,6 @@ DialogViaggio::DialogViaggio(veicolo *veic, const QSize &s, view *parent) : view
     buttonbox->centerButtons();
     layout->addRow(buttonbox);
 
-    connect(buttonbox, SIGNAL(accepted()), this, SIGNAL(tryAddViaggio()));
+     connectViewSignals();
     //da inserire il segnale di pulizia
 }

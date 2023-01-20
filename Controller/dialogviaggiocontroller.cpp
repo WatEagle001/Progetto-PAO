@@ -2,7 +2,8 @@
 
 void dialogviaggiocontroller::connectViewController() const
 {
-    connect(v, SIGNAL(tryAddViaggio()), this, SLOT(saveViaggio()));
+    connect(static_cast<DialogViaggio*>(v), SIGNAL(tryAddViaggio()), this, SLOT(saveViaggio()));
+    connect(static_cast<DialogViaggio*>(v), &DialogViaggio::tryAddViaggio, this, &dialogviaggiocontroller::saveViaggio);
 }
 
 view *dialogviaggiocontroller::getView() const
@@ -15,13 +16,15 @@ model *dialogviaggiocontroller::getModel() const
     return static_cast<garage*>(m);
 }
 
-dialogviaggiocontroller::dialogviaggiocontroller(DialogViaggio *v, veicolo *veic, garage* g, controller *parent) : controller(v, g, parent)
+dialogviaggiocontroller::dialogviaggiocontroller(DialogViaggio *v, veicolo *vehicle, garage* g, CostiViaggio* costi, controller *parent) : controller(v, g, parent)
 {
     m = g;
+    c = costi;
+    veic = vehicle;
     connectViewController();
 }
 
-void dialogviaggiocontroller::saveViaggio()
+void dialogviaggiocontroller::saveViaggio(veicolo *vec, CostiViaggio *costi)
 {
 
 }

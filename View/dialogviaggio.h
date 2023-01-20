@@ -7,6 +7,9 @@
 #include <QDialogButtonBox>
 
 #include "Model/veicolo.h"
+#include "Model/CostiViaggio.h"
+
+using std::bind;
 
 class DialogViaggio : public view
 {
@@ -18,13 +21,16 @@ private:
     QList<QLineEdit*>* campidati;
     QDialogButtonBox* buttonbox;
 
+    veicolo* vec;
+    CostiViaggio* c;
+
     void connectViewSignals() const;
 
 public:
-    DialogViaggio(veicolo* veic, const QSize& s = QSize(), view* parent = nullptr);
+    DialogViaggio(veicolo* veic, CostiViaggio* costi, const QSize& s = QSize(), view* parent = nullptr);
 
 signals:
-    void tryAddViaggio();
+    void tryAddViaggio(veicolo* veic, CostiViaggio* c);
 };
 
 #endif // DIALOGVIAGGIO_H
