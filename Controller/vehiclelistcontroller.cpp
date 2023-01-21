@@ -45,7 +45,7 @@ void vehiclelistcontroller::onClosedView() const
 
 void vehiclelistcontroller::loadVehicleSlot()
 {
-     JSONAgent* js = new JSONAgent(g);
+    JSONAgent* js = new JSONAgent(g);
     QString path = js->selectFile();
     QJsonDocument* veicoli = js->getData(path);
 
@@ -65,6 +65,7 @@ void vehiclelistcontroller::loadVehicleSlot()
 
 void vehiclelistcontroller::newVehicleSlot()
 {
+   // g->printGarage();
     newvehicle* vehicle = new newvehicle(g,v->size(), v);
     vehicle->setTitle("Aggiunta Veicolo");
     newvehiclecontroller* vehiclecontroller = new newvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));

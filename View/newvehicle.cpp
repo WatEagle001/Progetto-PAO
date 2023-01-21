@@ -24,18 +24,6 @@ newvehicle::newvehicle(garage* gar,const QSize &s, view *parent) : view(s, paren
 {
     g = gar;
     qDebug() << "tipo veicolo passato all'editor";
-     //qDebug() << typeid(*veic).name();
-    /*if(cilindrata->isModified() == true || litri_carburante->isModified() == true
-            || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true){
-    ptr->setCilindrata(cilindrata->text().toInt());
-    ptr->setLitri_serbatoio(litri_carburante->text().toInt());
-    ptr->setManutenzione(manutenzione_bool->text().toInt());
-    ptr->setCosto_manutenzione(costo_manutenzione->text().toInt());
-
-    }
-    */
-
-   // g->addVeicolo(v);
     QVBoxLayout* main = new QVBoxLayout;
    // main->addLayout(configureFinalLayout());
     main->addLayout(configureEditor());
@@ -73,8 +61,8 @@ QFormLayout *newvehicle::configureEditor(){
 
 
 QFormLayout* newvehicle::addMoreOptions(){
-    motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
-    if(dynamic_cast<automobile*>(ptr) || dynamic_cast<moto*>(ptr) || dynamic_cast<auto_ibrida*>(ptr)){
+
+    if(tipoVeicolo->currentIndex() == 0 || tipoVeicolo->currentIndex() == 1 || tipoVeicolo->currentIndex() == 3){
         tipoAlimentazione = new QComboBox;
         tipoAlimentazione->addItem(QString("Benzina"));
         tipoAlimentazione->addItem(QString("Diesel"));
@@ -89,8 +77,8 @@ QFormLayout* newvehicle::addMoreOptions(){
     layout->insertRow(9,new QLabel(tr("Costo Manutenzione")), costo_manutenzione= new QLineEdit());
 
     }
-    motore_elettrico* e = dynamic_cast<motore_elettrico*>(v);
-    if(dynamic_cast<auto_elettrica*>(e) || dynamic_cast<moto_elettrica*>(e) || dynamic_cast<monopattino_elettrico*>(e) || dynamic_cast<auto_ibrida*>(e)){
+
+    if(tipoVeicolo->currentIndex() == 2 || tipoVeicolo->currentIndex() == 4 || tipoVeicolo->currentIndex() == 5){
     layout->insertRow(10,new QLabel(tr("KW Batteria")), kw =new QLineEdit());
     layout->insertRow(11,new QLabel(tr("Ricaricare")), ricaricare_bool = new QLineEdit());
     layout->insertRow(12,new QLabel(tr("Costo Ricarica")), costo_ricarica = new QLineEdit());
@@ -106,49 +94,36 @@ void newvehicle::chechIfDataIsModified() {
             || kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true ){
         qDebug() << "Modifiche";
 
-        /*if(dynamic_cast<veicolo*>(v)){
-            qDebug() << "ok creo nuovo veicolo normale";
-            nuovo = new veicolo(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            qDebug() << typeid(nuovo).name();
-         }
-         */
         if(tipoVeicolo->currentIndex() == 0){
-
             v = new automobile(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt());
+                               //cilindrata->text().toUInt(),litri_carburante->text().toUInt(),benzina,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt());
+       }
+        if(tipoVeicolo->currentIndex() == 1){
+            v = new moto(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt());
+                         //,
+                        // cilindrata->text().toUInt(),litri_carburante->text().toUInt(),benzina,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt());
+       }
+        if(tipoVeicolo->currentIndex() == 2){
+            v = new auto_elettrica(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt());
+            //,kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
+       }
+        if(tipoVeicolo->currentIndex() == 3){
+            v = new auto_ibrida(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt());
+            //,cilindrata->text().toUInt(),litri_carburante->text().toUInt(),benzina,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt(),
+                              //  kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
+       }
+        if(tipoVeicolo->currentIndex() == 4){
+            //v = new moto_elettrica(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt());
        }
 
-/*
-           if(dynamic_cast<automobile*>(v)){
-               qDebug() << "ok creo nuovo auto";
-               nuovoa = new automobile(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt(),cilindrata->text().toInt());
-               qDebug() << typeid(nuovoa).name();
-            }
-           if(dynamic_cast<moto*>(v)){
-               qDebug() << "ok creo nuovo moto";
-               nuovo = new moto(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            }
-           if(dynamic_cast<auto_elettrica*>(v)){
-               qDebug() << "ok creo nuovo auto_e";
-               nuovo = new auto_elettrica(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            }
-           if(dynamic_cast<auto_ibrida*>(v)){
-               qDebug() << "ok creo nuovo auto_i";
-               nuovo = new auto_ibrida(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            }
-           /*if(dynamic_cast<moto_elettrica*>(v)){
-               qDebug() << "ok creo nuovo veicolo";
-               nuovo = new moto_elettrica(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            }
+        if(tipoVeicolo->currentIndex() == 5){
+            v = new monopattino_elettrico(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt());
+            //,
+                                          //kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
+       }
 
-           if(dynamic_cast<monopattino_elettrico*>(v)){
-               qDebug() << "ok creo nuovo monopattino";
-               nuovo = new monopattino_elettrico(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            }
-            */
     }
-    //qDebug() << QString::fromStdString(v->getMarca()) + " "<< QString::fromStdString(v->getModello()) + " " << QString::number(v->getKm_odometro());
-    connect(save, &QPushButton::clicked,(bind(&newvehicle::saveSignal, this, v,nuovo)));
-    //connect(save, &QPushButton::clicked,(bind(&newvehicle::saveSignalAuto, this, v,nuovoa)));
+    connect(save, &QPushButton::clicked,(bind(&newvehicle::saveSignal, this, v)));
 }
 
 void newvehicle::checkSignal(){

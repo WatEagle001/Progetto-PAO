@@ -19,7 +19,7 @@ public:
     view* getView() const override;
     garage* getModel() const override;
     void loadGarage(garage& g) const;
-
+    virtual ~vehiclelistcontroller() = default;
 signals:
 
 public slots:

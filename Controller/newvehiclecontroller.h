@@ -17,19 +17,18 @@ private:
     void connectViewController() const;
     garage* g;
     veicolo* veic;
-    automobile* nuovoa;
 
 public:
     newvehiclecontroller(newvehicle* v, garage* m,controller* parent = nullptr, veicolo* veicol= nullptr);
     view* getView() const override;
     garage* getModel() const override;
+    virtual ~newvehiclecontroller() = default;
 
 signals:
 
 public slots:
     virtual void onClosedView() const override;
-    void saveSlot(veicolo* veic,veicolo* nuovo);
-    void saveSlotAuto(veicolo* veic,automobile* nuovoa);
+    void saveSlot(veicolo* veic);
     //void saveSlot();
     void clearSlot();
     void newVehicleSlot();

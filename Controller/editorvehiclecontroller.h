@@ -23,14 +23,14 @@ public:
     editorvehiclecontroller(editorvehicle* v, garage* m,controller* parent = nullptr,veicolo* n = nullptr);
     view* getView() const override;
     garage* getModel() const override;
+    virtual ~editorvehiclecontroller() = default;
+
 
 signals:
 
 public slots:
     virtual void onClosedView() const override;
     void saveSlot(veicolo* veic,veicolo* nuovo);
-    void saveSlotAuto(veicolo* veic,automobile* nuovoa);
-    //void saveSlot();
     void clearSlot();
     void editVehicleSlot();
 };

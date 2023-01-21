@@ -18,6 +18,7 @@ public:
     explicit detailedvehicleviewcontroller(detailedvehicleview* v, garage* m, controller* parent = nullptr);
     view* getView() const override;
     garage* getModel() const override;
+    virtual ~detailedvehicleviewcontroller() = default;
 signals:
 
 public slots:

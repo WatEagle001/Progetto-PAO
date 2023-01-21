@@ -59,9 +59,7 @@ public:
 
     void chechIfDataIsModified();
 signals:
-    void saveSignal(veicolo* veic,veicolo* nuovo);
-    void saveSignalAuto(veicolo* veic,automobile* nuovoa);
-    //void saveSignal(veicolo* veic,automobile* nuovoa);
+    void saveSignal(veicolo* veic);
 
     //void saveSignal();
     void clearSignal();

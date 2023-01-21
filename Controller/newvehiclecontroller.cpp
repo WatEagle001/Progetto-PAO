@@ -7,9 +7,8 @@
 
 void newvehiclecontroller::connectViewController() const
 {
-   //connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &newvehiclecontroller::saveSlot);
-   //connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignalAuto, this, &newvehiclecontroller::saveSlotAuto);
-   // connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
+   connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &newvehiclecontroller::saveSlot);
+   connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
 }
 
 newvehiclecontroller::newvehiclecontroller(newvehicle *v,garage *m,controller *parent, veicolo* veicol) : controller(v, m, parent)
@@ -30,33 +29,12 @@ garage *newvehiclecontroller::getModel() const
 }
 
 
-void newvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
+void newvehiclecontroller::saveSlot(veicolo* veic)
 {
-   qDebug() << "test nuovo veicolo" ;
-               qDebug() << QString::fromStdString(nuovo->getMarca());
-    // g->addVeicolo(veic);
-    g->deleteVeicolo(veic);
-    g->addVeicolo(nuovo);
-    //g->editVeicolo(veic,marca.toStdString(), modello.toStdString(), veic->getTarga(),km);
-    qDebug() << "Stampa garage aggiornato";
     g->printGarage();
-    //qDebug()<< QString::fromStdString(g->getVeicolo(0)->getMarca()) + QString::fromStdString(g->getVeicolo(0)->getModello());
-
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
-    vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
-
-       vehiclecontroller->showView();
-       v->hide();
-
-}
-void newvehiclecontroller::saveSlotAuto(veicolo* veic,automobile* nuovoa)
-{
-   qDebug() << "test nuovo veicolo auto" ;
-               qDebug() << QString::fromStdString(nuovoa->getMarca());
     // g->addVeicolo(veic);
-    g->deleteVeicolo(veic);
-    g->addVeicolo(nuovoa);
+    //g->deleteVeicolo(veic);
+    g->addVeicolo(veic);
     //g->editVeicolo(veic,marca.toStdString(), modello.toStdString(), veic->getTarga(),km);
     qDebug() << "Stampa garage aggiornato";
     g->printGarage();

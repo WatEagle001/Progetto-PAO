@@ -25,6 +25,7 @@ public:
     // static std::vector<Record*> getRecords(QJsonDocument* file) ???
 
     static bool saveGarage(const QJsonDocument& file, const QString& filePath);
+    virtual ~JSONAgent() = default;
 
 };
 

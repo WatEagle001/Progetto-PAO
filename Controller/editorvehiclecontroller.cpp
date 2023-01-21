@@ -50,26 +50,7 @@ void editorvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
        v->hide();
 
 }
-void editorvehiclecontroller::saveSlotAuto(veicolo* veic,automobile* nuovoa)
-{
-   qDebug() << "test nuovo veicolo auto" ;
-               qDebug() << QString::fromStdString(nuovoa->getMarca());
-    // g->addVeicolo(veic);
-    g->deleteVeicolo(veic);
-    g->addVeicolo(nuovoa);
-    //g->editVeicolo(veic,marca.toStdString(), modello.toStdString(), veic->getTarga(),km);
-    qDebug() << "Stampa garage aggiornato";
-    g->printGarage();
-    //qDebug()<< QString::fromStdString(g->getVeicolo(0)->getMarca()) + QString::fromStdString(g->getVeicolo(0)->getModello());
 
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
-    vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
-
-       vehiclecontroller->showView();
-       v->hide();
-
-}
 
 void editorvehiclecontroller::clearSlot()
 {

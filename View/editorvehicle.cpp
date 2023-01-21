@@ -87,38 +87,7 @@ void editorvehicle::chechIfDataIsModified() {
             || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true
             || kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true ){
         qDebug() << "Modifiche";
-        /*if(dynamic_cast<veicolo*>(v)){
-            qDebug() << "ok creo nuovo veicolo normale";
-            nuovo = new veicolo(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            qDebug() << typeid(nuovo).name();
-         }
-          else if(dynamic_cast<automobile*>(v)){
-               qDebug() << "ok creo nuovo auto";
-               nuovoa = new automobile(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt(),cilindrata->text().toInt());
-               qDebug() << typeid(nuovoa).name();
-            }
-          else if(dynamic_cast<moto*>(v)){
-               qDebug() << "ok creo nuovo moto";
-               nuovo = new moto(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            }
-          else if(dynamic_cast<auto_elettrica*>(v)){
-               qDebug() << "ok creo nuovo auto_e";
-               nuovo = new auto_elettrica(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            }
-          else if(dynamic_cast<auto_ibrida*>(v)){
-               qDebug() << "ok creo nuovo auto_i";
-               nuovo = new auto_ibrida(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            }
-           /*if(dynamic_cast<moto_elettrica*>(v)){
-               qDebug() << "ok creo nuovo veicolo";
-               nuovo = new moto_elettrica(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            }
 
-         else  if(dynamic_cast<monopattino_elettrico*>(v)){
-               qDebug() << "ok creo nuovo monopattino";
-               nuovo = new monopattino_elettrico(marca->text().toStdString(),modello->text().toStdString(),v->getTarga(),km->text().toInt());
-            }
-    */
         qDebug() << "tipo veicolo dopo salvataggio";
                     qDebug() <<typeid(v).name();
         v->setMarca(marca->text().toStdString());
@@ -127,14 +96,16 @@ void editorvehicle::chechIfDataIsModified() {
         v->setKm_odometro(km->text().toInt());
         motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
         if(ptr){
-            qDebug() << "ok cast";
+            qDebug() << "ok combustione";
             ptr->setCilindrata(cilindrata->text().toInt());
              ptr->setLitri_serbatoio(litri_carburante->text().toInt());
               ptr->setManutenzione(manutenzione_bool->text().toInt());
                ptr->setCosto_manutenzione(costo_manutenzione->text().toInt());
         }
+
         motore_elettrico* e = dynamic_cast<motore_elettrico*>(v);
         if(e){
+            qDebug() << "ok elettrico";
             e->setKw_batteria(kw->text().toUInt());
             e->setRicaricare(ricaricare_bool->text().toInt());
             e->setCosto_ricarica(costo_ricarica->text().toDouble());
