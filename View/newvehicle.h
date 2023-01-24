@@ -58,6 +58,7 @@ public:
     virtual ~newvehicle() = default;
 
     void chechIfDataIsModified();
+
 signals:
     void saveSignal(veicolo* veic);
 
@@ -66,6 +67,9 @@ signals:
     void selectedTypeVehicle();
 public slots:
     void checkSignal();
+    void createOptions(int);
+
+
 
 };
 

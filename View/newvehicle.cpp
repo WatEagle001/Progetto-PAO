@@ -33,6 +33,7 @@ newvehicle::newvehicle(garage* gar,const QSize &s, view *parent) : view(s, paren
     setFixedSize(s);
     connectViewSignals();
     setTitle("Editor Veicoli");
+
 }
 
 QFormLayout *newvehicle::configureEditor(){
@@ -40,12 +41,11 @@ QFormLayout *newvehicle::configureEditor(){
        layout = new QFormLayout;
        tipoVeicolo = new QComboBox;
        layout->addWidget(tipoVeicolo);
+
        layout->insertRow(1,new QLabel(tr("Marca")),  marca = new QLineEdit());
        layout->insertRow(2,new QLabel(tr("Modello")), modello = new QLineEdit());
        layout->insertRow(3,new QLabel(tr("Targa")), targa = new QLineEdit());
        layout->insertRow(4,new QLabel(tr("Km Odometro")), km = new QLineEdit());
-
-    addMoreOptions();
 
     tipoVeicolo->addItem(QString("Automobile"));
     tipoVeicolo->addItem(QString("Moto"));
@@ -54,38 +54,13 @@ QFormLayout *newvehicle::configureEditor(){
     tipoVeicolo->addItem(QString("Moto Elettrica"));
     tipoVeicolo->addItem(QString("Monopattino Elettrico"));
 
+    connect(tipoVeicolo, SIGNAL(currentIndexChanged(int)),SLOT(createOptions(int)));
 
     return layout;
 }
 
 
 
-QFormLayout* newvehicle::addMoreOptions(){
-
-    if(tipoVeicolo->currentIndex() == 0 || tipoVeicolo->currentIndex() == 1 || tipoVeicolo->currentIndex() == 3){
-        tipoAlimentazione = new QComboBox;
-        tipoAlimentazione->addItem(QString("Benzina"));
-        tipoAlimentazione->addItem(QString("Diesel"));
-        tipoAlimentazione->addItem(QString("Metano"));
-        tipoAlimentazione->addItem(QString("GPL"));
-        tipoAlimentazione->addItem(QString("BioDiesel"));
-        tipoAlimentazione->addItem(QString("Idrogeno"));
-    layout->insertRow(5,new QLabel(tr("Cilindrata")), cilindrata = new QLineEdit());
-    layout->insertRow(6,new QLabel(tr("Litri Carburante")), litri_carburante = new QLineEdit());
-    layout->insertRow(7,new QLabel(tr("Carburante")), tipoAlimentazione);
-    layout->insertRow(8,new QLabel(tr("Manutenzione")), manutenzione_bool = new QLineEdit());
-    layout->insertRow(9,new QLabel(tr("Costo Manutenzione")), costo_manutenzione= new QLineEdit());
-
-    }
-
-    if(tipoVeicolo->currentIndex() == 2 || tipoVeicolo->currentIndex() == 4 || tipoVeicolo->currentIndex() == 5){
-    layout->insertRow(10,new QLabel(tr("KW Batteria")), kw =new QLineEdit());
-    layout->insertRow(11,new QLabel(tr("Ricaricare")), ricaricare_bool = new QLineEdit());
-    layout->insertRow(12,new QLabel(tr("Costo Ricarica")), costo_ricarica = new QLineEdit());
-    }
-
-    return layout;
-}
 void newvehicle::chechIfDataIsModified() {
 
     qDebug() << "No modifiche";
@@ -129,6 +104,35 @@ void newvehicle::chechIfDataIsModified() {
 void newvehicle::checkSignal(){
     qDebug() << "premuto check";
     chechIfDataIsModified();
+}
+
+void newvehicle::createOptions(int x)
+{
+    for(int i = 4; i <= layout->rowCount();i++){
+        layout->removeRow(i);
+    }
+    if(x == 0 || x == 1 || x == 3 ){
+        tipoAlimentazione = new QComboBox;
+        tipoAlimentazione->addItem(QString("Benzina"));
+        tipoAlimentazione->addItem(QString("Diesel"));
+        tipoAlimentazione->addItem(QString("Metano"));
+        tipoAlimentazione->addItem(QString("GPL"));
+        tipoAlimentazione->addItem(QString("BioDiesel"));
+        tipoAlimentazione->addItem(QString("Idrogeno"));
+    layout->insertRow(5,new QLabel(tr("Cilindrata")), cilindrata = new QLineEdit());
+    layout->insertRow(6,new QLabel(tr("Litri Carburante")), litri_carburante = new QLineEdit());
+    layout->insertRow(7,new QLabel(tr("Carburante")), tipoAlimentazione);
+    layout->insertRow(8,new QLabel(tr("Manutenzione")), manutenzione_bool = new QLineEdit());
+    layout->insertRow(9,new QLabel(tr("Costo Manutenzione")), costo_manutenzione= new QLineEdit());
+    }
+    if(x == 2 || x == 4 ||x == 5){
+    layout->insertRow(5,new QLabel(tr("KW Batteria")), kw =new QLineEdit());
+    layout->insertRow(6,new QLabel(tr("Ricaricare")), ricaricare_bool = new QLineEdit());
+    layout->insertRow(7,new QLabel(tr("Costo Ricarica")), costo_ricarica = new QLineEdit());
+    }
+
+
+
 }
 
 void newvehicle::connectViewSignals() const
