@@ -5,6 +5,9 @@
 #include <QFormLayout>
 #include <QLabel>
 #include <QDialogButtonBox>
+#include <QPushButton>
+#include <QValidator>
+#include <QRegularExpressionValidator>
 
 #include "Model/veicolo.h"
 #include "Model/CostiViaggio.h"
@@ -20,9 +23,14 @@ private:
     QFormLayout* layout;
     QList<QLineEdit*>* campidati;
     QDialogButtonBox* buttonbox;
+    QPushButton * aggiungi;
+    QPushButton * reset;
+    QPushButton * annulla;
 
     veicolo* vec;
     CostiViaggio* c;
+
+    void configureEditor(veicolo* veic);
 
     void connectViewSignals() const;
 
@@ -30,7 +38,9 @@ public:
     DialogViaggio(veicolo* veic, CostiViaggio* costi, const QSize& s = QSize(), view* parent = nullptr);
 
 signals:
-    void tryAddViaggio(veicolo* veic, CostiViaggio* c);
+    void tryAddViaggio();
+
+public slots:
 };
 
 #endif // DIALOGVIAGGIO_H

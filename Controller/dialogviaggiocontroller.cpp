@@ -2,7 +2,6 @@
 
 void dialogviaggiocontroller::connectViewController() const
 {
-    connect(static_cast<DialogViaggio*>(v), SIGNAL(tryAddViaggio()), this, SLOT(saveViaggio()));
     connect(static_cast<DialogViaggio*>(v), &DialogViaggio::tryAddViaggio, this, &dialogviaggiocontroller::saveViaggio);
 }
 
@@ -24,7 +23,7 @@ dialogviaggiocontroller::dialogviaggiocontroller(DialogViaggio *v, veicolo *vehi
     connectViewController();
 }
 
-void dialogviaggiocontroller::saveViaggio(veicolo *vec, CostiViaggio *costi)
+void dialogviaggiocontroller::saveViaggio()
 {
 
 }
