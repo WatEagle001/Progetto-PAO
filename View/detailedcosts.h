@@ -18,8 +18,10 @@ private:
     QVBoxLayout* configureDescription();
     QHBoxLayout* configureButtons();
     void connectViewSignals() const override;
+
 protected:
     void close(QCloseEvent* event);
+
 public:
     explicit detailedcosts(CostiViaggio* c,const QSize& s = QSize(), view* parent = nullptr);
     virtual ~detailedcosts() = default;
