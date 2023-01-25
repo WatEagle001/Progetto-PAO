@@ -206,7 +206,7 @@ bool JSONAgent::saveGarage(const QString &filePath, garage* g)
 
 
         if(dynamic_cast<automobile*>(g->getVeicolo(i))){
-            gobj.insert("tipo", "automobile");
+            gobj.insert("tipo", QJsonValue::fromVariant("automobile"));
             gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
             gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
             gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
@@ -221,7 +221,7 @@ bool JSONAgent::saveGarage(const QString &filePath, garage* g)
         }
         else
         if(dynamic_cast<auto_elettrica*>(g->getVeicolo(i))){
-            gobj.insert("tipo", "auto elettrica");
+            gobj.insert("tipo", QJsonValue::fromVariant("auto elettrica"));
             gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
             gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
             gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
@@ -234,7 +234,7 @@ bool JSONAgent::saveGarage(const QString &filePath, garage* g)
         }
         else
         if(dynamic_cast<auto_ibrida*>(g->getVeicolo(i))){
-            gobj.insert("tipo", "auto ibrida");
+            gobj.insert("tipo", QJsonValue::fromVariant("auto ibrida"));
             gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
             gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
             gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
@@ -252,7 +252,7 @@ bool JSONAgent::saveGarage(const QString &filePath, garage* g)
         }
         else
         if(dynamic_cast<moto*>(g->getVeicolo(i))){
-            gobj.insert("tipo", "moto");
+            gobj.insert("tipo", QJsonValue::fromVariant("moto"));
             gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
             gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
             gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
@@ -267,7 +267,7 @@ bool JSONAgent::saveGarage(const QString &filePath, garage* g)
         }
         else
         if(dynamic_cast<moto_elettrica*>(g->getVeicolo(i))){
-            gobj.insert("tipo", "moto elettrica");
+            gobj.insert("tipo", QJsonValue::fromVariant("moto elettrica"));
             gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
             gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
             gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
@@ -280,7 +280,7 @@ bool JSONAgent::saveGarage(const QString &filePath, garage* g)
         }
         else
         if(dynamic_cast<monopattino_elettrico*>(g->getVeicolo(i))){
-            gobj.insert("tipo", "moto elettrica");
+            gobj.insert("tipo", QJsonValue::fromVariant("monopattino elettrico"));
             gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
             gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
             gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
@@ -293,7 +293,8 @@ bool JSONAgent::saveGarage(const QString &filePath, garage* g)
         }
     }
 
-    file.setArray(toExport);
+    gobj.insert(QString("veicoli"), QJsonValue(toExport));
+    file.setObject(gobj);
 
     QFile fileTemplate(filePath);
     if(fileTemplate.open(QFile::WriteOnly | QFile::Text | QFile::Truncate)){
