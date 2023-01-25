@@ -9,6 +9,7 @@ void vehiclelistcontroller::connectViewController() const
     connect(static_cast<vehiclelist*>(v), &vehiclelist::addNewViaggioSignal, this, &vehiclelistcontroller::addViaggioSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::editVehicleDetailsSignal, this, &vehiclelistcontroller::editVehicleSlot);
     connect(v, SIGNAL(deleteVehicleSignal()), this, SLOT(newVehicleSlot()));
+    connect(v, SIGNAL(exportGarage()), this, SLOT(exportGarageSlot()));
 }
 
 vehiclelistcontroller::vehiclelistcontroller(vehiclelist *v, garage* m, CostiViaggio* costi,controller *parent) : controller(v,m, parent)
@@ -40,7 +41,7 @@ void vehiclelistcontroller::onClosedView() const
 
 void vehiclelistcontroller::loadVehicleSlot()
 {
-     JSONAgent* js = new JSONAgent(g);
+    JSONAgent* js = new JSONAgent(g);
     QString path = js->selectFile();
     QJsonDocument* veicoli = js->getData(path);
 
@@ -85,4 +86,20 @@ void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
 void vehiclelistcontroller::deleteVehicleSlot()
 {
 
+}
+
+void vehiclelistcontroller::exportGarageSlot()
+{
+    // Inserire la posizione del file su cui salvare
+
+    bool tmp = JSONAgent::saveGarage(QFileDialog::getSaveFileName(nullptr, "Salva come", "../Progetto_PAO/Assets/doc", "JSON (*.json)"), g);
+    qDebug() << tmp;
+
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c , const_cast<controller*>(static_cast<const controller*>(this)));
+
+
+       vehiclecontroller->showView();
+       v->hide();
 }

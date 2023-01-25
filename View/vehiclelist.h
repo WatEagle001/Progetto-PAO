@@ -33,6 +33,7 @@ private:
     QMenu *file, *gar;
     QPushButton* add;
     QPushButton* load;
+    QPushButton* toExp;
     void connectViewSignals() const override;
     QLabel* marcamodello;
     QLabel* targa;
@@ -55,5 +56,6 @@ signals:
     void addNewViaggioSignal(veicolo * v, CostiViaggio* costi);
     void editVehicleDetailsSignal(veicolo * v);
     void deleteVehicleSignal();
+    void exportGarage();
 };
 #endif // VEHICLELIST_H

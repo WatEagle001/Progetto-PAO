@@ -33,6 +33,7 @@ public slots:
     void addViaggioSlot(veicolo * veic, CostiViaggio* costi);
     void editVehicleSlot(veicolo* veic);
     void deleteVehicleSlot();
+    void exportGarageSlot();
 };
 
 #endif // VEHICLELISTCONTROLLER_H

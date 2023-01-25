@@ -30,7 +30,6 @@ void DialogViaggio::connectViewSignals() const
 {
     connect(buttonbox, SIGNAL(accepted()), this, SIGNAL(tryAddViaggio()));
     connect(buttonbox, SIGNAL(rejected()), this, SIGNAL(viewClosed()));
-    connect(buttonbox, SIGNAL(reset()), this, SIGNAL(clear()));
 }
 
 DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s, view *parent) : view(s, parent)
@@ -44,11 +43,11 @@ DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s,
     QLineEdit* veicolo = new QLineEdit(QString::fromStdString(veic->getTarga()), this);
     veicolo->setReadOnly(true);
     QLineEdit* partenza = new QLineEdit(this);
-    partenza->setValidator(new QRegularExpressionValidator(QRegularExpression("[a-z]*[A-Z]*"), this));
+    partenza->setValidator(new QRegularExpressionValidator(QRegularExpression("*[A-Z]*[a-z]*[A-Z]*"), this));
     QLineEdit* km_partenza = new QLineEdit(QString::number(veic->getKm_odometro()),this);
     km_partenza->setReadOnly(true);
     QLineEdit* arrivo = new QLineEdit(this);
-    arrivo->setValidator(new QRegularExpressionValidator(QRegularExpression("[a-z][A-Z]"), this));
+    arrivo->setValidator(new QRegularExpressionValidator(QRegularExpression("*[A-Z]*[a-z]*[A-Z]*"), this));
     QLineEdit* km_arrivo = new QLineEdit(this);
     km_arrivo->setValidator(new QIntValidator(0, INT_MAX, this));
     QLineEdit* efficienza = new QLineEdit(this);

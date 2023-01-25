@@ -160,3 +160,148 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
         }
     }
 }
+
+bool JSONAgent::saveGarage(const QString &filePath, garage* g)
+{
+    if(filePath.isNull() || filePath.isEmpty()){
+        qDebug() << "Primo False";
+        return false;
+    }
+
+    QJsonDocument file;
+    QJsonObject gobj = QJsonObject();
+    QJsonArray toExport;
+
+    for(int i = 0; i < g->size(); ++i){
+
+        QJsonObject gobj = QJsonObject();
+        QString alim = QString("undefined");
+        motore_combustione* tmp = dynamic_cast<motore_combustione*>(g->getVeicolo(i));
+
+        if(tmp){
+            if(tmp->getAlimentazione() == benzina){
+                alim = QString("benzina");
+            }
+
+            if(tmp->getAlimentazione() == diesel){
+                alim = QString("diesel");
+            }
+
+            if(tmp->getAlimentazione() == idrogeno){
+                alim = QString("idrogeno");
+            }
+
+            if(tmp->getAlimentazione() == metano){
+                alim = QString("metano");
+            }
+
+            if(tmp->getAlimentazione() == gpl){
+                alim = QString("gpl");
+            }
+
+            if(tmp->getAlimentazione() == biodisel){
+                alim = QString("biodisel");
+            }
+        }
+
+
+        if(dynamic_cast<automobile*>(g->getVeicolo(i))){
+            gobj.insert("tipo", "automobile");
+            gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
+            gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
+            gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
+            gobj.insert("km", QJsonValue::fromVariant(QString::number(g->getVeicolo(i)->getKm_odometro())));
+            gobj.insert("cilindrata", QJsonValue::fromVariant(QString::number(dynamic_cast<automobile*>(g->getVeicolo(i))->getCilindrata())));
+            gobj.insert("litri_serbatoio", QJsonValue::fromVariant(QString::number(dynamic_cast<automobile*>(g->getVeicolo(i))->getLitri_serbatoio())));
+            gobj.insert("carburante", QJsonValue::fromVariant(alim));
+            gobj.insert("manutenzione", QJsonValue::fromVariant(QString::number(dynamic_cast<automobile*>(g->getVeicolo(i))->getManutenzione())));
+            gobj.insert("costo", QJsonValue::fromVariant(QString::number(dynamic_cast<automobile*>(g->getVeicolo(i))->getCosto_manutenzione())));
+
+            toExport.push_back(gobj);
+        }
+        else
+        if(dynamic_cast<auto_elettrica*>(g->getVeicolo(i))){
+            gobj.insert("tipo", "auto elettrica");
+            gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
+            gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
+            gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
+            gobj.insert("km", QJsonValue::fromVariant(QString::number(g->getVeicolo(i)->getKm_odometro())));
+            gobj.insert("kw", QJsonValue::fromVariant(QString::number(dynamic_cast<auto_elettrica*>(g->getVeicolo(i))->getKw_batteria())));
+            gobj.insert("ricaricare", QJsonValue::fromVariant(QString::number(dynamic_cast<auto_elettrica*>(g->getVeicolo(i))->getRicaricare())));
+            gobj.insert("costo_ricarica", QJsonValue::fromVariant(QString::number(dynamic_cast<auto_elettrica*>(g->getVeicolo(i))->getCosto_ricarica())));
+
+            toExport.push_back(gobj);
+        }
+        else
+        if(dynamic_cast<auto_ibrida*>(g->getVeicolo(i))){
+            gobj.insert("tipo", "auto ibrida");
+            gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
+            gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
+            gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
+            gobj.insert("km", QJsonValue::fromVariant(QString::number(g->getVeicolo(i)->getKm_odometro())));
+            gobj.insert("cilindrata", QJsonValue::fromVariant(QString::number(dynamic_cast<auto_ibrida*>(g->getVeicolo(i))->getCilindrata())));
+            gobj.insert("litri_serbatoio", QJsonValue::fromVariant(QString::number(dynamic_cast<auto_ibrida*>(g->getVeicolo(i))->getLitri_serbatoio())));
+            gobj.insert("carburante", QJsonValue::fromVariant(alim));
+            gobj.insert("kw", QJsonValue::fromVariant(QString::number(dynamic_cast<auto_ibrida*>(g->getVeicolo(i))->getKw_batteria())));
+            gobj.insert("manutenzione", QJsonValue::fromVariant(QString::number(dynamic_cast<auto_ibrida*>(g->getVeicolo(i))->getManutenzione())));
+            gobj.insert("ricaricare", QJsonValue::fromVariant(QString::number(dynamic_cast<auto_ibrida*>(g->getVeicolo(i))->getRicaricare())));
+            gobj.insert("costo", QJsonValue::fromVariant(QString::number(dynamic_cast<auto_ibrida*>(g->getVeicolo(i))->getCosto_manutenzione())));
+            gobj.insert("costo_ricarica", QJsonValue::fromVariant(QString::number(dynamic_cast<auto_ibrida*>(g->getVeicolo(i))->getCosto_ricarica())));
+
+            toExport.push_back(gobj);
+        }
+        else
+        if(dynamic_cast<moto*>(g->getVeicolo(i))){
+            gobj.insert("tipo", "moto");
+            gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
+            gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
+            gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
+            gobj.insert("km", QJsonValue::fromVariant(QString::number(g->getVeicolo(i)->getKm_odometro())));
+            gobj.insert("cilindrata", QJsonValue::fromVariant(QString::number(dynamic_cast<moto*>(g->getVeicolo(i))->getCilindrata())));
+            gobj.insert("litri_serbatoio", QJsonValue::fromVariant(QString::number(dynamic_cast<moto*>(g->getVeicolo(i))->getLitri_serbatoio())));
+            gobj.insert("carburante", QJsonValue::fromVariant(alim));
+            gobj.insert("manutenzione", QJsonValue::fromVariant(QString::number(dynamic_cast<moto*>(g->getVeicolo(i))->getManutenzione())));
+            gobj.insert("costo", QJsonValue::fromVariant(QString::number(dynamic_cast<moto*>(g->getVeicolo(i))->getCosto_manutenzione())));
+
+            toExport.push_back(gobj);
+        }
+        else
+        if(dynamic_cast<moto_elettrica*>(g->getVeicolo(i))){
+            gobj.insert("tipo", "moto elettrica");
+            gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
+            gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
+            gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
+            gobj.insert("km", QJsonValue::fromVariant(QString::number(g->getVeicolo(i)->getKm_odometro())));
+            gobj.insert("kw", QJsonValue::fromVariant(QString::number(dynamic_cast<moto_elettrica*>(g->getVeicolo(i))->getKw_batteria())));
+            gobj.insert("ricaricare", QJsonValue::fromVariant(QString::number(dynamic_cast<moto_elettrica*>(g->getVeicolo(i))->getRicaricare())));
+            gobj.insert("costo_ricarica", QJsonValue::fromVariant(QString::number(dynamic_cast<moto_elettrica*>(g->getVeicolo(i))->getCosto_ricarica())));
+
+            toExport.push_back(gobj);
+        }
+        else
+        if(dynamic_cast<monopattino_elettrico*>(g->getVeicolo(i))){
+            gobj.insert("tipo", "moto elettrica");
+            gobj.insert("marca", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getMarca())));
+            gobj.insert("modello", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getModello())));
+            gobj.insert("targa", QJsonValue::fromVariant(QString::fromStdString(g->getVeicolo(i)->getTarga())));
+            gobj.insert("km", QJsonValue::fromVariant(QString::number(g->getVeicolo(i)->getKm_odometro())));
+            gobj.insert("kw", QJsonValue::fromVariant(QString::number(dynamic_cast<monopattino_elettrico*>(g->getVeicolo(i))->getKw_batteria())));
+            gobj.insert("ricaricare", QJsonValue::fromVariant(QString::number(dynamic_cast<monopattino_elettrico*>(g->getVeicolo(i))->getRicaricare())));
+            gobj.insert("costo_ricarica", QJsonValue::fromVariant(QString::number(dynamic_cast<monopattino_elettrico*>(g->getVeicolo(i))->getCosto_ricarica())));
+
+            toExport.push_back(gobj);
+        }
+    }
+
+    file.setArray(toExport);
+
+    QFile fileTemplate(filePath);
+    if(fileTemplate.open(QFile::WriteOnly | QFile::Text | QFile::Truncate)){
+        fileTemplate.write(file.toJson());
+        fileTemplate.close();
+        return true;
+    }
+
+    qDebug() << "Secondo False";
+    return false;
+}

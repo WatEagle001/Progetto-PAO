@@ -24,7 +24,7 @@ public:
     void getVehicleList(QJsonDocument* file, garage* gar);
     // static std::vector<Record*> getRecords(QJsonDocument* file) ???
 
-    static bool saveGarage(const QJsonDocument& file, const QString& filePath);
+    static bool saveGarage(const QString& filePath, garage* g);
 
 };
 
