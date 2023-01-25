@@ -13,7 +13,6 @@ using std::bind;
 void vehiclelist::connectViewSignals() const{
     connect(add, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
     connect(load, SIGNAL(clicked()), this, SIGNAL(loadVehicleSignal()));
-    //connect(detailedCosts, SIGNAL(clicked()), this, SIGNAL(detailedCostsSignal()));
     connect(toExp, SIGNAL(clicked()), this, SIGNAL(exportGarage()));
 
 }
@@ -43,7 +42,7 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
 
 
     connect(elimina, &QPushButton::clicked, (bind(&vehiclelist::deleteVehicleSignal, this, veic)));
-    connect(aggiungiViaggio, &QPushButton::clicked, (bind(&vehiclelist::addNewViaggioSignal, this)));
+    connect(aggiungiViaggio, &QPushButton::clicked, this, &vehiclelist::addNewViaggioSignal);
     connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editVehicleDetailsSignal, this, veic)));
     // connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editAutoDetailsSignal, this, veic)));
     connect(detailedView, &QPushButton::clicked,(bind(&vehiclelist::showVehicleDetails, this, veic)));

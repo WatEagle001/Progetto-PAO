@@ -84,6 +84,7 @@ void vehiclelistcontroller::newVehicleSlot()
 
 void vehiclelistcontroller::addViaggioSlot()
 {
+
     DialogViaggio* dv = new DialogViaggio(veic, c, v->size(), v);
     dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, veic, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
     dvc->showView();
@@ -92,8 +93,9 @@ void vehiclelistcontroller::addViaggioSlot()
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
 {
     editorvehicle* vehicle = new editorvehicle(g,veic,v->size(), v);
-    editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, c,  const_cast<controller*>(static_cast<const controller*>(this)));
     editor->showView();
+    hideView();
 }
 
 void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
