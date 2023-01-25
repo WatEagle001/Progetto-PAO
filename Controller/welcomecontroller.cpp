@@ -16,8 +16,9 @@ welcomeController::welcomeController(welcome *v, garage* dati,controller *parent
 
     g = dati;
     connectViewController();
-    //qDebug() << "stampa da welcomecontroller";
-    //g->printGarage();
+
+    qDebug() << "stampa da welcomecontroller";
+    g->printGarage();
 
 }
 
@@ -38,8 +39,17 @@ void welcomeController::NewGarage()
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
-      // qDebug() << "stampa dopo creazione vehiclelistcontroller in welcomecontroller";
-      // g->printGarage();
+
+      // c = vehiclecontroller;
+       //c = new vehiclelistcontroller(vehicle, g, nullptr);
+                                   //  const_cast<controller*>(static_cast<const controller*>(this)));
+       qDebug() << "stampa dopo creazione vehiclelistcontroller in welcomecontroller";
+       //vehiclecontroller->getModel()->printGarage();
+       g->printGarage();
+
+        //qDebug() << "stampa c dopo creazione vehiclelistcontroller in welcomecontroller";
+        //c->getModel()->printGarage();
+
 
        vehiclecontroller->showView();
        v->hide();
@@ -50,21 +60,30 @@ void welcomeController::NewGarage()
 // DA CONTROLLARE VALIDITA' DI QUESTO CODICE
 void welcomeController::OpenGarage() const
 {
+
+    /*
+    // Fai il pick del file con la libreria apposita
+    QString path = JSONAgent::selectFile();
+    if(path.isNull()){
+        v->dialogPopUp_Warning("File Error", "Seleziona un file per procedere");
+    }
+
+    // Apri nuova vista del garage
+    vehiclelist* vehicle = new vehiclelist(v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclecontroller->showView();
+
+    // Inserire i dati letti
+
+    // Nascondi la vista della pagina di benvenuto
+    v->hide();
+    */
+
     QString path = JSONAgent::selectFile();
     QJsonDocument* veicoli = JSONAgent::getData(path);
-
-
-    JSONAgent* js = new JSONAgent(g);
-    js->getVehicleList(veicoli, g);
-
-
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
-    vehicle->setTitle("Garage");
+    JSONAgent::getVehicleList(veicoli, *g);
     g->printGarage();
-    vehiclelistcontroller* vcontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
-
-       vcontroller->showView();
-       v->hide();
 
 }
 

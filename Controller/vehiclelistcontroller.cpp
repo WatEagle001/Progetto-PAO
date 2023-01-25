@@ -13,12 +13,12 @@
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
-    connect(static_cast<vehiclelist*>(v), &vehiclelist::newVehicleSignal, this, &vehiclelistcontroller::newVehicleSlot);
-    connect(static_cast<vehiclelist*>(v), &vehiclelist::addNewViaggioSignal, this, &vehiclelistcontroller::addViaggioSlot);
-    connect(static_cast<vehiclelist*>(v), &vehiclelist::editVehicleDetailsSignal, this, &vehiclelistcontroller::editVehicleSlot);
-    connect(static_cast<vehiclelist*>(v), &vehiclelist::deleteVehicleSignal, this, &vehiclelistcontroller::deleteVehicleSlot);
-    connect(static_cast<vehiclelist*>(v), &vehiclelist::showVehicleDetails, this, &vehiclelistcontroller::detailedVehicleViewSlot);
-    connect(static_cast<vehiclelist*>(v), &vehiclelist::detailedCostsSignal, this, &vehiclelistcontroller::detailedCostsSlot);
+
+    connect(v, SIGNAL(newVehicleSignal()), this, SLOT(newVehicleSlot()));
+    connect(v, SIGNAL(addNewViaggioSignal()), this, SLOT(loadVehicleSlot()));
+    connect(v, SIGNAL(editVehicleDetailsSignal()), this, SLOT(newVehicleSlot()));
+    connect(v, SIGNAL(deleteVehicleSignal()), this, SLOT(newVehicleSlot()));
+
 }
 
 vehiclelistcontroller::vehiclelistcontroller(vehiclelist *v, garage* m, controller *parent) : controller(v,m, parent)
@@ -49,21 +49,20 @@ void vehiclelistcontroller::onClosedView() const
 
 void vehiclelistcontroller::loadVehicleSlot()
 {
-    JSONAgent* js = new JSONAgent(g);
-    QString path = js->selectFile();
-    QJsonDocument* veicoli = js->getData(path);
 
-
-
-    js->getVehicleList(veicoli, g);
-
-
+    QString path = JSONAgent::selectFile();
+    QJsonDocument* veicoli = JSONAgent::getData(path);
+    JSONAgent::getVehicleList(veicoli, *g);
+    qDebug() << "stampa da dopo caricamento";
+    g->printGarage();
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
-
+       qDebug() << "stampa dopo aver caricato i veicoli";
+       g->printGarage();
        vehiclecontroller->showView();
        v->hide();
+    //manca da implementare la creazione dei veicolo in base a quanto letto dal JSON
 
 }
 
@@ -138,5 +137,22 @@ void vehiclelistcontroller::detailedVehicleViewSlot(veicolo *veic)
     detailedvehicleview* vehicledetails = new detailedvehicleview(veic,v->size(), v);
     detailedvehicleviewcontroller* detailedController = new detailedvehicleviewcontroller(vehicledetails, g, const_cast<controller*>(static_cast<const controller*>(this)));
     detailedController->showView();
+
+}
+
+void vehiclelistcontroller::addViaggioSlot()
+{
+
+}
+
+void vehiclelistcontroller::editVehicleSlot()
+{
+    editorvehicle* vehicle = new editorvehicle(v->size(), v);
+    editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    editor->showView();
+}
+
+void vehiclelistcontroller::deleteVehicleSlot()
+{
 
 }

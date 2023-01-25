@@ -18,14 +18,12 @@ SOURCES += \
     Controller/jsonagent.cpp \
     Controller/newvehiclecontroller.cpp \
     Controller/vehiclelistcontroller.cpp \
+    Controller/vehiclelistitemcontroller.cpp \
     Controller/welcomecontroller.cpp \
     Controller/controller.cpp \
     Model/model.cpp \
     Model/CostiViaggio.cpp \
     Model/veicolowidget.cpp \
-    View/detailedcosts.cpp \
-    View/detailedvehicleview.cpp \
-    View/dialogviaggio.cpp \
     View/editorvehicle.cpp \
     View/newvehicle.cpp \
     View/vehiclelist.cpp \
@@ -50,7 +48,7 @@ HEADERS += \
     Controller/detailedvehicleviewcontroller.h \
     Controller/dialogviaggiocontroller.h \
     Controller/editorvehiclecontroller.h \
-    Controller/newvehiclecontroller.h \
+    Controller/vehiclelistitemcontroller.h \
    Model/CostiViaggio.h \
    Model/array.h \
    Model/auto_elettrica.h \
@@ -71,9 +69,6 @@ HEADERS += \
     Controller/controller.h \
     Model/model.h \
     Model/veicolowidget.h \
-    View/detailedcosts.h \
-    View/detailedvehicleview.h \
-    View/dialogviaggio.h \
     View/editorvehicle.h \
     View/newvehicle.h \
     View/vehiclelist.h \

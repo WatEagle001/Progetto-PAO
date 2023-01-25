@@ -28,7 +28,9 @@ public:
      void eraseGarage();
      double getCostoGarage() const;
      veicolo* getVeicolo(int n);
-     void editVeicolo(veicolo *veicolo, string marca = "", string modello = "", string targa = "", int km_odometro = 0,alimentazione alim = benzina, unsigned int cilindrata = 0, unsigned int litri_serbatoio = 0, bool manutenzione = 0, unsigned int costo_manutenzione = 0, unsigned int kw_batteria = 0, double costo_ricarica = 0, bool ricaricare = 0);
+
+     void editVeicolo(veicolo *veicolo, string marca = "", string modello = "", string targa = "", alimentazione alim = benzina, unsigned int cilindrata = 0, unsigned int litri_serbatoio = 0, bool manutenzione = 0, unsigned int costo_manutenzione = 0, unsigned int kw_batteria = 0, double costo_ricarica = 0, bool ricaricare = 0);
+
      Array<veicolo*> getVeicoli(string targa) const;
      void setVeicoli(const Array<veicolo *> &newVeicoli);
      int size() const;

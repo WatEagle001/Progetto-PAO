@@ -13,10 +13,12 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QListWidget>
+
+#include "View/vehiclelistitem.h"
 #include "Model/garage.h"
 #include "view.h"
 #include <Model/veicolowidget.h>
-#include <Model/CostiViaggio.h>
+
 
 
 class vehiclelistcontroller;
@@ -26,7 +28,7 @@ class vehiclelist : public view
     Q_OBJECT
 
 private:
-    CostiViaggio* c;
+
     garage* g;
     QBoxLayout* layout;
     QMenu *file, *gar;
@@ -47,16 +49,17 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 public:
     explicit vehiclelist(garage* garage = nullptr,const QSize& s = QSize(), view* parent = nullptr);
-    QHBoxLayout *configureButtons(veicolo* veic);
+
+    QHBoxLayout *configureButtons();
+
     QWidget *configureVheicleItem(veicolo* veic);
 signals:
     void loadVehicleSignal();
     void newVehicleSignal();
-    void addNewViaggioSignal(veicolo * v);
-    void editVehicleDetailsSignal(veicolo * v);
-    //void editAutoDetailsSignal(automobile * v);
-    void deleteVehicleSignal(veicolo* v);
-    void showVehicleDetails(veicolo* v);
-    void detailedCostsSignal(CostiViaggio* c);
+
+    void addNewViaggioSignal();
+    void editVehicleDetailsSignal();
+    void deleteVehicleSignal();
+
 };
 #endif // VEHICLELIST_H
