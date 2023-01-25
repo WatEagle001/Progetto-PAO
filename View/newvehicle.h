@@ -59,16 +59,17 @@ public:
 
     void chechIfDataIsModified();
 
+    void addFieldsCombustione();
+    void addFieldsElettrico();
+    void firstSelection(int);
 signals:
     void saveSignal(veicolo* veic);
-
-    //void saveSignal();
     void clearSignal();
     void selectedTypeVehicle();
+
 public slots:
     void checkSignal();
     void createOptions(int);
-
 
 
 };
