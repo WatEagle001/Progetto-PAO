@@ -7,6 +7,9 @@
 #include <QInputDialog>
 #include "View/newvehicle.h"
 #include "Controller/newvehiclecontroller.h"
+#include <View/detailedcosts.h>
+#include <Controller/detailedcostscontroller.h>
+
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
@@ -15,6 +18,7 @@ void vehiclelistcontroller::connectViewController() const
     connect(static_cast<vehiclelist*>(v), &vehiclelist::editVehicleDetailsSignal, this, &vehiclelistcontroller::editVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::deleteVehicleSignal, this, &vehiclelistcontroller::deleteVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::showVehicleDetails, this, &vehiclelistcontroller::detailedVehicleViewSlot);
+    connect(static_cast<vehiclelist*>(v), &vehiclelist::detailedCostsSignal, this, &vehiclelistcontroller::detailedCostsSlot);
 }
 
 vehiclelistcontroller::vehiclelistcontroller(vehiclelist *v, garage* m, controller *parent) : controller(v,m, parent)
@@ -98,6 +102,14 @@ void vehiclelistcontroller::addViaggioSlot(veicolo * veic)
 
     vc->showView();
     v->hide();
+}
+
+void vehiclelistcontroller::detailedCostsSlot(CostiViaggio *costi)
+{
+    c = costi;
+    detailedcosts* cos = new detailedcosts(c,v->size(), v);
+    detailedcostscontroller* costiV = new detailedcostscontroller(cos, c, const_cast<controller*>(static_cast<const controller*>(this)));
+    costiV->showView();
 }
 
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)

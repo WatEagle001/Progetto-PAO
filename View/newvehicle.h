@@ -7,7 +7,6 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QLabel>
-#include <QPixmap>
 #include <QCloseEvent>
 #include <QFormLayout>
 #include <QComboBox>
@@ -18,15 +17,7 @@ class newvehicle:public view{
     Q_OBJECT
 private:
         veicolo* v;
-        veicolo* nuovo;
-        automobile* nuovoa;
-        moto* nuovom;
-        auto_elettrica* nuovoe;
-        monopattino_elettrico* nuovomon;
-        auto_ibrida* nuovoai;
-        moto_elettrica* nuovome;
         garage* g;
-       // motore_combustione* ptr;
         QPushButton* save;
         QPushButton* clear;
         QPushButton* confermaDati;
@@ -56,22 +47,16 @@ protected:
 public:
     explicit newvehicle(garage* gar,const QSize& s = QSize(), view* parent = nullptr);
     virtual ~newvehicle() = default;
-
-    void chechIfDataIsModified();
-
+    void checkIfDataIsModified();
     void addFieldsCombustione();
     void addFieldsElettrico();
     void firstSelection(int);
 signals:
     void saveSignal(veicolo* veic);
     void clearSignal();
-    void selectedTypeVehicle();
-
 public slots:
     void checkSignal();
     void createOptions(int);
-
-
 };
 
 #endif // NEWVEHICLE_H

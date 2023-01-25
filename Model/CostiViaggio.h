@@ -5,8 +5,9 @@
 #include "Model/motore_elettrico.h"
 #include "Model/veicolo.h"
 #include "Model/array.h"
+#include "Model/model.h"
 
-class CostiViaggio{
+class CostiViaggio: public model{
 private:
    Array<veicolo*> v;
    Array<double> costi;

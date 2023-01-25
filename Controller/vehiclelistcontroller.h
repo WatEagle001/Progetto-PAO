@@ -6,6 +6,7 @@
 #include "Model/garage.h"
 #include "Controller/jsonagent.h"
 #include <iostream>
+#include <Model/CostiViaggio.h>
 
 class vehiclelistcontroller : public controller
 {
@@ -14,6 +15,7 @@ private:
     void connectViewController() const;
     garage* g;
     veicolo* veic;
+    CostiViaggio* c;
 public:
     explicit vehiclelistcontroller(vehiclelist* v, garage* m, controller* parent = nullptr);
     view* getView() const override;
@@ -30,6 +32,7 @@ public slots:
     void deleteVehicleSlot(veicolo* veic);
     void detailedVehicleViewSlot(veicolo* veic);
     void addViaggioSlot(veicolo *veic);
+    void detailedCostsSlot(CostiViaggio* costi);
 };
 
 #endif // VEHICLELISTCONTROLLER_H

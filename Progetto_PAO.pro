@@ -11,6 +11,7 @@ CONFIG += c++17
 RC_ICONS = Assets/image/logos/appLogo.ico
 
 SOURCES += \
+    Controller/detailedcostscontroller.cpp \
     Controller/detailedvehicleviewcontroller.cpp \
     Controller/dialogviaggiocontroller.cpp \
     Controller/editorvehiclecontroller.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
     Model/model.cpp \
     Model/CostiViaggio.cpp \
     Model/veicolowidget.cpp \
+    View/detailedcosts.cpp \
     View/detailedvehicleview.cpp \
     View/dialogviaggio.cpp \
     View/editorvehicle.cpp \
@@ -44,6 +46,7 @@ SOURCES += \
        Model/veicolo.cpp
 
 HEADERS += \
+    Controller/detailedcostscontroller.h \
     Controller/detailedvehicleviewcontroller.h \
     Controller/dialogviaggiocontroller.h \
     Controller/editorvehiclecontroller.h \
@@ -68,6 +71,7 @@ HEADERS += \
     Controller/controller.h \
     Model/model.h \
     Model/veicolowidget.h \
+    View/detailedcosts.h \
     View/detailedvehicleview.h \
     View/dialogviaggio.h \
     View/editorvehicle.h \

@@ -65,13 +65,10 @@ QFormLayout *newvehicle::configureEditor(){
 
 
 
-void newvehicle::chechIfDataIsModified() {
-
-    qDebug() << "No modifiche";
+void newvehicle::checkIfDataIsModified() {
     if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true || cilindrata->isModified() == true
             || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true
             || kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true ){
-        qDebug() << "Modifiche";
 
         if(tipoVeicolo->currentIndex() == 1){
             v = new automobile(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
@@ -104,8 +101,7 @@ void newvehicle::chechIfDataIsModified() {
 }
 
 void newvehicle::checkSignal(){
-    qDebug() << "premuto check";
-    chechIfDataIsModified();
+    checkIfDataIsModified();
 }
 
 void newvehicle::addFieldsCombustione(){

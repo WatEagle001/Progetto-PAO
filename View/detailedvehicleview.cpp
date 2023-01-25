@@ -43,9 +43,33 @@ QFormLayout *detailedvehicleview::configureEditor(){
 QFormLayout* detailedvehicleview::addMoreOptions(){
     motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
     if(dynamic_cast<automobile*>(ptr) || dynamic_cast<moto*>(ptr) || dynamic_cast<auto_ibrida*>(ptr)){
+
+        string carb;
+        if(ptr->getAlimentazione() == 0){
+            carb = "benzina";
+        }
+        if(ptr->getAlimentazione() == 1){
+            carb = "diesel";
+        }
+        if(ptr->getAlimentazione() == 2){
+            carb = "metano";
+        }
+        if(ptr->getAlimentazione() == 3){
+            carb = "GPL";
+        }
+        if(ptr->getAlimentazione() == 4){
+            carb = "BioDiesel";
+        }
+        if(ptr->getAlimentazione() == 5){
+            carb = "Idrogeno";
+        }
+        if(ptr->getAlimentazione() == 9){
+            carb = "Undefined";
+        }
+
     layout->insertRow(5,new QLabel(tr("Cilindrata")), new QLabel(QString::number(ptr->getCilindrata())));
     layout->insertRow(6,new QLabel(tr("Litri Carburante")), new QLabel(QString::number(ptr->getLitri_serbatoio())));
-    layout->insertRow(7,new QLabel(tr("Carburante")), new QLabel(QString(tipoAlimentazione->currentText())));
+    layout->insertRow(7,new QLabel(tr("Carburante")), new QLabel(QString::fromStdString(carb)));
     layout->insertRow(8,new QLabel(tr("Manutenzione")), new QLabel(QString::number(ptr->getManutenzione())));
     layout->insertRow(9,new QLabel(tr("Costo Manutenzione")), new QLabel(QString::number(ptr->getCosto_manutenzione())));
     }

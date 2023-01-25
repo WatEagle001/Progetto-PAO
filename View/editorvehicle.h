@@ -19,12 +19,6 @@ class editorvehicle:public view{
 private:
         veicolo* v;
         veicolo* nuovo;
-        automobile* nuovoa;
-        moto* nuovom;
-        auto_elettrica* nuovoe;
-        monopattino_elettrico* nuovomon;
-        auto_ibrida* nuovoai;
-        moto_elettrica* nuovome;
         garage* g;
        // motore_combustione* ptr;
         QPushButton* save;

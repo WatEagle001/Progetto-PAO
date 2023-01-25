@@ -11,6 +11,7 @@ using std::bind;
 void vehiclelist::connectViewSignals() const{
     connect(add, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
     connect(load, SIGNAL(clicked()), this, SIGNAL(loadVehicleSignal()));
+    //connect(detailedCosts, SIGNAL(clicked()), this, SIGNAL(detailedCostsSignal()));
 
 }
 
@@ -42,6 +43,7 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
     connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editVehicleDetailsSignal, this, veic)));
     // connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editAutoDetailsSignal, this, veic)));
     connect(detailedView, &QPushButton::clicked,(bind(&vehiclelist::showVehicleDetails, this, veic)));
+    connect(detailedCosts, &QPushButton::clicked,(bind(&vehiclelist::detailedCostsSignal, this, c)));
 
 
     pulsanti->addWidget(aggiungiViaggio);
@@ -73,11 +75,14 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, 
     QHBoxLayout* buttons = new QHBoxLayout();
     add = new QPushButton("Aggiungi Veicolo", this);
     load = new QPushButton("Carica Veicolo", this);
+    detailedCosts = new QPushButton("Dettaglio Viaggi", this);
     QLabel* costi = new QLabel("Costo gestione garage: " + QString::number(g->getCostoGarage()) + " €");
 
     buttons->addWidget(add);
     buttons->addWidget(load);
+    buttons-> addWidget(detailedCosts);
     buttons->addWidget(costi);
+
 
     QVBoxLayout* l = new QVBoxLayout;
 
