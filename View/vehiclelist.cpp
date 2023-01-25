@@ -4,6 +4,7 @@
 #include <QScrollArea>
 #include <Controller/vehiclelistcontroller.h>
 #include <Controller/welcomecontroller.h>
+
 void vehiclelist::connectViewSignals() const{
     connect(add, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
     connect(load, SIGNAL(clicked()), this, SIGNAL(loadVehicleSignal()));
@@ -21,7 +22,9 @@ void vehiclelist::closeEvent(QCloseEvent *event)
             }
 }
 
+
 QHBoxLayout *vehiclelist::configureButtons()
+
 {
     pulsanti = new QHBoxLayout;
     aggiungiViaggio = new QPushButton(QString("Add"));
@@ -33,10 +36,12 @@ QHBoxLayout *vehiclelist::configureButtons()
     detailedView = new QPushButton(QString("Dettagli"));
     detailedView->setFixedSize(60,40);
 
+
     connect(aggiungiViaggio, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
     connect(elimina, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
     connect(modifica, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
     connect(detailedView, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
+
 
 
     pulsanti->addWidget(aggiungiViaggio);
@@ -47,12 +52,15 @@ QHBoxLayout *vehiclelist::configureButtons()
 }
 
 QWidget* vehiclelist::configureVheicleItem(veicolo* veic){
+
     QWidget* test = new QWidget;
     QHBoxLayout* list = new QHBoxLayout;
     veicoloWidget* wid = new veicoloWidget(veic);
 
     list->addLayout(wid->configureVehicleView(veic));
+
     list->addLayout(configureButtons());
+
 
     test->setLayout(list);
     return test;
@@ -61,17 +69,26 @@ QWidget* vehiclelist::configureVheicleItem(veicolo* veic){
 vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, parent), layout(new QVBoxLayout(this))
 {
     g = garage;
+
     g->printGarage();
     QHBoxLayout* buttons = new QHBoxLayout();
     add = new QPushButton("Aggiungi Veicolo", this);
     load = new QPushButton("Carica Veicolo", this);
+    detailedCosts = new QPushButton("Dettaglio Viaggi", this);
+    QLabel* costi = new QLabel("Costo gestione garage: " + QString::number(g->getCostoGarage()) + " €");
 
     buttons->addWidget(add);
     buttons->addWidget(load);
+    buttons-> addWidget(detailedCosts);
+    buttons->addWidget(costi);
+
+
+    QVBoxLayout* l = new QVBoxLayout;
 
      QVBoxLayout* l = new QVBoxLayout;
 
     layout->addLayout(buttons);
+
     for(int i = 0; i < g->size(); i++){
         if(dynamic_cast<automobile*>(g->getVeicolo(i))){
             automobile* tmp = new automobile(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());

@@ -1,5 +1,10 @@
 #include "jsonagent.h"
 
+JSONAgent::JSONAgent(garage *gar)
+{
+g = gar;
+}
+
 QString JSONAgent::selectFile()
 {
     qDebug() << "DEBUG: Creazione del popup per la scelta del file\n";
@@ -43,6 +48,7 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
 }
 
 // Da implementare mettendo un riferimento a garage come parametro così da caricare tutto direttamente dentro
+
 void JSONAgent::getVehicleList(QJsonDocument *file, garage& g){
     QJsonObject data = file->object();
     QJsonArray list = data["veicoli"].toArray();
@@ -92,8 +98,25 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage& g){
                         vehicle.toObject().value("modello").toString().toStdString(),
                         vehicle.toObject().value("targa").toString().toStdString(),
                         vehicle.toObject().value("km").toInt(),
-                        static_cast<unsigned int>(vehicle.toObject().value("cilindrata").toInt()),
-                        static_cast<unsigned int>(vehicle.toObject().value("litri_serbatoio").toInt()),
+                        vehicle.toObject().value("cilindrata").toString().toUInt(),
+                        vehicle.toObject().value("litri_serbatoio").toString().toUInt(),
+                        carburante,
+                        vehicle.toObject().value("kw").toInt(),
+                        vehicle.toObject().value("manutenzione").toBool(),
+                        vehicle.toObject().value("ricaricare").toString().toInt(),
+                        vehicle.toObject().value("costo").toString().toDouble(),
+                        vehicle.toObject().value("costo_ricarica").toString().toDouble());
+            g->addVeicolo(a);
+
+        }
+        if(vehicle.toObject().value("tipo").toString() == QString("automobile")){
+            automobile* a = new automobile(
+                        vehicle.toObject().value("marca").toString().toStdString(),
+                        vehicle.toObject().value("modello").toString().toStdString(),
+                        vehicle.toObject().value("targa").toString().toStdString(),
+                        vehicle.toObject().value("km").toString().toInt(),
+                        vehicle.toObject().value("cilindrata").toString().toUInt(),
+                        vehicle.toObject().value("litri_serbatoio").toString().toUInt(),
                         carburante,
                         vehicle.toObject().value("manutenzione").toBool(),
                         static_cast<unsigned int>(vehicle.toObject().value("costo").toInt()));

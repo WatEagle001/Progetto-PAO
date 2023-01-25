@@ -4,7 +4,9 @@ veicoloWidget::veicoloWidget(veicolo* rif)
     QVBoxLayout* a = new QVBoxLayout;
     a->addLayout(configureVehicleView(rif));
     a->addLayout(configureButtons());
+
     //a->setContentsMargins(100,100,100,100);
+
 }
 
 QHBoxLayout *veicoloWidget::configureButtons()

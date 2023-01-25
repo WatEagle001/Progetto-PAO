@@ -1,5 +1,5 @@
-#ifndef EDITORVEHICLE_H
-#define EDITORVEHICLE_H
+#ifndef NEWVEHICLE_H
+#define NEWVEHICLE_H
 #include <QPushButton>
 #include "view.h"
 #include <QWidget>
@@ -7,20 +7,17 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QLabel>
-#include <QPixmap>
 #include <QCloseEvent>
 #include <QFormLayout>
 #include <QComboBox>
 #include <Model/garage.h>
 #include <Model/veicolo.h>
 
-class editorvehicle:public view{
+class newvehicle:public view{
     Q_OBJECT
 private:
         veicolo* v;
-        veicolo* nuovo;
         garage* g;
-       // motore_combustione* ptr;
         QPushButton* save;
         QPushButton* clear;
         QPushButton* confermaDati;
@@ -38,6 +35,7 @@ private:
         QLineEdit* carburante;
         QFormLayout* layout;
         QComboBox* tipoAlimentazione;
+        QComboBox* tipoVeicolo;
         QLayout* configureFinalLayout();
         QFormLayout* configureEditor();
         QHBoxLayout* configureButtons();
@@ -47,22 +45,18 @@ private:
 protected:
     void close(QCloseEvent* event);
 public:
-    explicit editorvehicle(garage* gar,veicolo* veic,const QSize& s = QSize(), view* parent = nullptr);
-    virtual ~editorvehicle() = default;
-
-    void chechIfDataIsModified();
+    explicit newvehicle(garage* gar,const QSize& s = QSize(), view* parent = nullptr);
+    virtual ~newvehicle() = default;
+    void checkIfDataIsModified();
+    void addFieldsCombustione();
+    void addFieldsElettrico();
+    void firstSelection(int);
 signals:
-    void saveSignal(veicolo* veic,veicolo* nuovo);
-    void saveSignalAuto(veicolo* veic,automobile* nuovoa);
-    //void saveSignal(veicolo* veic,automobile* nuovoa);
-
-    //void saveSignal();
-
-    void selectedTypeVehicle();
+    void saveSignal(veicolo* veic);
+    void clearSignal();
 public slots:
     void checkSignal();
-    void clearSlot();
-
+    void createOptions(int);
 };
 
-#endif // EDITORVEHICLE_H
+#endif // NEWVEHICLE_H

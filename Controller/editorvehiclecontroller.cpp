@@ -7,14 +7,16 @@
 
 void editorvehiclecontroller::connectViewController() const
 {
-    connect(v, SIGNAL(saveSignal()), this, SLOT(saveSlot()));
+   connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &editorvehiclecontroller::saveSlot);
+   //connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignalAuto, this, &editorvehiclecontroller::saveSlotAuto);
     connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
     connect(v, SIGNAL(editVehicleSignal()), this, SLOT(editVehicleSlot()));
 }
 
-editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v,garage *m,controller *parent) : controller(v, m, parent)
+editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v,garage *m,controller *parent,veicolo* n) : controller(v, m, parent)
 {
     g = m;
+    nuovo = n;
     connectViewController();
 }
 
@@ -29,33 +31,31 @@ garage *editorvehiclecontroller::getModel() const
 }
 
 
-void editorvehiclecontroller::saveSlot() const
+void editorvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
 {
-    /*getModel()->printGarage();
-    qDebug()<< "premuto Salva";
-    */
+   qDebug() << "test nuovo veicolo" ;
+               qDebug() << QString::fromStdString(nuovo->getMarca());
+    // g->addVeicolo(veic);
+    g->deleteVeicolo(veic);
+    g->addVeicolo(nuovo);
+    //g->editVeicolo(veic,marca.toStdString(), modello.toStdString(), veic->getTarga(),km);
+    qDebug() << "Stampa garage aggiornato";
     g->printGarage();
+    //qDebug()<< QString::fromStdString(g->getVeicolo(0)->getMarca()) + QString::fromStdString(g->getVeicolo(0)->getModello());
+
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+
+       vehiclecontroller->showView();
+       v->hide();
+
 }
 
-void editorvehiclecontroller::clearSlot() const
+
+void editorvehiclecontroller::clearSlot()
 {
-    // Fai il pick del file con la libreria apposita
-    /*QString path = JSONAgent::selectFile();
-    if(path.isNull()){
-        v->dialogPopUp_Warning("File Error", "Seleziona un file per procedere");
-        return;
-    }
 
-    // Prendi i dati dal file (se corretto)
-    QJsonDocument* data = JSONAgent::getData(path);
-    if(data->isNull()){
-        v->dialogPopUp_Warning("Reading Error", "Seleziona un file valido (.json)");
-        return;
-    }
-
-    // Apri nuova vista del garage con i dati inseriti
-    // Nascondi la vista della pagina di benvenuto
-    */
     qDebug() << "premuto clear";
 }
 

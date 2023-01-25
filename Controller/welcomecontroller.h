@@ -25,6 +25,7 @@ public:
     explicit welcomeController(welcome* v,garage* dati, controller* parent = nullptr);
     welcome* getView() const override;
     model* getModel() const override;
+    virtual ~welcomeController() = default;
 
 signals:
 

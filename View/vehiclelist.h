@@ -20,6 +20,7 @@
 #include <Model/veicolowidget.h>
 
 
+
 class vehiclelistcontroller;
 
 class vehiclelist : public view
@@ -27,11 +28,13 @@ class vehiclelist : public view
     Q_OBJECT
 
 private:
+
     garage* g;
     QBoxLayout* layout;
     QMenu *file, *gar;
     QPushButton* add;
     QPushButton* load;
+    QPushButton* detailedCosts;
     void connectViewSignals() const override;
     QLabel* marcamodello;
     QLabel* targa;
@@ -46,13 +49,17 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 public:
     explicit vehiclelist(garage* garage = nullptr,const QSize& s = QSize(), view* parent = nullptr);
+
     QHBoxLayout *configureButtons();
+
     QWidget *configureVheicleItem(veicolo* veic);
 signals:
     void loadVehicleSignal();
     void newVehicleSignal();
+
     void addNewViaggioSignal();
     void editVehicleDetailsSignal();
     void deleteVehicleSignal();
+
 };
 #endif // VEHICLELIST_H

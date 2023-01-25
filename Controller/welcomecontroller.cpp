@@ -16,6 +16,7 @@ welcomeController::welcomeController(welcome *v, garage* dati,controller *parent
 
     g = dati;
     connectViewController();
+
     qDebug() << "stampa da welcomecontroller";
     g->printGarage();
 
@@ -38,6 +39,7 @@ void welcomeController::NewGarage()
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+
       // c = vehiclecontroller;
        //c = new vehiclelistcontroller(vehicle, g, nullptr);
                                    //  const_cast<controller*>(static_cast<const controller*>(this)));
@@ -48,6 +50,7 @@ void welcomeController::NewGarage()
         //qDebug() << "stampa c dopo creazione vehiclelistcontroller in welcomecontroller";
         //c->getModel()->printGarage();
 
+
        vehiclecontroller->showView();
        v->hide();
 
@@ -57,18 +60,12 @@ void welcomeController::NewGarage()
 // DA CONTROLLARE VALIDITA' DI QUESTO CODICE
 void welcomeController::OpenGarage() const
 {
+
     /*
     // Fai il pick del file con la libreria apposita
     QString path = JSONAgent::selectFile();
     if(path.isNull()){
         v->dialogPopUp_Warning("File Error", "Seleziona un file per procedere");
-    }
-
-    // Prendi i dati dal file (se corretto)
-    QJsonDocument* data = JSONAgent::getData(path);
-    if(data->isNull()){
-        v->dialogPopUp_Warning("Reading Error", "Seleziona un file valido (.json)");
-        return;
     }
 
     // Apri nuova vista del garage
@@ -87,6 +84,7 @@ void welcomeController::OpenGarage() const
     QJsonDocument* veicoli = JSONAgent::getData(path);
     JSONAgent::getVehicleList(veicoli, *g);
     g->printGarage();
+
 }
 
 void welcomeController::onClosedView() const

@@ -3,6 +3,7 @@
 #include "View/welcome.h"
 #include "Controller/welcomecontroller.h"
 #include "Controller/vehiclelistcontroller.h"
+#include "Model/CostiViaggio.h"
 
 int main(int argc, char* argv[]){
     QApplication app(argc, argv);
@@ -15,6 +16,7 @@ int main(int argc, char* argv[]){
     auto_elettrica* a3 = new auto_elettrica("Fiat", "126", "WW555PP", 30000);
     auto_elettrica* a4 = new auto_elettrica("Gino", "Pino", "1111111", 30000);
     auto_elettrica* a5 = new auto_elettrica("Pino", "a", "ZZ444PP", 30000);
+
     g->addVeicolo(a);
      g->addVeicolo(a1);
       g->addVeicolo(a2);

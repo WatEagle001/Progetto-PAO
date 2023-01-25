@@ -1,3 +1,4 @@
+
 #include "vehiclelistitem.h"
 #include <iostream>
 #include <QLabel>
@@ -61,4 +62,5 @@ vehicleListItem::vehicleListItem(veicolo &v)
 
     */
 }
+
 

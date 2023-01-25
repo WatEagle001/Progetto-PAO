@@ -1,7 +1,5 @@
 #ifndef EDITORVEHICLECONTROLLER_H
 #define EDITORVEHICLECONTROLLER_H
-
-
 #include "controller.h"
 #include "View/vehiclelist.h"
 #include "Model/garage.h"
@@ -17,11 +15,16 @@ class editorvehiclecontroller : public controller
 private:
     void connectViewController() const;
     garage* g;
+    veicolo* veic;
+    veicolo* nuovo;
+    automobile* nuovoa;
 
 public:
-    editorvehiclecontroller(editorvehicle* v, garage* g,controller* parent = nullptr);
+    editorvehiclecontroller(editorvehicle* v, garage* m,controller* parent = nullptr,veicolo* n = nullptr);
     view* getView() const override;
     garage* getModel() const override;
+    virtual ~editorvehiclecontroller() = default;
+
 
 signals:
 
@@ -30,6 +33,7 @@ public slots:
     void saveSlot() const;
     void clearSlot() const;
     void editVehicleSlot() const;
+
 };
 
 

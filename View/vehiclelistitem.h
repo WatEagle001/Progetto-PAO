@@ -1,3 +1,4 @@
+
 #ifndef VEICOLOLISTITEM_H
 #define VEICOLOLISTITEM_H
 #include <QWidget>
@@ -37,3 +38,4 @@ signals:
     void newVehicleSignal(veicolo& v);
 };
 #endif // VEICOLOLISTITEM_H
+
