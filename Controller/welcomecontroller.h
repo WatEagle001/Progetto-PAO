@@ -21,8 +21,10 @@ private:
     garage* g;
     vehiclelistcontroller* c;
     vehiclelist* vehicle;
+    CostiViaggio* co;
+
 public:
-    explicit welcomeController(welcome* v,garage* dati, controller* parent = nullptr);
+    explicit welcomeController(welcome* v,garage* dati, CostiViaggio* costi, controller* parent = nullptr);
     welcome* getView() const override;
     model* getModel() const override;
     virtual ~welcomeController() = default;

@@ -5,8 +5,11 @@
 #include "View/vehiclelist.h"
 #include "Model/garage.h"
 #include "Controller/jsonagent.h"
+#include "Controller/dialogviaggiocontroller.h"
 #include <iostream>
 #include <Model/CostiViaggio.h>
+#include <QInputDialog>
+
 
 class vehiclelistcontroller : public controller
 {
@@ -17,7 +20,7 @@ private:
     veicolo* veic;
     CostiViaggio* c;
 public:
-    explicit vehiclelistcontroller(vehiclelist* v, garage* m, controller* parent = nullptr);
+    explicit vehiclelistcontroller(vehiclelist* v, garage* m,CostiViaggio* costi, controller* parent = nullptr);
     view* getView() const override;
     garage* getModel() const override;
     void loadGarage(garage& g) const;
@@ -33,6 +36,8 @@ public slots:
     void detailedVehicleViewSlot(veicolo* veic);
     void addViaggioSlot(veicolo *veic);
     void detailedCostsSlot(CostiViaggio* costi);
+    void exportGarageSlot();
+
 };
 
 #endif // VEHICLELISTCONTROLLER_H

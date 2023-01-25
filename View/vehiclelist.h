@@ -13,10 +13,18 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QListWidget>
+<<<<<<< HEAD
 #include "Model/garage.h"
 #include "view.h"
 #include <Model/veicolowidget.h>
 #include <Model/CostiViaggio.h>
+=======
+
+#include "Model/garage.h"
+#include "view.h"
+#include <Model/veicolowidget.h>
+#include "Model/CostiViaggio.h"
+>>>>>>> matteo-dev
 
 
 class vehiclelistcontroller;
@@ -28,11 +36,13 @@ class vehiclelist : public view
 private:
     CostiViaggio* c;
     garage* g;
+    CostiViaggio* c;
     QBoxLayout* layout;
     QMenu *file, *gar;
     QPushButton* add;
     QPushButton* load;
     QPushButton* detailedCosts;
+    QPushButton* toExp;
     void connectViewSignals() const override;
     QLabel* marcamodello;
     QLabel* targa;
@@ -54,9 +64,10 @@ signals:
     void newVehicleSignal();
     void addNewViaggioSignal(veicolo * v);
     void editVehicleDetailsSignal(veicolo * v);
-    //void editAutoDetailsSignal(automobile * v);
     void deleteVehicleSignal(veicolo* v);
     void showVehicleDetails(veicolo* v);
     void detailedCostsSignal(CostiViaggio* c);
+    void exportGarage();
+
 };
 #endif // VEHICLELIST_H

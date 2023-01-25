@@ -1,3 +1,4 @@
+
 #ifndef DIALOGVIAGGIOCONTROLLER_H
 #define DIALOGVIAGGIOCONTROLLER_H
 
@@ -9,7 +10,7 @@
 class dialogviaggiocontroller : public controller
 {
 
-/*
+
 private:
     void connectViewController() const;
     garage* m;
@@ -23,9 +24,9 @@ public:
     dialogviaggiocontroller(DialogViaggio* v, veicolo* vehicle, garage* g, CostiViaggio* costi, controller* parent = nullptr);
 
 public slots:
-    void saveViaggio(veicolo* vec, CostiViaggio* costi);
+    void saveViaggio();
     void onClosedView() const override;
-    */
 };
 
 #endif // DIALOGVIAGGIOCONTROLLER_H
+

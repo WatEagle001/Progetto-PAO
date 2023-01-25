@@ -13,17 +13,20 @@
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
+
     connect(static_cast<vehiclelist*>(v), &vehiclelist::newVehicleSignal, this, &vehiclelistcontroller::newVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::addNewViaggioSignal, this, &vehiclelistcontroller::addViaggioSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::editVehicleDetailsSignal, this, &vehiclelistcontroller::editVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::deleteVehicleSignal, this, &vehiclelistcontroller::deleteVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::showVehicleDetails, this, &vehiclelistcontroller::detailedVehicleViewSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::detailedCostsSignal, this, &vehiclelistcontroller::detailedCostsSlot);
+    connect(v, SIGNAL(exportGarage()), this, SLOT(exportGarageSlot()));
 }
 
-vehiclelistcontroller::vehiclelistcontroller(vehiclelist *v, garage* m, controller *parent) : controller(v,m, parent)
+vehiclelistcontroller::vehiclelistcontroller(vehiclelist *v, garage* m, CostiViaggio* costi,controller *parent) : controller(v,m, parent)
 {
     g = m;
+    c = costi;
     connectViewController();
 }
 
@@ -60,10 +63,10 @@ void vehiclelistcontroller::loadVehicleSlot()
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
 
-       vehiclecontroller->showView();
-       v->hide();
+    vehiclecontroller->showView();
+    v->hide();
 
 }
 
@@ -79,37 +82,11 @@ void vehiclelistcontroller::newVehicleSlot()
 
 }
 
-void vehiclelistcontroller::addViaggioSlot(veicolo * veic)
+void vehiclelistcontroller::addViaggioSlot(veicolo * vec, CostiViaggio* costi)
 {
-    string s = "Chilometri in Partenza: " + std::to_string(veic->getKm_odometro()) + "\nChilometri all'Arrivo: ";
-    int newkm = QInputDialog::getInt(v, tr("Aggiungi Viaggio"), QString::fromStdString(s), veic->getKm_odometro(), veic->getKm_odometro(), INT_MAX, 1);
-
-    if(newkm >= veic->getKm_odometro()){
-        int diff = newkm - veic->getKm_odometro();
-        veic->setKm_odometro(newkm);
-        // Bisogna ricaricare il garage
-
-        v->dialogPopUp_Information("Conferma Inserimento", "Il viggio dalla lunghezza di " + QString::fromStdString(std::to_string(diff)) +" km è stato inserito con successo nel sistema");
-    }
-    else {
-        // Teoricamente questo errore non è raggiungibile, ma non si sa mai cosa si inventa l'utente
-        v->dialogPopUp_Warning("Errore", "I chilometri finali non possono essere inferiori a quelli iniziali");
-    }
-
-    vehiclelist* veh = new vehiclelist(g,v->size(), v);
-    veh->setTitle("Garage");
-    vehiclelistcontroller* vc = new vehiclelistcontroller(veh, g, const_cast<controller*>(static_cast<const controller*>(this)));
-
-    vc->showView();
-    v->hide();
-}
-
-void vehiclelistcontroller::detailedCostsSlot(CostiViaggio *costi)
-{
-    c = costi;
-    detailedcosts* cos = new detailedcosts(c,v->size(), v);
-    detailedcostscontroller* costiV = new detailedcostscontroller(cos, c, const_cast<controller*>(static_cast<const controller*>(this)));
-    costiV->showView();
+    DialogViaggio* dv = new DialogViaggio(vec, costi, v->size(), v);
+    dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, vec, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
+    dvc->showView();
 }
 
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
@@ -139,4 +116,20 @@ void vehiclelistcontroller::detailedVehicleViewSlot(veicolo *veic)
     detailedvehicleviewcontroller* detailedController = new detailedvehicleviewcontroller(vehicledetails, g, const_cast<controller*>(static_cast<const controller*>(this)));
     detailedController->showView();
 
+}
+
+void vehiclelistcontroller::exportGarageSlot()
+{
+    // Inserire la posizione del file su cui salvare
+
+    bool tmp = JSONAgent::saveGarage(QFileDialog::getSaveFileName(nullptr, "Salva come", "../Progetto_PAO/Assets/doc", "JSON (*.json)"), g);
+    qDebug() << tmp;
+
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c , const_cast<controller*>(static_cast<const controller*>(this)));
+
+
+       vehiclecontroller->showView();
+       v->hide();
 }

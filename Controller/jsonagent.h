@@ -23,9 +23,10 @@ public:
     static QJsonDocument* getData(const QString& filePath);
     void getVehicleList(QJsonDocument* file, garage* gar);
     // static std::vector<Record*> getRecords(QJsonDocument* file) ???
-
-    static bool saveGarage(const QJsonDocument& file, const QString& filePath);
     virtual ~JSONAgent() = default;
+
+    static bool saveGarage(const QString& filePath, garage* g);
+
 
 };
 
