@@ -63,7 +63,7 @@ QWidget* vehiclelist::configureVheicleItem(veicolo* veic){
     return test;
 }
 
-vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, parent), layout(new QVBoxLayout(this))
+vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s), layout(new QVBoxLayout(this))
 {
     g = garage;
     //qDebug() << "stampa da costruttore di vehiclelist";
