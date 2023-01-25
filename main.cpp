@@ -29,7 +29,7 @@ int main(int argc, char* argv[]){
     g->addVeicolo(a5);
     g->addVeicolo(a6);
     g->addVeicolo(a7);
-    welcomeController* c = new welcomeController(w,g, cost);
+    welcomeController* c = new welcomeController(w,g, costi);
 
     //vehiclelistcontroller* v = new vehiclelistcontroller(l,g);
     c->showView();

@@ -19,7 +19,7 @@ void vehiclelistcontroller::connectViewController() const
     connect(static_cast<vehiclelist*>(v), &vehiclelist::editVehicleDetailsSignal, this, &vehiclelistcontroller::editVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::deleteVehicleSignal, this, &vehiclelistcontroller::deleteVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::showVehicleDetails, this, &vehiclelistcontroller::detailedVehicleViewSlot);
-    connect(static_cast<vehiclelist*>(v), &vehiclelist::detailedCostsSignal, this, &vehiclelistcontroller::detailedCostsSlot);
+    //connect(static_cast<vehiclelist*>(v), &vehiclelist::detailedCostsSignal, this, &vehiclelistcontroller::detailedCostsSlot);
     connect(v, SIGNAL(exportGarage()), this, SLOT(exportGarageSlot()));
 }
 
@@ -82,10 +82,10 @@ void vehiclelistcontroller::newVehicleSlot()
 
 }
 
-void vehiclelistcontroller::addViaggioSlot(veicolo * vec, CostiViaggio* costi)
+void vehiclelistcontroller::addViaggioSlot()
 {
-    DialogViaggio* dv = new DialogViaggio(vec, costi, v->size(), v);
-    dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, vec, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
+    DialogViaggio* dv = new DialogViaggio(veic, c, v->size(), v);
+    dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, veic, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
     dvc->showView();
 }
 
@@ -103,7 +103,7 @@ void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c ,const_cast<controller*>(static_cast<const controller*>(this)));
 
        vehiclecontroller->showView();
        v->hide();
