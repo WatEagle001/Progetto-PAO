@@ -11,9 +11,9 @@ void welcomeController::connectViewController() const
     connect(v, SIGNAL(readGarage()), this, SLOT(OpenGarage()));
 }
 
-welcomeController::welcomeController(welcome *v, garage* dati,controller *parent) : controller(v, dati, parent)
+welcomeController::welcomeController(welcome *v, garage* dati, CostiViaggio* costi,controller *parent) : controller(v, dati, parent)
 {
-
+    co = costi;
     g = dati;
     connectViewController();
     //qDebug() << "stampa da welcomecontroller";
@@ -37,7 +37,7 @@ void welcomeController::NewGarage()
     // Apri nuova vista del garage e mostrala
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, co,const_cast<controller*>(static_cast<const controller*>(this)));
       // qDebug() << "stampa dopo creazione vehiclelistcontroller in welcomecontroller";
       // g->printGarage();
 
@@ -61,7 +61,7 @@ void welcomeController::OpenGarage() const
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     g->printGarage();
-    vehiclelistcontroller* vcontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclelistcontroller* vcontroller = new vehiclelistcontroller(vehicle, g, co, const_cast<controller*>(static_cast<const controller*>(this)));
 
        vcontroller->showView();
        v->hide();

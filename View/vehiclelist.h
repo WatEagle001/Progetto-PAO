@@ -19,6 +19,7 @@
 #include <Model/CostiViaggio.h>
 
 
+
 class vehiclelistcontroller;
 
 class vehiclelist : public view
@@ -33,6 +34,7 @@ private:
     QPushButton* add;
     QPushButton* load;
     QPushButton* detailedCosts;
+    QPushButton* toExp;
     void connectViewSignals() const override;
     QLabel* marcamodello;
     QLabel* targa;
@@ -52,11 +54,12 @@ public:
 signals:
     void loadVehicleSignal();
     void newVehicleSignal();
-    void addNewViaggioSignal(veicolo * v);
+    void addNewViaggioSignal(veicolo* vec, CostiViaggio* co);
     void editVehicleDetailsSignal(veicolo * v);
-    //void editAutoDetailsSignal(automobile * v);
     void deleteVehicleSignal(veicolo* v);
     void showVehicleDetails(veicolo* v);
     void detailedCostsSignal(CostiViaggio* c);
+    void exportGarage();
+
 };
 #endif // VEHICLELIST_H

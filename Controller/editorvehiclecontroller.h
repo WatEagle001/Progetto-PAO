@@ -6,6 +6,7 @@
 #include "Controller/jsonagent.h"
 #include <iostream>
 #include "View/editorvehicle.h"
+#include "Model/CostiViaggio.h"
 
 class editorvehiclecontroller : public controller
 {
@@ -18,9 +19,10 @@ private:
     veicolo* veic;
     veicolo* nuovo;
     automobile* nuovoa;
+    CostiViaggio* c;
 
 public:
-    editorvehiclecontroller(editorvehicle* v, garage* m,controller* parent = nullptr,veicolo* n = nullptr);
+    editorvehiclecontroller(editorvehicle* v, garage* m, CostiViaggio* costi,controller* parent = nullptr,veicolo* n = nullptr);
     view* getView() const override;
     garage* getModel() const override;
     virtual ~editorvehiclecontroller() = default;

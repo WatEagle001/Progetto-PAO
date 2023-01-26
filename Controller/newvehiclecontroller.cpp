@@ -42,7 +42,7 @@ void newvehiclecontroller::saveSlot(veicolo* veic)
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, nullptr, const_cast<controller*>(static_cast<const controller*>(this)));
 
        vehiclecontroller->showView();
        v->hide();

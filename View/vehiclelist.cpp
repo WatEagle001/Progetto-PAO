@@ -5,13 +5,15 @@
 #include <Controller/vehiclelistcontroller.h>
 #include <Controller/welcomecontroller.h>
 #include <iostream>
+
 #include "View/detailedvehicleview.h"
+
 using std::bind;
 
 void vehiclelist::connectViewSignals() const{
     connect(add, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
     connect(load, SIGNAL(clicked()), this, SIGNAL(loadVehicleSignal()));
-    //connect(detailedCosts, SIGNAL(clicked()), this, SIGNAL(detailedCostsSignal()));
+    connect(toExp, SIGNAL(clicked()), this, SIGNAL(exportGarage()));
 
 }
 
@@ -31,15 +33,16 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
     pulsanti = new QHBoxLayout;
     aggiungiViaggio = new QPushButton(QString("Add"));
     aggiungiViaggio->setFixedSize(40, 40);
-     modifica = new QPushButton(QString("Edit"));
+    modifica = new QPushButton(QString("Edit"));
     modifica->setFixedSize(40,40);
-     elimina = new QPushButton(QString("Delete"));
+    elimina = new QPushButton(QString("Delete"));
     elimina->setFixedSize(40,40);
     detailedView = new QPushButton(QString("Dettagli"));
     detailedView->setFixedSize(60,40);
 
-    connect(aggiungiViaggio,&QPushButton::clicked, (bind(&vehiclelist::addNewViaggioSignal, this, veic)));
+
     connect(elimina, &QPushButton::clicked, (bind(&vehiclelist::deleteVehicleSignal, this, veic)));
+    connect(aggiungiViaggio, &QPushButton::clicked, (bind(&vehiclelist::addNewViaggioSignal, this, veic, c)));
     connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editVehicleDetailsSignal, this, veic)));
     // connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editAutoDetailsSignal, this, veic)));
     connect(detailedView, &QPushButton::clicked,(bind(&vehiclelist::showVehicleDetails, this, veic)));
@@ -68,7 +71,7 @@ QWidget* vehiclelist::configureVheicleItem(veicolo* veic){
     return test;
 }
 
-vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, parent), layout(new QVBoxLayout(this))
+vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s), layout(new QVBoxLayout(this))
 {
     g = garage;
 
@@ -76,14 +79,16 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s, 
     add = new QPushButton("Aggiungi Veicolo", this);
     load = new QPushButton("Carica Veicolo", this);
     detailedCosts = new QPushButton("Dettaglio Viaggi", this);
+    toExp = new QPushButton("Esporta Garage", this);
     QLabel* costi = new QLabel("Costo gestione garage: " + QString::number(g->getCostoGarage()) + " €");
 
     buttons->addWidget(add);
     buttons->addWidget(load);
-    buttons-> addWidget(detailedCosts);
+    buttons->addWidget(toExp);
+    buttons->addWidget(detailedCosts);
     buttons->addWidget(costi);
 
-
+    
     QVBoxLayout* l = new QVBoxLayout;
 
     layout->addLayout(buttons);

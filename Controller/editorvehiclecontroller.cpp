@@ -12,11 +12,13 @@ void editorvehiclecontroller::connectViewController() const
     connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
 }
 
-editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v,garage *m,controller *parent,veicolo* n) : controller(v, m, parent)
+editorvehiclecontroller::editorvehiclecontroller(editorvehicle *v, garage *m, CostiViaggio *costi, controller *parent, veicolo* n) : controller(v, m, parent)
 {
     g = m;
+    c = costi;
     nuovo = n;
     connectViewController();
+
 }
 
 view *editorvehiclecontroller::getView() const
@@ -44,7 +46,7 @@ void editorvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
 
        vehiclecontroller->showView();
        v->hide();
