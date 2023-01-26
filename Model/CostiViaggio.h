@@ -30,6 +30,8 @@ public:
    int getMaxDistanza();
    int getMinDistanza();
    int getMediaDistanza();
+   Array<veicolo *> getV() const;
+   Array<double> getCosti() const;
 };
 
 #endif // COSTIVIAGGIO_H

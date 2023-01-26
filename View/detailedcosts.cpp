@@ -1,11 +1,7 @@
 #include "detailedcosts.h"
 #include <QString>
 #include <iostream>
-/*#include <QBarSet>
-#include <QBarSeries>
-#include <QLine>
-#include <QtCharts>
-*/
+
 QLayout *detailedcosts::configureFinalLayout(){
     // Creazione Layout
     QBoxLayout* mainLayout = new QVBoxLayout();
@@ -23,9 +19,9 @@ QVBoxLayout *detailedcosts::configureDescription()
 
 void detailedcosts::connectViewSignals() const
 {
-    //connect(createGarage, SIGNAL(clicked()), this, SIGNAL(newGarage()));
-    //connect(openGarage, SIGNAL(clicked()), this, SIGNAL(readGarage()));
+
 }
+
 void detailedcosts::close(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno
@@ -38,45 +34,47 @@ void detailedcosts::close(QCloseEvent *event)
         }
 }
 
-detailedcosts::detailedcosts(CostiViaggio* c,const QSize &s, view *parent) : view(s, parent)
+detailedcosts::detailedcosts(CostiViaggio* cost,const QSize &s, view *parent) : view(s, parent)
 {
+    c = cost;
     QBoxLayout* main = new QVBoxLayout;
-    main->addLayout(configureFinalLayout());
 
+    QVBoxLayout* chart = new QVBoxLayout;
+    chart->addLayout(addDiagrammaCartesiano());
+    main->addLayout(chart);
     setLayout(main);
     setFixedSize(s);
-    connectViewSignals();
     setTitle("Dettaglio Costi Viaggio");
 }
 
- void detailedcosts::addDiagrammaCartesiano() {
-    /*QLineSeries* lineseries = new QLineSeries();
-     if(::barra > 0){
-     lineseries->setPen(QPen(QColor(Qt::red)));
-     }
+ QVBoxLayout* detailedcosts::addDiagrammaCartesiano() {
+     QVBoxLayout* layout = new QVBoxLayout;
+    QLineSeries* lineseries = new QLineSeries();
 
-    for(int i = 0; i < model->getMaxX(s1); i++){
-        lineseries->append(i,model->getDati(s1)[i]);
-     }
-     QChart() chart = new QChart();
-     chart->addSeries(lineseries);
-     chart->setTitle("Risultati Campionato F1 2021");
-     QBarCategoryAxis *axisX = new QBarCategoryAxis();
-     for(int i = 0; i <model->getMaxX(s1); i++){
-        axisX->append(QString::fromStdString(std::to_string(i+1) + ") " + model->getDescrizioni(s1)[i]));
-     }
-     chart->addAxis(axisX, Qt::AlignBottom);
-     lineseries->attachAxis(axisX);
 
-     QValueAxis *axisY = new QValueAxis();
-     chart->addAxis(axisY, Qt::AlignLeft);
-     lineseries->attachAxis(axisY);
-     chart->legend()->setVisible(true);
-     chart->legend()->setAlignment(Qt::AlignBottom);
-     chart->setAnimationOptions(QChart::AllAnimations);
-     chartView = new QChartView(chart);
-     chartView->setRenderHint(QPainter::Antialiasing);
-     chartView->setRubberBand(QChartView::HorizontalRubberBand);
-     mainLayout->addWidget(chartView);
-     */
+        for(int i = 0; i < c->getV().size(); i++){
+            lineseries->append(i,c->getCosti()[i]);
+         }
+         QChart* chart = new QChart();
+         chart->addSeries(lineseries);
+         chart->setTitle("Risultati Campionato F1 2021");
+         QBarCategoryAxis *axisX = new QBarCategoryAxis();
+         for(int i = 0; i < c->getV().size(); i++){
+            axisX->append(QString::fromStdString(std::to_string(i+1) + ") " +c->getV()[i]->getTarga()));
+         }
+         chart->addAxis(axisX, Qt::AlignBottom);
+         lineseries->attachAxis(axisX);
+
+         QValueAxis *axisY = new QValueAxis();
+         chart->addAxis(axisY, Qt::AlignLeft);
+         lineseries->attachAxis(axisY);
+         chart->legend()->setVisible(true);
+         chart->legend()->setAlignment(Qt::AlignBottom);
+         chart->setAnimationOptions(QChart::AllAnimations);
+         QChartView* chartView = new QChartView(chart);
+         chartView->setRenderHint(QPainter::Antialiasing);
+         chartView->setRubberBand(QChartView::HorizontalRubberBand);
+         layout->addWidget(chartView);
+     return layout;
+
 }

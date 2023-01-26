@@ -10,6 +10,11 @@
 #include <QCloseEvent>
 #include <QBoxLayout>
 #include <Model/CostiViaggio.h>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QtCharts>
+#include <QChart>
+
+
 class detailedcosts : public view
 {
     Q_OBJECT
@@ -18,14 +23,15 @@ private:
     QVBoxLayout* configureDescription();
     QHBoxLayout* configureButtons();
     void connectViewSignals() const override;
+    CostiViaggio* c;
 
 protected:
     void close(QCloseEvent* event);
 
 public:
-    explicit detailedcosts(CostiViaggio* c,const QSize& s = QSize(), view* parent = nullptr);
+    explicit detailedcosts(CostiViaggio* cost,const QSize& s = QSize(), view* parent = nullptr);
     virtual ~detailedcosts() = default;
-    void addDiagrammaCartesiano();
+    QVBoxLayout* addDiagrammaCartesiano();
 };
 
 

@@ -26,6 +26,7 @@ private:
     QPushButton * aggiungi;
     QPushButton * reset;
     QPushButton * annulla;
+    QPushButton * conferma;
     QDialogButtonBox * buttonbox;
 
     QLineEdit* veicol;
@@ -51,6 +52,7 @@ signals:
     void tryAddViaggio(veicolo* veic, string partenza, string arrivo, int km_percorsi, double efficienza, double costo_carburante, double costo_elettricita);
 
 public slots:
+    void checkifdataismodified();
 };
 
 #endif // DIALOGVIAGGIO_H

@@ -6,6 +6,8 @@
 #include "View/dialogviaggio.h"
 #include "Model/garage.h"
 #include "Model/CostiViaggio.h"
+#include "View/vehiclelist.h"
+#include "Controller/vehiclelistcontroller.h"
 
 class dialogviaggiocontroller : public controller
 {

@@ -83,12 +83,14 @@ DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s,
     configureEditor(veic);
 
 
+    conferma = new QPushButton("Conferma Dati", this);
     aggiungi = new QPushButton("Inserisci",this);
    reset = new QPushButton("Pulisci",this);
     annulla = new QPushButton("Esci Senza Salvare",this);
 
     QHBoxLayout* buttons = new QHBoxLayout;
     buttons->addWidget(aggiungi);
+    buttons->addWidget(conferma);
     buttons->addWidget(reset);
     buttons->addWidget(annulla);
     layout->addItem(buttons);
@@ -101,22 +103,32 @@ DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s,
     //qDebug() << "Aggiunto buttonbox al layout";
 
     //connectViewSignals();
-    connect(aggiungi, &QPushButton::clicked, (bind(
-                                                      &DialogViaggio::tryAddViaggio,
-                                                      this,
-                                                      veic,
-                                                      partenza->text().toStdString(),
-                                                      arrivo->text().toStdString(),
-                                                      ((km_arrivo->text().toInt()) - (km_partenza->text().toInt())),
-                                                      efficienza->text().toDouble(),
-                                                      costoCarburante->text().toDouble(),
-                                                      costoElettricita->text().toDouble()
+     connect(conferma,SIGNAL(clicked()), this, SLOT(checkifdataismodified()));
+
+
+
+}
+
+void DialogViaggio::checkifdataismodified()
+{
+    if(partenza->isModified() == true || km_partenza->isModified() == true || arrivo -> isModified() == true,
+            km_arrivo->isModified() == true|| costoCarburante->isModified() == true || costoElettricita->isModified() == true ){
+        int km = (km_arrivo->text().toInt()) - (km_partenza->text().toInt());
+        qDebug() << "km"<<km;
+        connect(aggiungi, &QPushButton::clicked, (bind(
+                                                          &DialogViaggio::tryAddViaggio,
+                                                          this,
+                                                          vec,
+                                                          partenza->text().toStdString(),
+                                                          arrivo->text().toStdString(),
+                                                          km,
+                                                          efficienza->text().toDouble(),
+                                                          costoCarburante->text().toDouble(),
+                                                          costoElettricita->text().toDouble()
+                                                          )
                                                       )
-                                                  )
-            );
-
-
-
+                );
+    }
 }
 
 void DialogViaggio::connectViewSignals() const

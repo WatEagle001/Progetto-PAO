@@ -17,9 +17,10 @@ private:
     void connectViewController() const;
     garage* g;
     veicolo* veic;
+    CostiViaggio* c;
 
 public:
-    newvehiclecontroller(newvehicle* v, garage* m,controller* parent = nullptr, veicolo* veicol= nullptr);
+    newvehiclecontroller(newvehicle* v, garage* m,CostiViaggio* cost,controller* parent = nullptr, veicolo* veicol= nullptr);
     view* getView() const override;
     garage* getModel() const override;
     virtual ~newvehiclecontroller() = default;
