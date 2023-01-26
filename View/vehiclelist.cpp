@@ -75,7 +75,7 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s),
 {
     g = garage;
 
-    QHBoxLayout* buttons = new QHBoxLayout();
+    QHBoxLayout* buttons = new QHBoxLayout(this);
     add = new QPushButton("Aggiungi Veicolo", this);
     load = new QPushButton("Carica Veicolo", this);
     detailedCosts = new QPushButton("Dettaglio Viaggi", this);
@@ -88,28 +88,18 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s),
     buttons->addWidget(detailedCosts);
     buttons->addWidget(costi);
 
-    
-    QVBoxLayout* l = new QVBoxLayout;
-
     layout->addLayout(buttons);
-    QScrollArea* scrollArea = new QScrollArea();
-    layout->addWidget(scrollArea);
 
+    QWidget *window = new QWidget(this);
+    QVBoxLayout *l = new QVBoxLayout(window);
 
     for(int i = 0; i < g->size(); i++){
-       // qDebug() << typeid(*(g)->getVeicolo(i)).name();
-       // qDebug() << "-----------------------------------------------";
         if(dynamic_cast<automobile*>(g->getVeicolo(i))){
             automobile* tmp = dynamic_cast<automobile*>(g->getVeicolo(i));
             QWidget* wtmp =configureVheicleItem(tmp);
             l->addWidget(wtmp);
         }
-        /*else if(dynamic_cast<veicolo*>(g->getVeicolo(i))){
-            veicolo* tmp1 = new veicolo(g->getVeicolo(i)->getMarca(), g->getVeicolo(i)->getModello(),g->getVeicolo(i)->getTarga(),g->getVeicolo(i)->getKm_odometro());
-            QWidget* wtmp =configureVheicleItem(tmp1);
-            l->addWidget(wtmp);
-        }
-        */
+
         else if(dynamic_cast<auto_elettrica*>(g->getVeicolo(i))){
             auto_elettrica* tmp2 = dynamic_cast<auto_elettrica*>(g->getVeicolo(i));
             QWidget* wtmp  =configureVheicleItem(tmp2);
@@ -136,13 +126,12 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s),
             QWidget* wtmp  =configureVheicleItem(tmp);
             l->addWidget(wtmp);
         }
-        /*else{
-            qDebug() <<"Fallito tutto";
-        }
-        */
     }
 
-    scrollArea->setLayout(l);
+    QScrollArea* scrollArea = new QScrollArea(this);
+    scrollArea->setWidget(window);
+    scrollArea->setWidgetResizable(true);
+    layout->addWidget(scrollArea);
 
     setLayout(layout);
     connectViewSignals();
