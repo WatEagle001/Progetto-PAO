@@ -82,10 +82,10 @@ void vehiclelistcontroller::newVehicleSlot()
 
 }
 
-void vehiclelistcontroller::addViaggioSlot()
+void vehiclelistcontroller::addViaggioSlot(veicolo* vec, CostiViaggio* c)
 {
-
-    DialogViaggio* dv = new DialogViaggio(veic, c, v->size(), v);
+    qDebug() << "Creazione View Dialog Viaggio\n";
+    DialogViaggio* dv = new DialogViaggio(vec, c, v->size(), v);
     dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, veic, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
     dvc->showView();
 }

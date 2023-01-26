@@ -34,7 +34,7 @@ public slots:
     void editVehicleSlot(veicolo* veic);
     void deleteVehicleSlot(veicolo* veic);
     void detailedVehicleViewSlot(veicolo* veic);
-    void addViaggioSlot();
+    void addViaggioSlot(veicolo *vec, CostiViaggio *c);
     //void detailedCostsSlot(CostiViaggio* costi);
     void exportGarageSlot();
 

@@ -34,13 +34,19 @@ void DialogViaggio::connectViewSignals() const
 
 DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s, view *parent) : view(s, parent)
 {
+    qDebug() << "Assegnazione per Iniezione\n";
     vec = veic;
     c = costi;
 
+    qDebug() << "Aggiunta delle Componenti\n";
     layout = new QFormLayout(this);
+    qDebug() << "Creato nuovo layout\n";
     layout->addRow(new QLabel("Inserimento Viaggio"));
+    qDebug() << "Aggiunta della Prima riga\n";
 
+    qDebug() << "Inizio Lettura Veicolo e Creazione Input\n";
     QLineEdit* veicolo = new QLineEdit(QString::fromStdString(veic->getTarga()), this);
+    qDebug() << "Letta la Targa\n";
     veicolo->setReadOnly(true);
     QLineEdit* partenza = new QLineEdit(this);
     partenza->setValidator(new QRegularExpressionValidator(QRegularExpression("*[A-Z]*[a-z]*[A-Z]*"), this));
@@ -60,12 +66,17 @@ DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s,
     layout->addRow("Chilometri all'Arrivo:", km_arrivo);
     layout->addRow("Efficienza del Veicolo: ", efficienza);
 
+    qDebug() << "Configurazione Avanzata\n";
     configureEditor(vec);
 
+    qDebug() << "Inserimento dei Pulsanti\n";
     buttonbox = new QDialogButtonBox( QDialogButtonBox::Ok | QDialogButtonBox::Abort, Qt::Horizontal, this);
 
     layout->addRow(buttonbox);
 
+    qDebug() << "Connessione dei Segnali\n";
     connectViewSignals();
+
+    qDebug() << "Fine creazione View Dialog Viaggio\n";
 }
 
