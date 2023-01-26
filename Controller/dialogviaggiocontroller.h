@@ -1,4 +1,3 @@
-
 #ifndef DIALOGVIAGGIOCONTROLLER_H
 #define DIALOGVIAGGIOCONTROLLER_H
 
@@ -7,16 +6,14 @@
 #include "Model/garage.h"
 #include "Model/CostiViaggio.h"
 
+// Estensione di Controller utilizzata per la gesione dell'inserimento di un nuovo viaggio
 class dialogviaggiocontroller : public controller
 {
-
-
 private:
     void connectViewController() const;
     garage* m;
     CostiViaggio* c;
     veicolo* veic;
-
 
 public:
     view* getView() const override;

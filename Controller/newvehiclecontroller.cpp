@@ -44,15 +44,13 @@ void newvehiclecontroller::saveSlot(veicolo* veic)
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, nullptr, const_cast<controller*>(static_cast<const controller*>(this)));
 
-       vehiclecontroller->showView();
-       v->hide();
+    vehiclecontroller->showView();
+    hideView();
 
 }
 
 void newvehiclecontroller::clearSlot()
 {
-
-    qDebug() << "premuto clear";
 }
 
 void newvehiclecontroller::onClosedView() const
@@ -60,6 +58,3 @@ void newvehiclecontroller::onClosedView() const
     delete this;
 }
 
-void newvehiclecontroller::newVehicleSlot(){
-    qDebug() << "Premuto aggiunta veicoli";
-}

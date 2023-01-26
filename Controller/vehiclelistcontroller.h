@@ -14,17 +14,22 @@
 class vehiclelistcontroller : public controller
 {
     Q_OBJECT
+
 private:
     void connectViewController() const;
     garage* g;
     veicolo* veic;
     CostiViaggio* c;
+
 public:
     explicit vehiclelistcontroller(vehiclelist* v, garage* m,CostiViaggio* costi, controller* parent = nullptr);
+    virtual ~vehiclelistcontroller() = default;
+
     view* getView() const override;
     garage* getModel() const override;
+
     void loadGarage(garage& g) const;
-    virtual ~vehiclelistcontroller() = default;
+
 signals:
 
 public slots:
@@ -35,7 +40,6 @@ public slots:
     void deleteVehicleSlot(veicolo* veic);
     void detailedVehicleViewSlot(veicolo* veic);
     void addViaggioSlot(veicolo *vec, CostiViaggio *c);
-    //void detailedCostsSlot(CostiViaggio* costi);
     void exportGarageSlot();
 
 };

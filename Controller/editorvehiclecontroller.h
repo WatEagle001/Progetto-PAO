@@ -23,10 +23,10 @@ private:
 
 public:
     editorvehiclecontroller(editorvehicle* v, garage* m, CostiViaggio* costi,controller* parent = nullptr,veicolo* n = nullptr);
-    view* getView() const override;
-    garage* getModel() const override;
     virtual ~editorvehiclecontroller() = default;
 
+    view* getView() const override;
+    garage* getModel() const override;
 
 signals:
 

@@ -31,7 +31,6 @@ public slots:
     void saveSlot(veicolo* veic);
     //void saveSlot();
     void clearSlot();
-    void newVehicleSlot();
 };
 
 

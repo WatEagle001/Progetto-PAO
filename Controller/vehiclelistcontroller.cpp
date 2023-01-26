@@ -13,13 +13,11 @@
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
-
     connect(static_cast<vehiclelist*>(v), &vehiclelist::newVehicleSignal, this, &vehiclelistcontroller::newVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::addNewViaggioSignal, this, &vehiclelistcontroller::addViaggioSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::editVehicleDetailsSignal, this, &vehiclelistcontroller::editVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::deleteVehicleSignal, this, &vehiclelistcontroller::deleteVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::showVehicleDetails, this, &vehiclelistcontroller::detailedVehicleViewSlot);
-    //connect(static_cast<vehiclelist*>(v), &vehiclelist::detailedCostsSignal, this, &vehiclelistcontroller::detailedCostsSlot);
     connect(v, SIGNAL(exportGarage()), this, SLOT(exportGarageSlot()));
 }
 
@@ -40,10 +38,6 @@ garage *vehiclelistcontroller::getModel() const
     return static_cast<garage*>(g);
 }
 
-void vehiclelistcontroller::loadGarage(garage &g) const
-{
-
-}
 
 void vehiclelistcontroller::onClosedView() const
 {
@@ -56,10 +50,7 @@ void vehiclelistcontroller::loadVehicleSlot()
     QString path = js->selectFile();
     QJsonDocument* veicoli = js->getData(path);
 
-
-
     js->getVehicleList(veicoli, g);
-
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
@@ -72,19 +63,16 @@ void vehiclelistcontroller::loadVehicleSlot()
 
 void vehiclelistcontroller::newVehicleSlot()
 {
-   // g->printGarage();
     newvehicle* vehicle = new newvehicle(g,v->size(), v);
     vehicle->setTitle("Aggiunta Veicolo");
     newvehiclecontroller* vehiclecontroller = new newvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
 
     vehiclecontroller->showView();
-       v->hide();
-
+    hideView();
 }
 
 void vehiclelistcontroller::addViaggioSlot(veicolo* vec, CostiViaggio* c)
 {
-    qDebug() << "Creazione View Dialog Viaggio\n";
     DialogViaggio* dv = new DialogViaggio(vec, c, v->size(), v);
     dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, veic, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
     dvc->showView();
@@ -100,38 +88,37 @@ void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
 
 void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
 {
-   g->deleteVeicolo(veic);
-   g->printGarage();
+    g->deleteVeicolo(veic);
+    g->printGarage();
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c ,const_cast<controller*>(static_cast<const controller*>(this)));
 
-       vehiclecontroller->showView();
-       v->hide();
+    vehiclecontroller->showView();
+    v->hide();
 }
 
 void vehiclelistcontroller::detailedVehicleViewSlot(veicolo *veic)
 {
-    qDebug() << QString::fromStdString(veic->getTarga());
     detailedvehicleview* vehicledetails = new detailedvehicleview(veic,v->size(), v);
     detailedvehicleviewcontroller* detailedController = new detailedvehicleviewcontroller(vehicledetails, g, const_cast<controller*>(static_cast<const controller*>(this)));
     detailedController->showView();
-
 }
 
 void vehiclelistcontroller::exportGarageSlot()
 {
-    // Inserire la posizione del file su cui salvare
 
     bool tmp = JSONAgent::saveGarage(QFileDialog::getSaveFileName(nullptr, "Salva come", "../Progetto_PAO/Assets/doc", "JSON (*.json)"), g);
-    qDebug() << tmp;
+
+    if(!tmp){
+        v->dialogPopUp_Warning("Errore", "Qualcosa è andato storto durante l'esportazione del file");
+    }
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c , const_cast<controller*>(static_cast<const controller*>(this)));
 
-
-       vehiclecontroller->showView();
-       v->hide();
+    vehiclecontroller->showView();
+    v->hide();
 }

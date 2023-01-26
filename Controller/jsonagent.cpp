@@ -2,12 +2,11 @@
 
 JSONAgent::JSONAgent(garage *gar)
 {
-g = gar;
+    g = gar;
 }
 
 QString JSONAgent::selectFile()
 {
-    qDebug() << "DEBUG: Creazione del popup per la scelta del file\n";
     QFileDialog popup;
     popup.setFileMode(QFileDialog::ExistingFile);
     popup.setNameFilter("JSON (*.json)");
@@ -23,7 +22,6 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
 {
     if(filePath.isNull()) return new QJsonDocument();
 
-    qDebug() << "DEBUG: Caricamento del file .json\n";
     QString data;
     QFile file;
 
@@ -33,7 +31,6 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
     file.close();
 
     // Lettura documento
-    qDebug() << "DEBUG: Lettura del file .json\n";
     QJsonDocument* doc = new QJsonDocument(QJsonDocument::fromJson(data.toLocal8Bit()));
     QJsonObject obj = doc->object();
 
@@ -42,12 +39,10 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
         return new QJsonDocument();
     }
 
-    qDebug() << "DEBUG: Fine lettura del file .json\n";
     return doc;
 
 }
 
-// Da implementare mettendo un riferimento a garage come parametro così da caricare tutto direttamente dentro
 void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
     g = gar;
     QJsonObject data = file->object();
@@ -164,7 +159,6 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
 bool JSONAgent::saveGarage(const QString &filePath, garage* g)
 {
     if(filePath.isNull() || filePath.isEmpty()){
-        qDebug() << "Primo False";
         return false;
     }
 
@@ -303,6 +297,5 @@ bool JSONAgent::saveGarage(const QString &filePath, garage* g)
         return true;
     }
 
-    qDebug() << "Secondo False";
     return false;
 }
