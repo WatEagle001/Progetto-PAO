@@ -32,18 +32,18 @@ SOURCES += \
     View/view.cpp \
     View/welcome.cpp \
     main.cpp \
-       Model/auto_elettrica.cpp \
-       Model/auto_ibrida.cpp \
-       Model/automobile.cpp \
-       Model/emptyexception.cpp \
-       Model/garage.cpp \
-       Model/monopattino_elettrico.cpp \
-       Model/outofboundsexception.cpp \
-       Model/moto.cpp \
-       Model/moto_elettrica.cpp \
-       Model/motore_combustione.cpp \
-       Model/motore_elettrico.cpp \
-       Model/veicolo.cpp
+    Model/auto_elettrica.cpp \
+    Model/auto_ibrida.cpp \
+    Model/automobile.cpp \
+    Model/emptyexception.cpp \
+    Model/garage.cpp \
+    Model/monopattino_elettrico.cpp \
+    Model/outofboundsexception.cpp \
+    Model/moto.cpp \
+    Model/moto_elettrica.cpp \
+    Model/motore_combustione.cpp \
+    Model/motore_elettrico.cpp \
+    Model/veicolo.cpp
 
 HEADERS += \
     Controller/detailedcostscontroller.h \
@@ -51,22 +51,20 @@ HEADERS += \
     Controller/dialogviaggiocontroller.h \
     Controller/editorvehiclecontroller.h \
     Controller/newvehiclecontroller.h \
-    Controller/dialogviaggiocontroller.h \
-    Controller/editorvehiclecontroller.h \
-   Model/CostiViaggio.h \
-   Model/array.h \
-   Model/auto_elettrica.h \
-   Model/auto_ibrida.h \
-   Model/automobile.h \
-   Model/emptyexception.h \
-   Model/garage.h \
-   Model/monopattino_elettrico.h \
-   Model/outofboundsexception.h \
-   Model/moto.h \
-   Model/moto_elettrica.h \
-   Model/motore_combustione.h \
-   Model/motore_elettrico.h \
-   Model/veicolo.h \
+    Model/CostiViaggio.h \
+    Model/array.h \
+    Model/auto_elettrica.h \
+    Model/auto_ibrida.h \
+    Model/automobile.h \
+    Model/emptyexception.h \
+    Model/garage.h \
+    Model/monopattino_elettrico.h \
+    Model/outofboundsexception.h \
+    Model/moto.h \
+    Model/moto_elettrica.h \
+    Model/motore_combustione.h \
+    Model/motore_elettrico.h \
+    Model/veicolo.h \
     Controller/jsonagent.h \
     Controller/vehiclelistcontroller.h \
     Controller/welcomecontroller.h \
