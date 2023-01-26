@@ -23,10 +23,19 @@ class DialogViaggio : public view
 private:
     QFormLayout* layout;
     QList<QLineEdit*>* campidati;
-    QDialogButtonBox* buttonbox;
     QPushButton * aggiungi;
     QPushButton * reset;
     QPushButton * annulla;
+    QDialogButtonBox * buttonbox;
+
+    QLineEdit* veicol;
+    QLineEdit* partenza;
+    QLineEdit* km_partenza;
+    QLineEdit* arrivo;
+    QLineEdit* km_arrivo;
+    QLineEdit* efficienza;
+    QLineEdit* costoCarburante;
+    QLineEdit* costoElettricita;
 
     veicolo* vec;
     CostiViaggio* c;
@@ -39,7 +48,7 @@ public:
     DialogViaggio(veicolo* veic, CostiViaggio* costi, const QSize& s = QSize(), view* parent = nullptr);
 
 signals:
-    void tryAddViaggio();
+    void tryAddViaggio(veicolo* veic, string partenza, string arrivo, int km_percorsi, double efficienza, double costo_carburante, double costo_elettricita);
 
 public slots:
 };

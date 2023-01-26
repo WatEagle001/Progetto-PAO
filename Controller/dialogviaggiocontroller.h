@@ -24,7 +24,7 @@ public:
     dialogviaggiocontroller(DialogViaggio* v, veicolo* vehicle, garage* g, CostiViaggio* costi, controller* parent = nullptr);
 
 public slots:
-    void saveViaggio();
+    void saveViaggio(veicolo* veic, string partenza, string arrivo, int km_percorsi, double efficienza, double costo_carburante = 0, double costo_elettricita = 0);
     void onClosedView() const override;
 };
 

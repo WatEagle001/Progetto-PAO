@@ -23,7 +23,7 @@ dialogviaggiocontroller::dialogviaggiocontroller(DialogViaggio *v, veicolo *vehi
     connectViewController();
 }
 
-void dialogviaggiocontroller::saveViaggio()
+void dialogviaggiocontroller::saveViaggio(veicolo* veic, string partenza, string arrivo, int km_percorsi, double efficienza, double costo_carburante, double costo_elettricita)
 {
 
 }

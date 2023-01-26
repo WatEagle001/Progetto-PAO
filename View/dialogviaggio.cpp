@@ -7,13 +7,13 @@ void DialogViaggio::configureEditor(veicolo *veic)
 
 
     if(e){
-        QLineEdit* costoElettricita = new QLineEdit(this);
+        costoElettricita = new QLineEdit(this);
         costoElettricita->setValidator(new QDoubleValidator(0,10, 3, this));
         layout->addRow("Costo Elettricità", costoElettricita);
     }
 
     if(c){
-        QLineEdit* costoCarburante = new QLineEdit(this);
+        costoCarburante = new QLineEdit(this);
         costoCarburante->setValidator(new QDoubleValidator(0,10, 3, this));
         layout->addRow("Costo Carburante", costoCarburante);
 
@@ -26,11 +26,6 @@ void DialogViaggio::configureEditor(veicolo *veic)
 
 }
 
-void DialogViaggio::connectViewSignals() const
-{
-    connect(buttonbox, SIGNAL(accepted()), this, SIGNAL(tryAddViaggio()));
-    connect(buttonbox, SIGNAL(rejected()), this, SIGNAL(viewClosed()));
-}
 
 DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s, view *parent) : view(s, parent)
 {
@@ -45,38 +40,60 @@ DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s,
     qDebug() << "Aggiunta della Prima riga\n";
 
     qDebug() << "Inizio Lettura Veicolo e Creazione Input\n";
-    QLineEdit* veicolo = new QLineEdit(QString::fromStdString(veic->getTarga()), this);
+    veicol = new QLineEdit(QString::fromStdString(veic->getTarga()), this);
     qDebug() << "Letta la Targa\n";
-    veicolo->setReadOnly(true);
-    QLineEdit* partenza = new QLineEdit(this);
-    partenza->setValidator(new QRegularExpressionValidator(QRegularExpression("*[A-Z]*[a-z]*[A-Z]*"), this));
-    QLineEdit* km_partenza = new QLineEdit(QString::number(veic->getKm_odometro()),this);
+    veicol->setReadOnly(true);
+    partenza = new QLineEdit(this);
+    partenza->setValidator(new QRegularExpressionValidator(QRegularExpression("[A-Z]*[a-z]*[A-Z]*"), this));
+    km_partenza = new QLineEdit(QString::number(veic->getKm_odometro()),this);
     km_partenza->setReadOnly(true);
-    QLineEdit* arrivo = new QLineEdit(this);
-    arrivo->setValidator(new QRegularExpressionValidator(QRegularExpression("*[A-Z]*[a-z]*[A-Z]*"), this));
-    QLineEdit* km_arrivo = new QLineEdit(this);
+    arrivo = new QLineEdit(this);
+    arrivo->setValidator(new QRegularExpressionValidator(QRegularExpression("[A-Z]*[a-z]*[A-Z]*"), this));
+    km_arrivo = new QLineEdit(this);
     km_arrivo->setValidator(new QIntValidator(0, INT_MAX, this));
-    QLineEdit* efficienza = new QLineEdit(this);
+    efficienza = new QLineEdit(this);
 
 
-    layout->addRow("Veicolo Utilizzato: ", veicolo);
+    layout->addRow("Veicolo Utilizzato: ", veicol);
     layout->addRow("Città di Partenza: ", partenza);
     layout->addRow("Km alla Partenza: ", km_partenza);
     layout->addRow("Città di Arrivo: ", arrivo);
     layout->addRow("Chilometri all'Arrivo:", km_arrivo);
     layout->addRow("Efficienza del Veicolo: ", efficienza);
 
-    qDebug() << "Configurazione Avanzata\n";
-    configureEditor(vec);
+    configureEditor(veic);
 
-    qDebug() << "Inserimento dei Pulsanti\n";
-    buttonbox = new QDialogButtonBox( QDialogButtonBox::Ok | QDialogButtonBox::Abort, Qt::Horizontal, this);
 
+    aggiungi = new QPushButton("Inserisci", this);
+    reset = new QPushButton("Pulisci", this);
+    annulla = new QPushButton("Esci Senza Salvare", this);
+
+    buttonbox->addButton(aggiungi, QDialogButtonBox::AcceptRole);
+    buttonbox->addButton(reset, QDialogButtonBox::ResetRole);
+    buttonbox->addButton(annulla, QDialogButtonBox::DestructiveRole);
+    qDebug() << "Aggiunti bottoni alla buttonbox";
     layout->addRow(buttonbox);
+    qDebug() << "Aggiunto buttonbox al layout";
 
-    qDebug() << "Connessione dei Segnali\n";
-    connectViewSignals();
+    //connectViewSignals();
+    connect(aggiungi, &QPushButton::clicked, (bind(
+                                                      &DialogViaggio::tryAddViaggio,
+                                                      this,
+                                                      vec,
+                                                      partenza->text().toStdString(),
+                                                      arrivo->text().toStdString(),
+                                                      (km_arrivo->text().toInt() - km_partenza->text().toInt()),
+                                                      efficienza->text().toDouble(),
+                                                      costoCarburante->text().toDouble(),
+                                                      costoElettricita->text().toDouble()
+                                                      )
+                                                  )
+            );
+}
 
-    qDebug() << "Fine creazione View Dialog Viaggio\n";
+void DialogViaggio::connectViewSignals() const
+{
+
+
 }
 
