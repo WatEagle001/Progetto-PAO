@@ -88,9 +88,9 @@ void newvehicle::checkIfDataIsModified() {
                               kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
        }
         if(tipoVeicolo->currentIndex() == 5){
-            //v = new moto_elettrica(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt());
+            v = new moto_elettrica(marca->text().toStdString(), modello->text().toStdString(), km->text().toInt(),
+                                   kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble(),targa->text().toStdString());
        }
-
         if(tipoVeicolo->currentIndex() == 6){
             v = new monopattino_elettrico(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
                  kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
@@ -152,7 +152,7 @@ void newvehicle::createOptions(int x)
 
 void newvehicle::connectViewSignals() const
 {
-    connect(clear, SIGNAL(clicked()), this, SIGNAL(clearSignal()));
+    connect(clear, SIGNAL(clicked()), this, SLOT(clearSlot()));
     connect(confermaDati, SIGNAL(clicked()), this, SLOT(checkSignal()));
 }
 
@@ -186,3 +186,22 @@ void newvehicle::close(QCloseEvent *event)
         }
 }
 
+void newvehicle::clearSlot(){
+    marca->setText("");
+    modello->setText("");
+    targa->setText("");
+    km->setText("");
+
+    if(tipoVeicolo->currentIndex() == 1 || tipoVeicolo->currentIndex() == 2 || tipoVeicolo->currentIndex() == 4){
+     cilindrata->setText("");
+     litri_carburante->setText("");
+     manutenzione_bool->setText("");
+     costo_manutenzione->setText("");
+    }
+    if(tipoVeicolo->currentIndex() == 3 || tipoVeicolo->currentIndex() == 5 ||tipoVeicolo->currentIndex() == 6 || tipoVeicolo->currentIndex() == 4){
+     kw ->setText("");
+     ricaricare_bool->setText("");
+     costo_ricarica->setText("");
+    }
+
+}

@@ -14,6 +14,7 @@ void vehiclelist::connectViewSignals() const{
     connect(add, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
     connect(load, SIGNAL(clicked()), this, SIGNAL(loadVehicleSignal()));
     connect(toExp, SIGNAL(clicked()), this, SIGNAL(exportGarage()));
+    connect(detailedCosts,SIGNAL(clicked()),this,SIGNAL(detailedCostsSignal()));
 
 }
 
@@ -31,22 +32,25 @@ void vehiclelist::closeEvent(QCloseEvent *event)
 QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
 {
     pulsanti = new QHBoxLayout;
-    aggiungiViaggio = new QPushButton(QString("Add"));
+    aggiungiViaggio = new QPushButton;
+    aggiungiViaggio->setIcon(QIcon(":/Assets/image/icons/add.png"));
     aggiungiViaggio->setFixedSize(40, 40);
-    modifica = new QPushButton(QString("Edit"));
+    modifica = new QPushButton;
+    modifica->setIcon(QIcon(":/Assets/image/icons/edit.png"));
     modifica->setFixedSize(40,40);
-    elimina = new QPushButton(QString("Delete"));
+    elimina = new QPushButton;
+    elimina->setIcon(QIcon(":/Assets/image/icons/delete.png"));
     elimina->setFixedSize(40,40);
-    detailedView = new QPushButton(QString("Dettagli"));
-    detailedView->setFixedSize(60,40);
+    detailedView = new QPushButton;
+    detailedView->setIcon(QIcon(":/Assets/image/icons/info.png"));
+    detailedView->setFixedSize(40,40);
 
 
     connect(elimina, &QPushButton::clicked, (bind(&vehiclelist::deleteVehicleSignal, this, veic)));
     connect(aggiungiViaggio, &QPushButton::clicked, (bind(&vehiclelist::addNewViaggioSignal, this, veic)));
     connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editVehicleDetailsSignal, this, veic)));
-    // connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editAutoDetailsSignal, this, veic)));
     connect(detailedView, &QPushButton::clicked,(bind(&vehiclelist::showVehicleDetails, this, veic)));
-    connect(detailedCosts, &QPushButton::clicked,(bind(&vehiclelist::detailedCostsSignal, this, c)));
+
 
 
     pulsanti->addWidget(aggiungiViaggio);
@@ -57,9 +61,6 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
 }
 
 QWidget* vehiclelist::configureVheicleItem(veicolo* veic){
-    //qDebug() << "tipo veicolo passato al widget";
-    //qDebug() << typeid(*veic).name();
-   // qDebug() << typeid(veic).name();
     QWidget* test = new QWidget;
     QHBoxLayout* list = new QHBoxLayout;
     veicoloWidget* wid = new veicoloWidget(veic);
@@ -71,7 +72,7 @@ QWidget* vehiclelist::configureVheicleItem(veicolo* veic){
     return test;
 }
 
-vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s), layout(new QVBoxLayout(this))
+vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s,parent), layout(new QVBoxLayout(this))
 {
     g = garage;
 

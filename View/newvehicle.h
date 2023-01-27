@@ -41,11 +41,12 @@ private:
         QHBoxLayout* configureButtons();
         QFormLayout* addMoreOptions();
         void deleteOptions();
-        void connectViewSignals() const override;
+
 protected:
     void close(QCloseEvent* event);
 public:
     explicit newvehicle(garage* gar,const QSize& s = QSize(), view* parent = nullptr);
+    void connectViewSignals() const override;
     virtual ~newvehicle() = default;
     void checkIfDataIsModified();
     void addFieldsCombustione();
@@ -53,10 +54,11 @@ public:
     void firstSelection(int);
 signals:
     void saveSignal(veicolo* veic);
-    void clearSignal();
+
 public slots:
     void checkSignal();
     void createOptions(int);
+    void clearSlot();
 };
 
 #endif // NEWVEHICLE_H

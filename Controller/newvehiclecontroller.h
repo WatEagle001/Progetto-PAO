@@ -30,8 +30,6 @@ signals:
 public slots:
     virtual void onClosedView() const override;
     void saveSlot(veicolo* veic);
-    //void saveSlot();
-    void clearSlot();
     void newVehicleSlot();
 };
 

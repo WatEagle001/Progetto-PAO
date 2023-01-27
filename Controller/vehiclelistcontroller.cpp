@@ -42,10 +42,6 @@ garage *vehiclelistcontroller::getModel() const
     return static_cast<garage*>(g);
 }
 
-void vehiclelistcontroller::loadGarage(garage &g) const
-{
-
-}
 
 void vehiclelistcontroller::onClosedView() const
 {
@@ -54,6 +50,8 @@ void vehiclelistcontroller::onClosedView() const
 
 void vehiclelistcontroller::loadVehicleSlot()
 {
+
+
     JSONAgent* js = new JSONAgent(g);
     QString path = js->selectFile();
     QJsonDocument* veicoli = js->getData(path);
@@ -62,7 +60,7 @@ void vehiclelistcontroller::loadVehicleSlot()
 
     js->getVehicleList(veicoli, g);
 
-
+    v->close();
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
@@ -97,7 +95,6 @@ void vehiclelistcontroller::detailedCostsSlot()
 {
     detailedcosts* dc = new detailedcosts(c, v->size(), v);
     detailedcostscontroller* dcc = new detailedcostscontroller(dc, c, const_cast<controller*>(static_cast<const controller*>(this)));
-    v->hide();
     dcc->showView();
 }
 
@@ -106,7 +103,6 @@ void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
     editorvehicle* vehicle = new editorvehicle(g,veic,v->size(), v);
     editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, c,  const_cast<controller*>(static_cast<const controller*>(this)));
     editor->showView();
-    hideView();
 }
 
 void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
@@ -114,12 +110,13 @@ void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
    g->deleteVeicolo(veic);
    g->printGarage();
 
+   v->close();
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
 
-       vehiclecontroller->showView();
-       v->close();
+    vehiclecontroller->showView();
+
 }
 
 void vehiclelistcontroller::detailedVehicleViewSlot(veicolo *veic)
@@ -133,16 +130,5 @@ void vehiclelistcontroller::detailedVehicleViewSlot(veicolo *veic)
 
 void vehiclelistcontroller::exportGarageSlot()
 {
-    // Inserire la posizione del file su cui salvare
-
-    bool tmp = JSONAgent::saveGarage(QFileDialog::getSaveFileName(nullptr, "Salva come", "../Progetto_PAO/Assets/doc", "JSON (*.json)"), g);
-    qDebug() << tmp;
-
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
-    vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c , const_cast<controller*>(static_cast<const controller*>(this)));
-
-
-       vehiclecontroller->showView();
-       v->hide();
+    JSONAgent::saveGarage(QFileDialog::getSaveFileName(nullptr, "Salva come", "../Progetto_PAO/Assets/doc", "JSON (*.json)"), g);
 }

@@ -8,7 +8,6 @@
 void newvehiclecontroller::connectViewController() const
 {
    connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &newvehiclecontroller::saveSlot);
-   connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
 }
 
 newvehiclecontroller::newvehiclecontroller(newvehicle *v,garage *m,CostiViaggio* cost,controller *parent, veicolo* veicol) : controller(v, m, parent)
@@ -50,11 +49,6 @@ void newvehiclecontroller::saveSlot(veicolo* veic)
 
 }
 
-void newvehiclecontroller::clearSlot()
-{
-
-    qDebug() << "premuto clear";
-}
 
 void newvehiclecontroller::onClosedView() const
 {

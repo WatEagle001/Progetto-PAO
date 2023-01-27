@@ -1,6 +1,5 @@
 #ifndef DETAILEDVEHICLEVIEWCONTROLLER_H
 #define DETAILEDVEHICLEVIEWCONTROLLER_H
-#pragma once
 #include "controller.h"
 #include "View/vehiclelist.h"
 #include "Model/garage.h"
@@ -23,7 +22,6 @@ signals:
 
 public slots:
     virtual void onClosedView() const override;
-    void detailedVehicleViewSlot();
 };
 
 

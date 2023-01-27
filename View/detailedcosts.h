@@ -19,19 +19,15 @@ class detailedcosts : public view
 {
     Q_OBJECT
 private:
-    QLayout* configureFinalLayout();
-    QVBoxLayout* configureDescription();
-    QHBoxLayout* configureButtons();
     void connectViewSignals() const override;
     CostiViaggio* c;
-
 protected:
     void close(QCloseEvent* event);
 
 public:
     explicit detailedcosts(CostiViaggio* cost,const QSize& s = QSize(), view* parent = nullptr);
     virtual ~detailedcosts() = default;
-    QVBoxLayout* addDiagrammaCartesiano();
+    QVBoxLayout* addIstogramma();
 };
 
 
