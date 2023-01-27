@@ -18,9 +18,9 @@
         <file>Assets/image/icons/moto_elettrica.png</file>
         <file>Assets/image/icons/moto.png</file>
         <file>Assets/image/icons/true.png</file>
-         <file>Assets/image/icons/add.png</file>
-          <file>Assets/image/icons/edit.png</file>
-           <file>Assets/image/icons/delete.png</file>
-            <file>Assets/image/icons/info.png</file>
+        <file>Assets/image/icons/add.png</file>
+        <file>Assets/image/icons/edit.png</file>
+        <file>Assets/image/icons/delete.png</file>
+        <file>Assets/image/icons/info.png</file>
     </qresource>
 </RCC>
