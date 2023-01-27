@@ -23,7 +23,6 @@ public:
     explicit vehiclelistcontroller(vehiclelist* v, garage* m,CostiViaggio* costi, controller* parent = nullptr);
     view* getView() const override;
     garage* getModel() const override;
-    void loadGarage(garage& g) const;
     virtual ~vehiclelistcontroller() = default;
 signals:
 
@@ -34,8 +33,8 @@ public slots:
     void editVehicleSlot(veicolo* veic);
     void deleteVehicleSlot(veicolo* veic);
     void detailedVehicleViewSlot(veicolo* veic);
-    void addViaggioSlot();
-    //void detailedCostsSlot(CostiViaggio* costi);
+    void addViaggioSlot(veicolo *vec);
+    void detailedCostsSlot();
     void exportGarageSlot();
 
 };

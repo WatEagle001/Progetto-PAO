@@ -18,7 +18,6 @@ private:
     garage* g;
     veicolo* veic;
     veicolo* nuovo;
-    automobile* nuovoa;
     CostiViaggio* c;
 
 public:

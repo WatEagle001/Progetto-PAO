@@ -34,6 +34,7 @@ garage *editorvehiclecontroller::getModel() const
 
 void editorvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
 {
+
    qDebug() << "test nuovo veicolo" ;
                qDebug() << QString::fromStdString(nuovo->getMarca());
     // g->addVeicolo(veic);
@@ -44,12 +45,14 @@ void editorvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
     g->printGarage();
     //qDebug()<< QString::fromStdString(g->getVeicolo(0)->getMarca()) + QString::fromStdString(g->getVeicolo(0)->getModello());
 
+
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclecontroller->showView();
 
-       vehiclecontroller->showView();
-       v->hide();
+    v->hide();
+
 
 }
 
@@ -62,6 +65,7 @@ void editorvehiclecontroller::clearSlot()
 
 void editorvehiclecontroller::onClosedView() const
 {
+    v->close();
     delete this;
 }
 

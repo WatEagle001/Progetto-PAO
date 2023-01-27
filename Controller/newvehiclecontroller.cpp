@@ -8,12 +8,12 @@
 void newvehiclecontroller::connectViewController() const
 {
    connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &newvehiclecontroller::saveSlot);
-   connect(v, SIGNAL(clearSignal()), this, SLOT(clearSlot()));
 }
 
-newvehiclecontroller::newvehiclecontroller(newvehicle *v,garage *m,controller *parent, veicolo* veicol) : controller(v, m, parent)
+newvehiclecontroller::newvehiclecontroller(newvehicle *v,garage *m,CostiViaggio* cost,controller *parent, veicolo* veicol) : controller(v, m, parent)
 {
     veic = veicol;
+    c = cost;
     g = m;
     connectViewController();
 }
@@ -42,24 +42,21 @@ void newvehiclecontroller::saveSlot(veicolo* veic)
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, nullptr, const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
 
        vehiclecontroller->showView();
        v->hide();
 
 }
 
-void newvehiclecontroller::clearSlot()
-{
-
-    qDebug() << "premuto clear";
-}
 
 void newvehiclecontroller::onClosedView() const
 {
+    v->close();
     delete this;
 }
 
 void newvehiclecontroller::newVehicleSlot(){
     qDebug() << "Premuto aggiunta veicoli";
 }
+

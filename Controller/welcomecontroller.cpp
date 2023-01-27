@@ -37,7 +37,7 @@ void welcomeController::NewGarage()
     // Apri nuova vista del garage e mostrala
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, co,const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g,co,const_cast<controller*>(static_cast<const controller*>(this)));
       // qDebug() << "stampa dopo creazione vehiclelistcontroller in welcomecontroller";
       // g->printGarage();
 

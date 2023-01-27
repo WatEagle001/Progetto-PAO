@@ -57,6 +57,16 @@ int CostiViaggio::getMediaDistanza(){
 }
 
 
+Array<veicolo *> CostiViaggio::getV() const
+{
+    return v;
+}
+
+Array<double> CostiViaggio::getCosti() const
+{
+    return costi;
+}
+
 void CostiViaggio::addViaggio(veicolo* veicolo, string part, string arr, int km, double efficienza, double carbur, double elett){
     v.push_back(veicolo);
     if(dynamic_cast<motore_combustione*>(veicolo)){
