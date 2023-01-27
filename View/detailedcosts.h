@@ -20,7 +20,7 @@ private:
     void connectViewSignals() const override;
 
 protected:
-    void close(QCloseEvent* event);
+    void closeEvent(QCloseEvent* event) override;
 
 public:
     explicit detailedcosts(CostiViaggio* c,const QSize& s = QSize(), view* parent = nullptr);

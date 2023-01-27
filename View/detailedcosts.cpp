@@ -26,7 +26,7 @@ void detailedcosts::connectViewSignals() const
     //connect(createGarage, SIGNAL(clicked()), this, SIGNAL(newGarage()));
     //connect(openGarage, SIGNAL(clicked()), this, SIGNAL(readGarage()));
 }
-void detailedcosts::close(QCloseEvent *event)
+void detailedcosts::closeEvent(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno
         if(!event->spontaneous()) return;
