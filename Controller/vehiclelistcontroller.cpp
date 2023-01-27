@@ -68,7 +68,7 @@ void vehiclelistcontroller::newVehicleSlot()
     newvehiclecontroller* vehiclecontroller = new newvehiclecontroller(vehicle, g, const_cast<controller*>(static_cast<const controller*>(this)));
 
     vehiclecontroller->showView();
-    hideView();
+    v->hide();
 }
 
 void vehiclelistcontroller::addViaggioSlot(veicolo* vec, CostiViaggio* c)
@@ -76,6 +76,7 @@ void vehiclelistcontroller::addViaggioSlot(veicolo* vec, CostiViaggio* c)
     DialogViaggio* dv = new DialogViaggio(vec, c, v->size(), v);
     dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, veic, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
     dvc->showView();
+    v->hide();
 }
 
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
@@ -83,7 +84,7 @@ void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
     editorvehicle* vehicle = new editorvehicle(g,veic,v->size(), v);
     editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, c,  const_cast<controller*>(static_cast<const controller*>(this)));
     editor->showView();
-    hideView();
+    v->hide();
 }
 
 void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
@@ -104,6 +105,7 @@ void vehiclelistcontroller::detailedVehicleViewSlot(veicolo *veic)
     detailedvehicleview* vehicledetails = new detailedvehicleview(veic,v->size(), v);
     detailedvehicleviewcontroller* detailedController = new detailedvehicleviewcontroller(vehicledetails, g, const_cast<controller*>(static_cast<const controller*>(this)));
     detailedController->showView();
+    v->hide();
 }
 
 void vehiclelistcontroller::exportGarageSlot()

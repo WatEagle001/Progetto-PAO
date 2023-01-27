@@ -14,7 +14,7 @@ private:
     virtual void connectViewSignals() const = 0;
 
 protected:
-    void closeEvent(QCloseEvent *event) override;
+    virtual void closeEvent(QCloseEvent *event) override;
 
 public:
     explicit view(const QSize& s = QSize(), view* parent = nullptr);

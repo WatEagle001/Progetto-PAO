@@ -7,12 +7,7 @@
 
 detailedcostscontroller::detailedcostscontroller(detailedcosts *v, CostiViaggio* dati,controller *parent) : controller(v, dati, parent)
 {
-
     cost = dati;
-    //connectViewController();
-    //qDebug() << "stampa da welcomecontroller";
-    //g->printGarage();
-
 }
 
 detailedcosts *detailedcostscontroller::getView() const

@@ -39,7 +39,6 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
 }
 
 void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
-    //g = gar;
     QJsonObject data = file->object();
     QJsonArray list = data["veicoli"].toArray();
 

@@ -22,7 +22,8 @@ private:
     QHBoxLayout* configureButtons();
     void connectViewSignals() const override;
 protected:
-    void close(QCloseEvent* event);
+    void closeEvent(QCloseEvent* event) override;
+
 public:
     explicit welcome(const QSize& s = QSize(), view* parent = nullptr);
     virtual ~welcome() = default;

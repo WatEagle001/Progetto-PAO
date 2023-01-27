@@ -39,8 +39,6 @@ void welcomeController::NewGarage()
     v->hide();
 }
 
-
-// DA CONTROLLARE VALIDITA' DI QUESTO CODICE
 void welcomeController::OpenGarage() const
 {
     QString path = JSONAgent::selectFile();
@@ -50,7 +48,6 @@ void welcomeController::OpenGarage() const
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    g->printGarage();
     vehiclelistcontroller* vcontroller = new vehiclelistcontroller(vehicle, g, co, const_cast<controller*>(static_cast<const controller*>(this)));
 
     vcontroller->showView();

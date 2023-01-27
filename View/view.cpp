@@ -3,6 +3,7 @@
 void view::closeEvent(QCloseEvent *event)
 {
     event->accept();
+    hide();
     emit viewClosed();
 }
 
@@ -16,15 +17,12 @@ view::view(const QSize &s, view *parent) : QWidget(parent, Qt::Window)
         setSize(QSize(500,500));
     }
 
-
 }
 
 view::~view()
 {
     setParent(nullptr);
 };
-
-
 
 
 void view::setSize(const QSize &s)
