@@ -5,19 +5,10 @@
 
 void detailedvehicleviewcontroller::connectViewController() const
 {
-    //connect(static_cast<vehiclelist*>(v), &vehiclelist::showVehicleDetails, this, &detailedvehicleviewcontroller::detailedVehicleViewSlot);
 }
 
-detailedvehicleviewcontroller::detailedvehicleviewcontroller(detailedvehicleview *v, garage* m, controller *parent) : controller(v,m, parent)
-{
-    //veic = v;
-    connectViewController();
-}
+detailedvehicleviewcontroller::detailedvehicleviewcontroller(detailedvehicleview *v, garage* m, controller *parent) : controller(v,m, parent){}
 
-void detailedvehicleviewcontroller::detailedVehicleViewSlot()
-{
-    qDebug() << QString::fromStdString(veic->getTarga());
-}
 
 view *detailedvehicleviewcontroller::getView() const
 {
@@ -31,6 +22,7 @@ garage *detailedvehicleviewcontroller::getModel() const
 
 void detailedvehicleviewcontroller::onClosedView() const
 {
+    v->close();
     delete this;
 }
 

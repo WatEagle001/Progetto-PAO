@@ -58,7 +58,7 @@ signals:
     void editVehicleDetailsSignal(veicolo * v);
     void deleteVehicleSignal(veicolo* v);
     void showVehicleDetails(veicolo* v);
-    void detailedCostsSignal(CostiViaggio* c);
+    void detailedCostsSignal();
     void exportGarage();
 
 };

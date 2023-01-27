@@ -43,12 +43,7 @@ QFormLayout *editorvehicle::configureEditor(){
        layout->insertRow(3,new QLabel(tr("Targa")), targa = new QLineEdit(QString::fromStdString(v->getTarga())));
        layout->insertRow(4,new QLabel(tr("Km Odometro")), km = new QLineEdit(QString::number(v->getKm_odometro())));
        targa->setReadOnly(true);
-
     addMoreOptions();
-
-
-
-
     return layout;
 }
 
@@ -64,6 +59,8 @@ QFormLayout* editorvehicle::addMoreOptions(){
         tipoAlimentazione->addItem(QString("GPL"));
         tipoAlimentazione->addItem(QString("BioDiesel"));
         tipoAlimentazione->addItem(QString("Idrogeno"));
+        tipoAlimentazione->setDisabled(true);
+
     layout->insertRow(5,new QLabel(tr("Cilindrata")), cilindrata = new QLineEdit(QString::number(ptr->getCilindrata())));
     layout->insertRow(6,new QLabel(tr("Litri Carburante")), litri_carburante = new QLineEdit(QString::number(ptr->getLitri_serbatoio())));
     layout->insertRow(7,new QLabel(tr("Carburante")), tipoAlimentazione);
@@ -80,7 +77,7 @@ QFormLayout* editorvehicle::addMoreOptions(){
 
     return layout;
 }
-void editorvehicle::chechIfDataIsModified() {
+void editorvehicle::checkIfDataIsModified() {
 
     qDebug() << "No modifiche";
     if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true || cilindrata->isModified() == true
@@ -113,12 +110,11 @@ void editorvehicle::chechIfDataIsModified() {
     }
 
     connect(save, &QPushButton::clicked,(bind(&editorvehicle::saveSignal, this, v,v)));
-    //connect(save, &QPushButton::clicked,(bind(&editorvehicle::saveSignalAuto, this, v,nuovoa)));
 }
 
 void editorvehicle::checkSignal(){
     qDebug() << "premuto check";
-    chechIfDataIsModified();
+    checkIfDataIsModified();
 }
 
 void editorvehicle::clearSlot()
@@ -127,7 +123,22 @@ marca->setText(QString::fromStdString(v->getMarca()));
 modello->setText(QString::fromStdString(v->getModello()));
 km->setText(QString::number(v->getKm_odometro()));
 targa->setText(QString::fromStdString(v->getTarga()));
-//mancherebbero tutti gli altri campi dati
+
+motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
+if(ptr){
+    cilindrata->setText(QString::number(ptr->getCilindrata()));
+    litri_carburante->setText(QString::number(ptr->getLitri_serbatoio()));
+    manutenzione_bool->setText(QString::number(ptr->getManutenzione()));
+    costo_manutenzione->setText(QString::number(ptr->getCosto_manutenzione()));
+}
+
+motore_elettrico* e = dynamic_cast<motore_elettrico*>(v);
+if(e){
+    kw->setText(QString::number(e->getKw_batteria()));
+    ricaricare_bool->setText(QString::number(e->getRicaricare()));
+    costo_ricarica->setText(QString::number(e->getCosto_ricarica()));
+}
+
 }
 
 void editorvehicle::connectViewSignals() const

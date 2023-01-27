@@ -20,7 +20,6 @@ private:
         veicolo* v;
         veicolo* nuovo;
         garage* g;
-       // motore_combustione* ptr;
         QPushButton* save;
         QPushButton* clear;
         QPushButton* confermaDati;
@@ -50,14 +49,9 @@ public:
     explicit editorvehicle(garage* gar,veicolo* veic,const QSize& s = QSize(), view* parent = nullptr);
     virtual ~editorvehicle() = default;
 
-    void chechIfDataIsModified();
+    void checkIfDataIsModified();
 signals:
     void saveSignal(veicolo* veic,veicolo* nuovo);
-    void saveSignalAuto(veicolo* veic,automobile* nuovoa);
-    //void saveSignal(veicolo* veic,automobile* nuovoa);
-
-    //void saveSignal();
-
     void selectedTypeVehicle();
 public slots:
     void checkSignal();

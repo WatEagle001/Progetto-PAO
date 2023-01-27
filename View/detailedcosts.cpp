@@ -2,20 +2,6 @@
 #include <QString>
 #include <iostream>
 
-QLayout *detailedcosts::configureFinalLayout(){
-    // Creazione Layout
-    QBoxLayout* mainLayout = new QVBoxLayout();
-
-    // Aggiunta dei Vari Componenti al Layout
-    mainLayout->addLayout(configureDescription());
-    return mainLayout;
-}
-QVBoxLayout *detailedcosts::configureDescription()
-{
-    QVBoxLayout* desc = new QVBoxLayout();
-
-    return desc;
-}
 
 void detailedcosts::connectViewSignals() const
 {
@@ -37,44 +23,50 @@ void detailedcosts::close(QCloseEvent *event)
 detailedcosts::detailedcosts(CostiViaggio* cost,const QSize &s, view *parent) : view(s, parent)
 {
     c = cost;
-    QBoxLayout* main = new QVBoxLayout;
-
-    QVBoxLayout* chart = new QVBoxLayout;
-    chart->addLayout(addDiagrammaCartesiano());
-    main->addLayout(chart);
+    QVBoxLayout* main = new QVBoxLayout;
+    main->addLayout(addIstogramma());
     setLayout(main);
     setFixedSize(s);
     setTitle("Dettaglio Costi Viaggio");
 }
 
- QVBoxLayout* detailedcosts::addDiagrammaCartesiano() {
+ QVBoxLayout* detailedcosts::addIstogramma() {
      QVBoxLayout* layout = new QVBoxLayout;
-    QLineSeries* lineseries = new QLineSeries();
+    std::vector<QBarSet*> dati;
+        for(int j = 0; j < c->getV().size(); j++){
+            string desc = (c->getV()[j]->getTarga());
+            QString qdesc = QString::fromStdString(desc);
+            QBarSet* tmp = new QBarSet(qdesc);
+            dati.push_back(tmp);
+        }
+        for(int j = 0; j < c->getV().size(); j++){
+           *dati[j] << c->getCosti()[j];
 
+        }
+        QBarSeries *series = new QBarSeries();
+        for(int j = 0; j < c->getV().size(); j++){
+            series->append(dati[j]);
+        }
 
-        for(int i = 0; i < c->getV().size(); i++){
-            lineseries->append(i,c->getCosti()[i]);
-         }
-         QChart* chart = new QChart();
-         chart->addSeries(lineseries);
-         chart->setTitle("Risultati Campionato F1 2021");
-         QBarCategoryAxis *axisX = new QBarCategoryAxis();
-         for(int i = 0; i < c->getV().size(); i++){
-            axisX->append(QString::fromStdString(std::to_string(i+1) + ") " +c->getV()[i]->getTarga()));
-         }
-         chart->addAxis(axisX, Qt::AlignBottom);
-         lineseries->attachAxis(axisX);
+        QChart* chart = new QChart();
+        chart->addSeries(series);
 
-         QValueAxis *axisY = new QValueAxis();
-         chart->addAxis(axisY, Qt::AlignLeft);
-         lineseries->attachAxis(axisY);
-         chart->legend()->setVisible(true);
-         chart->legend()->setAlignment(Qt::AlignBottom);
-         chart->setAnimationOptions(QChart::AllAnimations);
-         QChartView* chartView = new QChartView(chart);
-         chartView->setRenderHint(QPainter::Antialiasing);
-         chartView->setRubberBand(QChartView::HorizontalRubberBand);
-         layout->addWidget(chartView);
+        chart->setTitle("Dettaglio Costi Viaggio");
+        chart->setAnimationOptions(QChart::AllAnimations);
+        chart->createDefaultAxes();
+        chart->legend()->setVisible(true);
+        chart->legend()->setAlignment(Qt::AlignBottom);
+
+        QChartView* chartView = new QChartView(chart);
+        chartView->setRenderHint(QPainter::Antialiasing);
+        chartView->setRubberBand(QChartView::HorizontalRubberBand);
+
+        QPalette pal = qApp->palette();
+        pal.setColor(QPalette::Window, QRgb(0xffffff));
+        pal.setColor(QPalette::WindowText, QRgb(0x404044));
+
+        layout->addWidget(chartView);
+
      return layout;
 
 }

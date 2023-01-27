@@ -25,7 +25,7 @@ public:
     detailedcosts* getView() const override;
     model* getModel() const override;
     virtual ~detailedcostscontroller() = default;
-    void onClosedView() const;
+    void onClosedView() const override;
 };
 
 
