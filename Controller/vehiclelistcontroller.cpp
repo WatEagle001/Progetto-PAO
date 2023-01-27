@@ -72,13 +72,12 @@ void vehiclelistcontroller::loadVehicleSlot()
 
 void vehiclelistcontroller::newVehicleSlot()
 {
-   // g->printGarage();
     newvehicle* vehicle = new newvehicle(g,v->size(), v);
     vehicle->setTitle("Aggiunta Veicolo");
     newvehiclecontroller* vehiclecontroller = new newvehiclecontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
 
     vehiclecontroller->showView();
-       v->hide();
+
 
 }
 

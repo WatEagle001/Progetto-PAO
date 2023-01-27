@@ -70,13 +70,34 @@ void newvehicle::checkIfDataIsModified() {
             || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true
             || kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true ){
 
+        alimentazione carb = alimentazione::undefined;
+
+        if(tipoAlimentazione->currentIndex() == 0){
+            carb = alimentazione::benzina;
+        }
+        if(tipoAlimentazione->currentIndex() == 1){
+            carb = alimentazione::diesel;
+        }
+        if(tipoAlimentazione->currentIndex() == 2){
+            carb = alimentazione::metano;
+        }
+        if(tipoAlimentazione->currentIndex() == 3){
+            carb = alimentazione::gpl;
+        }
+        if(tipoAlimentazione->currentIndex() == 4){
+            carb = alimentazione::biodisel;
+        }
+        if(tipoAlimentazione->currentIndex() == 5){
+            carb = alimentazione::idrogeno;
+        }
+
         if(tipoVeicolo->currentIndex() == 1){
             v = new automobile(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
-                               cilindrata->text().toUInt(),litri_carburante->text().toUInt(),benzina,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt());
+                               cilindrata->text().toUInt(),litri_carburante->text().toUInt(),carb,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt());
        }
         if(tipoVeicolo->currentIndex() == 2){
             v = new moto(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
-            cilindrata->text().toUInt(),litri_carburante->text().toUInt(),benzina,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt());
+            cilindrata->text().toUInt(),litri_carburante->text().toUInt(),carb,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt());
        }
         if(tipoVeicolo->currentIndex() == 3){
             v = new auto_elettrica(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt()
@@ -84,7 +105,7 @@ void newvehicle::checkIfDataIsModified() {
        }
         if(tipoVeicolo->currentIndex() == 4){
             v = new auto_ibrida(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
-            cilindrata->text().toUInt(),litri_carburante->text().toUInt(),benzina,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt(),
+            cilindrata->text().toUInt(),litri_carburante->text().toUInt(),carb,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt(),
                               kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
        }
         if(tipoVeicolo->currentIndex() == 5){
@@ -112,6 +133,7 @@ void newvehicle::addFieldsCombustione(){
     tipoAlimentazione->addItem(QString("GPL"));
     tipoAlimentazione->addItem(QString("BioDiesel"));
     tipoAlimentazione->addItem(QString("Idrogeno"));
+    tipoAlimentazione->addItem(QString("Undefined"));
     layout->insertRow(5,new QLabel(tr("Cilindrata")), cilindrata = new QLineEdit());
     layout->insertRow(6,new QLabel(tr("Litri Carburante")), litri_carburante = new QLineEdit());
     layout->insertRow(7,new QLabel(tr("Carburante")), tipoAlimentazione);
@@ -156,6 +178,7 @@ void newvehicle::connectViewSignals() const
     connect(confermaDati, SIGNAL(clicked()), this, SLOT(checkSignal()));
 }
 
+
 QHBoxLayout *newvehicle::configureButtons()
 {
     QHBoxLayout* buttons = new QHBoxLayout();
@@ -176,6 +199,8 @@ QHBoxLayout *newvehicle::configureButtons()
 
 void newvehicle::close(QCloseEvent *event)
 {
+    num = 0;
+    qDebug() <<"numero"<< num;
     //Elaboro chiusura solo se intenzionata da evento esterno
         if(!event->spontaneous()) return;
         else {

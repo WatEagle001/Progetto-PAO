@@ -52,6 +52,7 @@ void newvehiclecontroller::saveSlot(veicolo* veic)
 
 void newvehiclecontroller::onClosedView() const
 {
+    v->close();
     delete this;
 }
 
