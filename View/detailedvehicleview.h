@@ -25,7 +25,7 @@ private:
     QComboBox* tipoAlimentazione;
     void connectViewSignals() const override;
 protected:
-    void close(QCloseEvent* event);
+    void closeEvent(QCloseEvent* event) override;
 public:
     explicit detailedvehicleview(veicolo* veic,const QSize& s = QSize(), view* parent = nullptr);
     virtual ~detailedvehicleview() = default;

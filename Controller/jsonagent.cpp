@@ -1,13 +1,7 @@
 #include "jsonagent.h"
 
-JSONAgent::JSONAgent(garage *gar)
-{
-g = gar;
-}
-
 QString JSONAgent::selectFile()
 {
-    qDebug() << "DEBUG: Creazione del popup per la scelta del file\n";
     QFileDialog popup;
     popup.setFileMode(QFileDialog::ExistingFile);
     popup.setNameFilter("JSON (*.json)");
@@ -23,7 +17,6 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
 {
     if(filePath.isNull()) return new QJsonDocument();
 
-    qDebug() << "DEBUG: Caricamento del file .json\n";
     QString data;
     QFile file;
 
@@ -33,7 +26,6 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
     file.close();
 
     // Lettura documento
-    qDebug() << "DEBUG: Lettura del file .json\n";
     QJsonDocument* doc = new QJsonDocument(QJsonDocument::fromJson(data.toLocal8Bit()));
     QJsonObject obj = doc->object();
 
@@ -42,14 +34,11 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
         return new QJsonDocument();
     }
 
-    qDebug() << "DEBUG: Fine lettura del file .json\n";
     return doc;
 
 }
 
-// Da implementare mettendo un riferimento a garage come parametro così da caricare tutto direttamente dentro
 void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
-    g = gar;
     QJsonObject data = file->object();
     QJsonArray list = data["veicoli"].toArray();
 
@@ -89,7 +78,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("ricaricare").toString().toInt(),
                         vehicle.toObject().value("costo").toString().toDouble(),
                         vehicle.toObject().value("costo_ricarica").toString().toDouble());
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
         if(vehicle.toObject().value("tipo").toString() == QString("automobile")){
@@ -103,7 +92,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         carburante,
                         vehicle.toObject().value("manutenzione").toBool(),
                         vehicle.toObject().value("costo").toString().toUInt());
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
         if(vehicle.toObject().value("tipo").toString() == QString("monopattino elettrico")){
@@ -116,7 +105,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("ricaricare").toString().toUInt(),
                         vehicle.toObject().value("costo_ricarica").toString().toDouble());
 
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
         if(vehicle.toObject().value("tipo").toString() == QString("moto")){
@@ -130,7 +119,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         carburante,
                         vehicle.toObject().value("manutenzione").toBool(),
                         vehicle.toObject().value("costo").toString().toDouble());
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
         if(vehicle.toObject().value("tipo").toString() == QString("moto elettrica")){
@@ -142,7 +131,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("ricaricare").toString().toInt(),
                         vehicle.toObject().value("costo_ricarica").toString().toDouble());
                         vehicle.toObject().value("targa").toString().toStdString();
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
         if(vehicle.toObject().value("tipo").toString() == QString("auto elettrica")){
@@ -155,7 +144,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("ricaricare").toString().toInt(),
                         vehicle.toObject().value("costo_ricarica").toString().toDouble());
 
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
     }
@@ -164,7 +153,6 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
 bool JSONAgent::saveGarage(const QString &filePath, garage* g)
 {
     if(filePath.isNull() || filePath.isEmpty()){
-        qDebug() << "Primo False";
         return false;
     }
 
@@ -303,6 +291,5 @@ bool JSONAgent::saveGarage(const QString &filePath, garage* g)
         return true;
     }
 
-    qDebug() << "Secondo False";
     return false;
 }

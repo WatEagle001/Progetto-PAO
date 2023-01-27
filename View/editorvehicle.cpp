@@ -165,7 +165,7 @@ QHBoxLayout *editorvehicle::configureButtons()
     return buttons;
 }
 
-void editorvehicle::close(QCloseEvent *event)
+void editorvehicle::closeEvent(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno
         if(!event->spontaneous()) return;

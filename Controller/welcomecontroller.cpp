@@ -16,9 +16,6 @@ welcomeController::welcomeController(welcome *v, garage* dati, CostiViaggio* cos
     co = costi;
     g = dati;
     connectViewController();
-    //qDebug() << "stampa da welcomecontroller";
-    //g->printGarage();
-
 }
 
 welcome *welcomeController::getView() const
@@ -28,44 +25,33 @@ welcome *welcomeController::getView() const
 
 model *welcomeController::getModel() const
 {
-    // La schermata di benvenuto non conteiene modelli
+    // La schermata di benvenuto non contiene modelli
     return nullptr;
 }
 
 void welcomeController::NewGarage()
 {
-    // Apri nuova vista del garage e mostrala
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g,co,const_cast<controller*>(static_cast<const controller*>(this)));
-      // qDebug() << "stampa dopo creazione vehiclelistcontroller in welcomecontroller";
-      // g->printGarage();
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, co,const_cast<controller*>(static_cast<const controller*>(this)));
 
-       vehiclecontroller->showView();
-       v->hide();
-
+    vehiclecontroller->showView();
+    v->hide();
 }
 
-
-// DA CONTROLLARE VALIDITA' DI QUESTO CODICE
 void welcomeController::OpenGarage() const
 {
     QString path = JSONAgent::selectFile();
     QJsonDocument* veicoli = JSONAgent::getData(path);
 
-
-    JSONAgent* js = new JSONAgent(g);
-    js->getVehicleList(veicoli, g);
-
+    JSONAgent::getVehicleList(veicoli, g);
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    g->printGarage();
     vehiclelistcontroller* vcontroller = new vehiclelistcontroller(vehicle, g, co, const_cast<controller*>(static_cast<const controller*>(this)));
 
-       vcontroller->showView();
-       v->hide();
-
+    vcontroller->showView();
+    v->hide();
 }
 
 void welcomeController::onClosedView() const

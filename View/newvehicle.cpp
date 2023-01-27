@@ -197,7 +197,7 @@ QHBoxLayout *newvehicle::configureButtons()
     return buttons;
 }
 
-void newvehicle::close(QCloseEvent *event)
+void newvehicle::closeEvent(QCloseEvent *event)
 {
     num = 0;
     qDebug() <<"numero"<< num;

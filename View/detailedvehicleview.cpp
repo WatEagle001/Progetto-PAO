@@ -87,7 +87,7 @@ void detailedvehicleview::connectViewSignals() const
 
 }
 
-void detailedvehicleview::close(QCloseEvent *event)
+void detailedvehicleview::closeEvent(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno
         if(!event->spontaneous()) return;

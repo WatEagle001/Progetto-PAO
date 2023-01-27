@@ -11,6 +11,7 @@ QLayout *welcome::configureFinalLayout(){
     mainLayout->addLayout(configureButtons());
     return mainLayout;
 }
+
 QVBoxLayout *welcome::configureDescription()
 {
     QVBoxLayout* desc = new QVBoxLayout();
@@ -52,10 +53,14 @@ void welcome::connectViewSignals() const
     connect(createGarage, SIGNAL(clicked()), this, SIGNAL(newGarage()));
     connect(openGarage, SIGNAL(clicked()), this, SIGNAL(readGarage()));
 }
-void welcome::close(QCloseEvent *event)
+void welcome::closeEvent(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno
         if(!event->spontaneous()) return;
+
+        if(!dialogPopUp_Question(2, "Uscita", "Sei sicuro di voler chiudere l'applicazione?\n")){
+            event->ignore();
+        }
         else {
             //Accetto l'evento di chiusura della finestra
             event->accept();

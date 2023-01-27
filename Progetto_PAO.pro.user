@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 9.0.1, 2023-01-27T18:55:06. -->
+<!-- Written by QtCreator 9.0.1, 2023-01-27T23:49:36. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -242,6 +242,10 @@
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+<<<<<<< HEAD
+=======
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Matteo/Desktop/Universita/Programmazione ad oggetti/progetto/build-Progetto_PAO-Desktop_Qt_6_4_2_MinGW_64_bit-Debug</value>
+>>>>>>> matteo-dev
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

@@ -43,7 +43,7 @@ private:
         void deleteOptions();
 
 protected:
-    void close(QCloseEvent* event);
+    void closeEvent(QCloseEvent* event) override;
 public:
     explicit newvehicle(garage* gar,const QSize& s = QSize(), view* parent = nullptr);
     void connectViewSignals() const override;

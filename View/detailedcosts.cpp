@@ -7,8 +7,7 @@ void detailedcosts::connectViewSignals() const
 {
 
 }
-
-void detailedcosts::close(QCloseEvent *event)
+void detailedcosts::closeEvent(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno
         if(!event->spontaneous()) return;

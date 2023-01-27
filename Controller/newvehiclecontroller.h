@@ -31,6 +31,8 @@ public slots:
     virtual void onClosedView() const override;
     void saveSlot(veicolo* veic);
     void newVehicleSlot();
+    //void saveSlot();
+    void clearSlot();
 };
 
 

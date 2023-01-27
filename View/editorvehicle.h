@@ -44,7 +44,7 @@ private:
         void deleteOptions();
         void connectViewSignals() const override;
 protected:
-    void close(QCloseEvent* event);
+    void closeEvent(QCloseEvent* event) override;
 public:
     explicit editorvehicle(garage* gar,veicolo* veic,const QSize& s = QSize(), view* parent = nullptr);
     virtual ~editorvehicle() = default;

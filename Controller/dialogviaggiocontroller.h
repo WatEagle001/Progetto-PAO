@@ -8,10 +8,9 @@
 #include "View/vehiclelist.h"
 #include "Controller/vehiclelistcontroller.h"
 
+// Estensione di Controller utilizzata per la gesione dell'inserimento di un nuovo viaggio
 class dialogviaggiocontroller : public controller
 {
-
-
 private:
     void connectViewController() const;
     garage* m;

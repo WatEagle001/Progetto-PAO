@@ -13,7 +13,6 @@
 void vehiclelistcontroller::connectViewController() const
 {
     connect(v, SIGNAL(loadVehicleSignal()), this, SLOT(loadVehicleSlot()));
-
     connect(static_cast<vehiclelist*>(v), &vehiclelist::newVehicleSignal, this, &vehiclelistcontroller::newVehicleSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::addNewViaggioSignal, this, &vehiclelistcontroller::addViaggioSlot);
     connect(static_cast<vehiclelist*>(v), &vehiclelist::editVehicleDetailsSignal, this, &vehiclelistcontroller::editVehicleSlot);
@@ -50,17 +49,27 @@ void vehiclelistcontroller::onClosedView() const
 
 void vehiclelistcontroller::loadVehicleSlot()
 {
+<<<<<<< HEAD
 
 
     JSONAgent* js = new JSONAgent(g);
     QString path = js->selectFile();
     QJsonDocument* veicoli = js->getData(path);
+=======
+>>>>>>> matteo-dev
 
+    QString path = JSONAgent::selectFile();
+    QJsonDocument* veicoli = JSONAgent::getData(path);
 
+<<<<<<< HEAD
 
     js->getVehicleList(veicoli, g);
 
     v->close();
+=======
+    JSONAgent::getVehicleList(veicoli, g);
+
+>>>>>>> matteo-dev
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
@@ -77,6 +86,7 @@ void vehiclelistcontroller::newVehicleSlot()
     newvehiclecontroller* vehiclecontroller = new newvehiclecontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
 
     vehiclecontroller->showView();
+<<<<<<< HEAD
 
 
 }
@@ -85,9 +95,17 @@ void vehiclelistcontroller::addViaggioSlot(veicolo* vec)
 {
     qDebug() << c->getCostoMax();
     qDebug() << "Creazione View Dialog Viaggio\n";
+=======
+    v->hide();
+}
+
+void vehiclelistcontroller::addViaggioSlot(veicolo* vec, CostiViaggio* c)
+{
+>>>>>>> matteo-dev
     DialogViaggio* dv = new DialogViaggio(vec, c, v->size(), v);
     dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, veic, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
     dvc->showView();
+    v->hide();
 }
 
 void vehiclelistcontroller::detailedCostsSlot()
@@ -102,12 +120,16 @@ void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
     editorvehicle* vehicle = new editorvehicle(g,veic,v->size(), v);
     editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, c,  const_cast<controller*>(static_cast<const controller*>(this)));
     editor->showView();
+<<<<<<< HEAD
+=======
+    v->hide();
+>>>>>>> matteo-dev
 }
 
 void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
 {
-   g->deleteVeicolo(veic);
-   g->printGarage();
+    g->deleteVeicolo(veic);
+    g->printGarage();
 
    v->close();
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
@@ -116,18 +138,38 @@ void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
 
     vehiclecontroller->showView();
 
+<<<<<<< HEAD
+=======
+    vehiclecontroller->showView();
+    v->hide();
+>>>>>>> matteo-dev
 }
 
 void vehiclelistcontroller::detailedVehicleViewSlot(veicolo *veic)
 {
-    qDebug() << QString::fromStdString(veic->getTarga());
     detailedvehicleview* vehicledetails = new detailedvehicleview(veic,v->size(), v);
     detailedvehicleviewcontroller* detailedController = new detailedvehicleviewcontroller(vehicledetails, g, const_cast<controller*>(static_cast<const controller*>(this)));
     detailedController->showView();
-
+    v->hide();
 }
 
 void vehiclelistcontroller::exportGarageSlot()
 {
+<<<<<<< HEAD
     JSONAgent::saveGarage(QFileDialog::getSaveFileName(nullptr, "Salva come", "../Progetto_PAO/Assets/doc", "JSON (*.json)"), g);
+=======
+
+    bool tmp = JSONAgent::saveGarage(QFileDialog::getSaveFileName(nullptr, "Salva come", "../Progetto_PAO/Assets/doc", "JSON (*.json)"), g);
+
+    if(!tmp){
+        v->dialogPopUp_Warning("Errore", "Qualcosa è andato storto durante l'esportazione del file");
+    }
+
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c , const_cast<controller*>(static_cast<const controller*>(this)));
+
+    vehiclecontroller->showView();
+    v->hide();
+>>>>>>> matteo-dev
 }

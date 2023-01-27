@@ -8,10 +8,9 @@
 
 int main(int argc, char* argv[]){
     QApplication app(argc, argv);
+
     welcome* w = new welcome(QSize(500,500));
     garage* g = new garage;
-
-    //vehiclelist* l = new vehiclelist();
     CostiViaggio* costi = new CostiViaggio;
 
     automobile* a = new automobile("Fiat", "punto","AO111OA", 125000,1200,45,benzina,1,100);
@@ -33,7 +32,6 @@ int main(int argc, char* argv[]){
     g->addVeicolo(a7);
     welcomeController* c = new welcomeController(w,g,costi);
 
-    //vehiclelistcontroller* v = new vehiclelistcontroller(l,g);
     c->showView();
     return app.exec();
 }
