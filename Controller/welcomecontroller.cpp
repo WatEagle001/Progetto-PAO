@@ -46,8 +46,7 @@ void welcomeController::OpenGarage() const
     QString path = JSONAgent::selectFile();
     QJsonDocument* veicoli = JSONAgent::getData(path);
 
-    JSONAgent* js = new JSONAgent(g);
-    js->getVehicleList(veicoli, g);
+    JSONAgent::getVehicleList(veicoli, g);
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");

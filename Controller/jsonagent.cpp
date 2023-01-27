@@ -1,10 +1,5 @@
 #include "jsonagent.h"
 
-JSONAgent::JSONAgent(garage *gar)
-{
-    g = gar;
-}
-
 QString JSONAgent::selectFile()
 {
     QFileDialog popup;
@@ -44,7 +39,7 @@ QJsonDocument *JSONAgent::getData(const QString &filePath)
 }
 
 void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
-    g = gar;
+    //g = gar;
     QJsonObject data = file->object();
     QJsonArray list = data["veicoli"].toArray();
 
@@ -84,7 +79,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("ricaricare").toString().toInt(),
                         vehicle.toObject().value("costo").toString().toDouble(),
                         vehicle.toObject().value("costo_ricarica").toString().toDouble());
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
         if(vehicle.toObject().value("tipo").toString() == QString("automobile")){
@@ -98,7 +93,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         carburante,
                         vehicle.toObject().value("manutenzione").toBool(),
                         vehicle.toObject().value("costo").toString().toUInt());
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
         if(vehicle.toObject().value("tipo").toString() == QString("monopattino elettrico")){
@@ -111,7 +106,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("ricaricare").toString().toUInt(),
                         vehicle.toObject().value("costo_ricarica").toString().toDouble());
 
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
         if(vehicle.toObject().value("tipo").toString() == QString("moto")){
@@ -125,7 +120,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         carburante,
                         vehicle.toObject().value("manutenzione").toBool(),
                         vehicle.toObject().value("costo").toString().toDouble());
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
         if(vehicle.toObject().value("tipo").toString() == QString("moto elettrica")){
@@ -137,7 +132,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("ricaricare").toString().toInt(),
                         vehicle.toObject().value("costo_ricarica").toString().toDouble());
                         vehicle.toObject().value("targa").toString().toStdString();
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
         if(vehicle.toObject().value("tipo").toString() == QString("auto elettrica")){
@@ -150,7 +145,7 @@ void JSONAgent::getVehicleList(QJsonDocument *file, garage* gar){
                         vehicle.toObject().value("ricaricare").toString().toInt(),
                         vehicle.toObject().value("costo_ricarica").toString().toDouble());
 
-            g->addVeicolo(a);
+            gar->addVeicolo(a);
 
         }
     }

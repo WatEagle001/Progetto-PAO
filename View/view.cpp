@@ -36,12 +36,24 @@ void view::setTitle(const QString &title)
 {
     setWindowTitle(title);
 }
-/*
+
 bool view::dialogPopUp_Question(unsigned int param, const QString &title, const QString &desc)
 {
+    QMessageBox::StandardButton resBtn = QMessageBox::Yes;
+        switch (param)
+        {
+            case 2:
+                resBtn = QMessageBox::question( this,title,desc,QMessageBox::No | QMessageBox::Yes | QMessageBox::Yes);
+                break;
 
+            default:
+                resBtn = QMessageBox::question( this,title,desc,QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes | QMessageBox::Yes);
+                break;
+        }
+
+        return (resBtn == QMessageBox::Yes);
 }
-*/
+
 void view::dialogPopUp_Warning(const QString &title, const QString &desc)
 {
     QMessageBox::warning(this, title, desc, QMessageBox::Ok);

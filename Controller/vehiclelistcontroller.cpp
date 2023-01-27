@@ -46,11 +46,11 @@ void vehiclelistcontroller::onClosedView() const
 
 void vehiclelistcontroller::loadVehicleSlot()
 {
-    JSONAgent* js = new JSONAgent(g);
-    QString path = js->selectFile();
-    QJsonDocument* veicoli = js->getData(path);
 
-    js->getVehicleList(veicoli, g);
+    QString path = JSONAgent::selectFile();
+    QJsonDocument* veicoli = JSONAgent::getData(path);
+
+    JSONAgent::getVehicleList(veicoli, g);
 
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
