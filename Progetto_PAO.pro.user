@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 9.0.1, 2023-01-27T23:49:36. -->
+<!-- Written by QtCreator 9.0.1, 2023-01-28T00:11:07. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -236,16 +236,14 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Matteo/Desktop/Universita/Programmazione ad oggetti/progetto/Progetto-PAO/Progetto_PAO.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Matteo/Desktop/Universita/Programmazione ad oggetti/progetto/Progetto-PAO/Progetto_PAO.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-<<<<<<< HEAD
-=======
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Matteo/Desktop/Universita/Programmazione ad oggetti/progetto/build-Progetto_PAO-Desktop_Qt_6_4_2_MinGW_64_bit-Debug</value>
->>>>>>> matteo-dev
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

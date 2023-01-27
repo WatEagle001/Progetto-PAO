@@ -7,28 +7,23 @@ void DialogViaggio::configureEditor(veicolo *veic)
 
 
     if(e){
-<<<<<<< HEAD
-
         costoCarburante = new QLineEdit(0,this);
         costoCarburante->setValidator(new QDoubleValidator(0,10, 3, this));
         costoCarburante->setHidden(true);
 
-=======
->>>>>>> matteo-dev
+
         costoElettricita = new QLineEdit(this);
         costoElettricita->setValidator(new QDoubleValidator(0,10, 3, this));
         layout->addRow("Costo Elettricità", costoElettricita);
     }
 
     if(c){
-<<<<<<< HEAD
 
         costoElettricita = new QLineEdit(0,this);
         costoElettricita->setValidator(new QDoubleValidator(0,10, 3, this));
         costoElettricita->setHidden(true);
 
-=======
->>>>>>> matteo-dev
+
         costoCarburante = new QLineEdit(this);
         costoCarburante->setValidator(new QDoubleValidator(0,10, 3, this));
         layout->addRow("Costo Carburante", costoCarburante);

@@ -27,13 +27,8 @@ public:
 
     view* getView() const override;
     garage* getModel() const override;
-<<<<<<< HEAD
-    virtual ~vehiclelistcontroller() = default;
-=======
-
     void loadGarage(garage& g) const;
 
->>>>>>> matteo-dev
 signals:
 
 public slots:
@@ -43,7 +38,7 @@ public slots:
     void editVehicleSlot(veicolo* veic);
     void deleteVehicleSlot(veicolo* veic);
     void detailedVehicleViewSlot(veicolo* veic);
-    void addViaggioSlot(veicolo *vec);
+    //void addViaggioSlot(veicolo *vec);
     void detailedCostsSlot();
     void addViaggioSlot(veicolo *vec, CostiViaggio *c);
     void exportGarageSlot();
