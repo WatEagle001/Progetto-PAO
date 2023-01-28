@@ -23,8 +23,7 @@ QLayout* editorvehicle::configureFinalLayout(){
 editorvehicle::editorvehicle(garage* gar,veicolo* veic,const QSize &s, view *parent) : view(s, parent)
 {   v = veic;
     g = gar;
-    qDebug() << "tipo veicolo passato all'editor";
-     qDebug() << typeid(*veic).name();
+
     QVBoxLayout* main = new QVBoxLayout;
     main->addLayout(configureEditor());
     main->addLayout(configureButtons());
@@ -92,17 +91,7 @@ QFormLayout* editorvehicle::addMoreOptions(){
 }
 void editorvehicle::checkIfDataIsModified() {
 
-    qDebug() << "No modifiche";
-    if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true
-            /*
-
-
-            */
-            ){
-        qDebug() << "Modifiche";
-
-        qDebug() << "tipo veicolo dopo salvataggio";
-                    qDebug() <<typeid(v).name();
+    if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true){
         v->setMarca(marca->text().toStdString());
         v->setModello(modello->text().toStdString());
         v->setTarga(v->getTarga());
@@ -110,7 +99,6 @@ void editorvehicle::checkIfDataIsModified() {
         motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
         if(ptr  &&( cilindrata->isModified() == true
                 || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true)){
-            qDebug() << "ok combustione";
             ptr->setCilindrata(cilindrata->text().toInt());
              ptr->setLitri_serbatoio(litri_carburante->text().toInt());
               ptr->setManutenzione(manutenzione_bool->text().toInt());
@@ -119,7 +107,6 @@ void editorvehicle::checkIfDataIsModified() {
 
         motore_elettrico* e = dynamic_cast<motore_elettrico*>(v);
         if(e && ( kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true)){
-            qDebug() << "ok elettrico";
             e->setKw_batteria(kw->text().toUInt());
             e->setRicaricare(ricaricare_bool->text().toInt());
             e->setCosto_ricarica(costo_ricarica->text().toDouble());
@@ -130,7 +117,6 @@ void editorvehicle::checkIfDataIsModified() {
 }
 
 void editorvehicle::checkSignal(){
-    qDebug() << "premuto check";
     checkIfDataIsModified();
 }
 

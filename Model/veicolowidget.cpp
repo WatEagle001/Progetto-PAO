@@ -10,10 +10,6 @@ veicoloWidget::veicoloWidget(veicolo* rif)
 {
     QVBoxLayout* a = new QVBoxLayout;
     a->addLayout(configureVehicleView(rif));
-    a->addLayout(configureButtons());
-    //qDebug() << "tipo veicolo del widget";
-    //qDebug() << typeid(*rif).name();
-    //qDebug() << "-------------------";
 }
 
 QHBoxLayout *veicoloWidget::configureButtons()

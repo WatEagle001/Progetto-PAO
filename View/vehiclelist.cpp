@@ -135,6 +135,5 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s,p
     scrollArea->setWidgetResizable(true);
     layout->addWidget(scrollArea);
 
-    setLayout(layout);
     vehiclelist::connectViewSignals();
 }

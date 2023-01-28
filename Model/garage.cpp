@@ -27,10 +27,7 @@ void garage::addVeicolo(veicolo* const veicolo) {
 
 
 void garage::deleteVeicolo(veicolo* veicolo){
-    if(_veicoli.size() == 0){
-        qDebug()<< QString("Garage ora vuoto");
-    }
-    else{
+    if(!(_veicoli.size() == 0)){
     for(int i = 0; i < _veicoli.size(); i++){
         if(_veicoli[i]->getTarga() == veicolo->getTarga()){
             for(int j = i; j < _veicoli.size()-1; j++){
@@ -67,13 +64,6 @@ void garage::editVeicolo(veicolo* veicolo, string marca, string modello, string 
 
         }
 }
-}
-
-
-void garage::printGarage() const{
-    for(int i = 0; i < _veicoli.size(); i++){
-        cout<<_veicoli[i]->getTarga()<< " "<<_veicoli[i]->getMarca()<< " " << _veicoli[i]->getModello() << " " << _veicoli[i]->getKm_odometro() << endl;
-    }
 }
 
 void garage::eraseGarage(){

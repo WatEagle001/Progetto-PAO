@@ -42,7 +42,6 @@ private:
     CostiViaggio* c;
 
     void configureEditor(veicolo* veic);
-
     void connectViewSignals() const;
 
 public:

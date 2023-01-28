@@ -10,8 +10,6 @@
 #include <Model/moto.h>
 #include <Model/monopattino_elettrico.h>
 #include <Model/veicolo.h>
-using std::cout;
-using std::endl;
 #include <vector>
 #include <algorithm>
 #include <Model/model.h>
@@ -24,7 +22,6 @@ public:
      virtual ~garage() = default;
      void addVeicolo(veicolo* const veicolo);
      void deleteVeicolo(veicolo* veicolo);
-     void printGarage() const;
      void eraseGarage();
      double getCostoGarage() const;
      veicolo* getVeicolo(int n);

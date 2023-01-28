@@ -27,8 +27,6 @@ vehiclelistcontroller::vehiclelistcontroller(vehiclelist *v, garage* m, CostiVia
     g = m;
     c = costi;
     connectViewController();
-
-    qDebug()  << "costo maxxx" << c->getCostoMax();
 }
 
 view *vehiclelistcontroller::getView() const
@@ -108,7 +106,6 @@ void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
 void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
 {
     g->deleteVeicolo(veic);
-    g->printGarage();
 
     v->close();
     vehiclelist* vehicle = new vehiclelist(g,v->size(), nullptr);

@@ -46,22 +46,21 @@ void DialogViaggio::configureEditor(veicolo *veic)
 
 }
 
+void DialogViaggio::connectViewSignals() const
+{
+
+}
+
 
 DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s, view *parent) : view(s, parent)
 {
-    qDebug() << "Assegnazione per Iniezione\n";
     vec = veic;
     c = costi;
 
-    qDebug() << "Aggiunta delle Componenti\n";
-    layout = new QFormLayout(this);
-    qDebug() << "Creato nuovo layout\n";
-    layout->addRow(new QLabel("Inserimento Viaggio"));
-    qDebug() << "Aggiunta della Prima riga\n";
 
-    qDebug() << "Inizio Lettura Veicolo e Creazione Input\n";
+    layout = new QFormLayout(this);
+    layout->addRow(new QLabel("Inserimento Viaggio"));
     veicol = new QLineEdit(QString::fromStdString(veic->getTarga()), this);
-    qDebug() << "Letta la Targa\n";
     veicol->setReadOnly(true);
     partenza = new QLineEdit(this);
     partenza->setValidator(new QRegularExpressionValidator(QRegularExpression("[A-Z]*[a-z]*[A-Z]*"), this));
@@ -92,16 +91,7 @@ DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s,
     buttons->addWidget(conferma);
 
     layout->addItem(buttons);
-
-   // buttonbox->addButton(aggiungi, QDialogButtonBox::AcceptRole);
-   // buttonbox->addButton(reset, QDialogButtonBox::ResetRole);
-   // buttonbox->addButton(annulla, QDialogButtonBox::DestructiveRole);
-    //qDebug() << "Aggiunti bottoni alla buttonbox";
-   // layout->addWidget(buttonbox);
-    //qDebug() << "Aggiunto buttonbox al layout";
-
-    //connectViewSignals();
-     connect(conferma,SIGNAL(clicked()), this, SLOT(checkifdataismodified()));
+    connect(conferma,SIGNAL(clicked()), this, SLOT(checkifdataismodified()));
 
 
 
@@ -112,7 +102,6 @@ void DialogViaggio::checkifdataismodified()
     if(partenza->isModified() == true || km_partenza->isModified() == true || arrivo -> isModified() == true ||
             km_arrivo->isModified() == true|| costoCarburante->isModified() == true || costoElettricita->isModified() == true ){
         int km = (km_arrivo->text().toInt()) - (km_partenza->text().toInt());
-        qDebug() << "km"<<km;
         connect(aggiungi, &QPushButton::clicked, (bind(
                                                           &DialogViaggio::tryAddViaggio,
                                                           this,
@@ -127,12 +116,6 @@ void DialogViaggio::checkifdataismodified()
                                                       )
                 );
     }
-}
-
-void DialogViaggio::connectViewSignals() const
-{
-
-
 }
 
 void DialogViaggio::closeEvent(QCloseEvent *event)

@@ -19,7 +19,6 @@ public:
         string _targa
     );
     virtual ~motore_elettrico();
-    void setCavalli(unsigned int newCavalli);
 
     // Getter e Setter
     unsigned int getKw_batteria() const;

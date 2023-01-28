@@ -30,9 +30,8 @@ newvehicle::newvehicle(garage* gar,const QSize &s, view *parent) : view(s, paren
     num = 0;
     selezione = 0;
     g = gar;
-    qDebug() << "tipo veicolo passato all'editor";
+
     QVBoxLayout* main = new QVBoxLayout;
-    // main->addLayout(configureFinalLayout());
     main->addLayout(configureEditor());
     main->addLayout(configureButtons());
 
@@ -75,18 +74,15 @@ QFormLayout *newvehicle::configureEditor(){
 
 
 void newvehicle::checkIfDataIsModified() {
-    qDebug() << "Inizio primo if";
     if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true || cilindrata->isModified() == true
             || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true
             || kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true ){
-        qDebug() << "Entrato nell'if";
         alimentazione carb = alimentazione::undefined;
         if(tipoVeicolo->currentIndex() == 1 || tipoVeicolo->currentIndex() == 2 || tipoVeicolo->currentIndex() == 4){
 
 
-            qDebug() << "controllo il tipo di carburante";
             if(tipoAlimentazione->currentIndex() == 0){
-                qDebug() << "entrato nel primo caso";
+
                 carb = alimentazione::benzina;
             }
             if(tipoAlimentazione->currentIndex() == 1){
@@ -106,7 +102,6 @@ void newvehicle::checkIfDataIsModified() {
             }
         }
 
-        qDebug() << "controllo il tipo del veicolo";
         if(tipoVeicolo->currentIndex() == 1){
             v = new automobile(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
                                cilindrata->text().toUInt(),litri_carburante->text().toUInt(),carb,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt());
@@ -132,13 +127,12 @@ void newvehicle::checkIfDataIsModified() {
             v = new monopattino_elettrico(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
                                           kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
         }
-        qDebug() << "fine controlli";
+
 
     }
-    qDebug() << "Fine if";
-    qDebug() << "inizio connessione pulsanti";
+
     connect(save, &QPushButton::clicked,(bind(&newvehicle::saveSignal, this, v)));
-    qDebug() << "fine connessione pulsanti";
+
 }
 
 void newvehicle::checkSignal(){
