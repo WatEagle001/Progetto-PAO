@@ -26,7 +26,7 @@ garage *detailedvehicleviewcontroller::getModel() const
 void detailedvehicleviewcontroller::onClosedView() const
 {
 
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), nullptr);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
 

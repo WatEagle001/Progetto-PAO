@@ -24,7 +24,7 @@ model *detailedcostscontroller::getModel() const
 
 void detailedcostscontroller::onClosedView() const
 {
-    vehiclelist* vehicle = new vehiclelist(gar,v->size(), v);
+    vehiclelist* vehicle = new vehiclelist(gar,v->size(), nullptr);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, gar, cost,  const_cast<controller*>(static_cast<const controller*>(this)));
 

@@ -36,7 +36,7 @@ void editorvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
     g->deleteVeicolo(veic);
     g->addVeicolo(nuovo);
 
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), nullptr);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
 
@@ -48,6 +48,11 @@ void editorvehiclecontroller::saveSlot(veicolo* veic,veicolo* nuovo)
 
 void editorvehiclecontroller::onClosedView() const
 {
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), nullptr);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
+
+    vehiclecontroller->showView();
     v->hide();
 }
 

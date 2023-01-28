@@ -53,6 +53,8 @@ signals:
 
 public slots:
     void checkifdataismodified();
+protected:
+    void closeEvent(QCloseEvent *event);
 };
 
 #endif // DIALOGVIAGGIO_H

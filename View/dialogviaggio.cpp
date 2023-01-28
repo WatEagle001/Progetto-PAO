@@ -86,14 +86,11 @@ DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s,
 
     conferma = new QPushButton("Conferma Dati", this);
     aggiungi = new QPushButton("Inserisci",this);
-   reset = new QPushButton("Pulisci",this);
-    annulla = new QPushButton("Esci Senza Salvare",this);
 
     QHBoxLayout* buttons = new QHBoxLayout;
     buttons->addWidget(aggiungi);
     buttons->addWidget(conferma);
-    buttons->addWidget(reset);
-    buttons->addWidget(annulla);
+
     layout->addItem(buttons);
 
    // buttonbox->addButton(aggiungi, QDialogButtonBox::AcceptRole);
@@ -136,5 +133,21 @@ void DialogViaggio::connectViewSignals() const
 {
 
 
+}
+
+void DialogViaggio::closeEvent(QCloseEvent *event)
+{
+    //Elaboro chiusura solo se intenzionata da evento esterno
+        if(!event->spontaneous()) return;
+
+        if(!dialogPopUp_Question(2, "Annullamento", "Sei sicuro di voler annullare l'operazione?\n")){
+            event->ignore();
+        }
+        else {
+            //Accetto l'evento di chiusura della finestra
+            event->accept();
+            //Emetto segnale di chiusura della View
+            emit viewClosed();
+        }
 }
 

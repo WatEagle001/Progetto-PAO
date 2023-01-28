@@ -51,6 +51,7 @@ public:
     explicit vehiclelist(garage* garage = nullptr,const QSize& s = QSize(), view* parent = nullptr);
     QHBoxLayout *configureButtons(veicolo* veic);
     QWidget *configureVheicleItem(veicolo* veic);
+
 signals:
     void loadVehicleSignal();
     void newVehicleSignal();

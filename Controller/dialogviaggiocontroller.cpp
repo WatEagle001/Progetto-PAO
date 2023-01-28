@@ -29,7 +29,7 @@ void dialogviaggiocontroller::saveViaggio(veicolo* veic, string partenza, string
     c->addViaggio(veic,partenza,arrivo,km_percorsi,efficienza,costo_carburante,costo_elettricita);
     veic->setKm_odometro(veic->getKm_odometro() + km_percorsi);
 
-    vehiclelist* vehicle = new vehiclelist(m,v->size(), v);
+    vehiclelist* vehicle = new vehiclelist(m,v->size(), nullptr);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, m, c, const_cast<controller*>(static_cast<const controller*>(this)));
 
@@ -40,6 +40,11 @@ void dialogviaggiocontroller::saveViaggio(veicolo* veic, string partenza, string
 
 void dialogviaggiocontroller::onClosedView() const
 {
-     delete this;
+    vehiclelist* vehicle = new vehiclelist(m,v->size(), nullptr);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, m, c, const_cast<controller*>(static_cast<const controller*>(this)));
+
+    vehiclecontroller->showView();
+    v->hide();
 }
 

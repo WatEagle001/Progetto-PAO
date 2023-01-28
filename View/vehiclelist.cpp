@@ -20,13 +20,18 @@ void vehiclelist::connectViewSignals() const{
 
 void vehiclelist::closeEvent(QCloseEvent *event)
 {
-            if(!event->spontaneous()) return;
-            else {
-                //Accetto l'evento di chiusura della finestra
-                event->accept();
-                //Emetto segnale di chiusura della View
-                emit viewClosed();
-            }
+    //Elaboro chiusura solo se intenzionata da evento esterno
+        if(!event->spontaneous()) return;
+
+        if(!dialogPopUp_Question(2, "Uscita", "Sei sicuro di voler chiudere l'applicazione?\n")){
+            event->ignore();
+        }
+        else {
+            //Accetto l'evento di chiusura della finestra
+            event->accept();
+            //Emetto segnale di chiusura della View
+            emit viewClosed();
+        }
 }
 
 QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)

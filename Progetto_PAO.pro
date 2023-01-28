@@ -19,9 +19,6 @@ SOURCES += \
     Controller/vehiclelistcontroller.cpp \
     Controller/welcomecontroller.cpp \
     Controller/controller.cpp \
-    Model/model.cpp \
-    Model/CostiViaggio.cpp \
-    Model/veicolowidget.cpp \
     View/detailedcosts.cpp \
     View/detailedvehicleview.cpp \
     View/dialogviaggio.cpp \
@@ -30,7 +27,6 @@ SOURCES += \
     View/vehiclelist.cpp \
     View/view.cpp \
     View/welcome.cpp \
-    main.cpp \
     Model/auto_elettrica.cpp \
     Model/auto_ibrida.cpp \
     Model/automobile.cpp \
@@ -42,7 +38,11 @@ SOURCES += \
     Model/moto_elettrica.cpp \
     Model/motore_combustione.cpp \
     Model/motore_elettrico.cpp \
-    Model/veicolo.cpp
+    Model/veicolo.cpp \
+    Model/model.cpp \
+    Model/CostiViaggio.cpp \
+    Model/veicolowidget.cpp \
+    main.cpp
 
 HEADERS += \
     Controller/detailedcostscontroller.h \
@@ -50,6 +50,20 @@ HEADERS += \
     Controller/dialogviaggiocontroller.h \
     Controller/editorvehiclecontroller.h \
     Controller/newvehiclecontroller.h \
+    Controller/jsonagent.h \
+    Controller/vehiclelistcontroller.h \
+    Controller/welcomecontroller.h \
+    Controller/controller.h \
+    View/detailedcosts.h \
+    View/detailedvehicleview.h \
+    View/dialogviaggio.h \
+    View/editorvehicle.h \
+    View/newvehicle.h \
+    View/vehiclelist.h \
+    View/view.h \
+    View/welcome.h \
+    Model/model.h \
+    Model/veicolowidget.h \
     Model/CostiViaggio.h \
     Model/array.h \
     Model/auto_elettrica.h \
@@ -63,21 +77,7 @@ HEADERS += \
     Model/moto_elettrica.h \
     Model/motore_combustione.h \
     Model/motore_elettrico.h \
-    Model/veicolo.h \
-    Controller/jsonagent.h \
-    Controller/vehiclelistcontroller.h \
-    Controller/welcomecontroller.h \
-    Controller/controller.h \
-    Model/model.h \
-    Model/veicolowidget.h \
-    View/detailedcosts.h \
-    View/detailedvehicleview.h \
-    View/dialogviaggio.h \
-    View/editorvehicle.h \
-    View/newvehicle.h \
-    View/vehiclelist.h \
-    View/view.h \
-    View/welcome.h
+    Model/veicolo.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

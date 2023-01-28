@@ -31,7 +31,7 @@ model *welcomeController::getModel() const
 
 void welcomeController::NewGarage()
 {
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), nullptr);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, co,const_cast<controller*>(static_cast<const controller*>(this)));
 
@@ -46,7 +46,7 @@ void welcomeController::OpenGarage() const
 
     JSONAgent::getVehicleList(veicoli, g);
 
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), nullptr);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vcontroller = new vehiclelistcontroller(vehicle, g, co, const_cast<controller*>(static_cast<const controller*>(this)));
 
@@ -57,4 +57,5 @@ void welcomeController::OpenGarage() const
 void welcomeController::onClosedView() const
 {
     delete this;
+    QCoreApplication::quit();
 }

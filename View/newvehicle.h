@@ -42,6 +42,7 @@ private:
         QFormLayout* addMoreOptions();
         void deleteOptions();
 
+
 protected:
     void closeEvent(QCloseEvent* event) override;
 public:

@@ -10,6 +10,7 @@
 #include <QFileDialog>
 #include <QStringList>
 #include <QJsonDocument>
+#include <QCoreApplication>
 
 
 class welcomeController : public controller

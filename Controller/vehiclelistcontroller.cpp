@@ -45,6 +45,7 @@ garage *vehiclelistcontroller::getModel() const
 void vehiclelistcontroller::onClosedView() const
 {
     delete this;
+    QCoreApplication::quit();
 }
 
 void vehiclelistcontroller::loadVehicleSlot()
@@ -56,7 +57,7 @@ void vehiclelistcontroller::loadVehicleSlot()
 
     JSONAgent::getVehicleList(veicoli, g);
 
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), nullptr);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
 
@@ -67,25 +68,20 @@ void vehiclelistcontroller::loadVehicleSlot()
 
 void vehiclelistcontroller::newVehicleSlot()
 {
-    newvehicle* vehicle = new newvehicle(g,v->size(), v);
+    newvehicle* vehicle = new newvehicle(g,v->size(), nullptr);
     vehicle->setTitle("Aggiunta Veicolo");
     newvehiclecontroller* vehiclecontroller = new newvehiclecontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
 
     vehiclecontroller->showView();
-
-
-}
-
-/*
-void vehiclelistcontroller::addViaggioSlot(veicolo* vec)
-{
     v->hide();
+
+
 }
- */
+
 void vehiclelistcontroller::addViaggioSlot(veicolo* vec)
 {
 
-    DialogViaggio* dv = new DialogViaggio(vec, c, v->size(), v);
+    DialogViaggio* dv = new DialogViaggio(vec, c, v->size(), nullptr);
     dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, veic, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
     dvc->showView();
     v->close();
@@ -93,7 +89,7 @@ void vehiclelistcontroller::addViaggioSlot(veicolo* vec)
 
 void vehiclelistcontroller::detailedCostsSlot()
 {
-    detailedcosts* dc = new detailedcosts(c, v->size(), v);
+    detailedcosts* dc = new detailedcosts(c, v->size(), nullptr);
     detailedcostscontroller* dcc = new detailedcostscontroller(dc, c, g, const_cast<controller*>(static_cast<const controller*>(this)));
     dcc->showView();
     v->close();
@@ -101,7 +97,7 @@ void vehiclelistcontroller::detailedCostsSlot()
 
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
 {
-    editorvehicle* vehicle = new editorvehicle(g,veic,v->size(), v);
+    editorvehicle* vehicle = new editorvehicle(g,veic,v->size(), nullptr);
     editorvehiclecontroller* editor = new editorvehiclecontroller(vehicle, g, c,  const_cast<controller*>(static_cast<const controller*>(this)));
 
     editor->showView();
@@ -115,7 +111,7 @@ void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
     g->printGarage();
 
     v->close();
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), nullptr);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
 
@@ -126,7 +122,7 @@ void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
 
 void vehiclelistcontroller::detailedVehicleViewSlot(veicolo *veic)
 {
-    detailedvehicleview* vehicledetails = new detailedvehicleview(veic,v->size(), v);
+    detailedvehicleview* vehicledetails = new detailedvehicleview(veic,v->size(), nullptr);
     detailedvehicleviewcontroller* detailedController = new detailedvehicleviewcontroller(vehicledetails, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
     detailedController->showView();
     v->close();
@@ -142,7 +138,7 @@ void vehiclelistcontroller::exportGarageSlot()
 
     v->hide();
 
-    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), nullptr);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
 

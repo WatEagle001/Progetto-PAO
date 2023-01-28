@@ -49,6 +49,10 @@ QFormLayout *newvehicle::configureEditor(){
        layout->insertRow(3,new QLabel(tr("Targa")), targa = new QLineEdit());
        layout->insertRow(4,new QLabel(tr("Km Odometro")), km = new QLineEdit());
 
+       marca->setValidator(new QRegularExpressionValidator(QRegularExpression("[A-Z]*[a-z]*[A-Z]*"), this));
+           modello->setValidator(new QRegularExpressionValidator(QRegularExpression("[0-9]*[A-Z]*[a-z]*[0-9]*"), this));
+           km->setValidator(new QIntValidator(0, INT_MAX, this));
+
     tipoVeicolo->addItem(QString("Seleziona un veicolo"));
     tipoVeicolo->addItem(QString("Automobile"));
     tipoVeicolo->addItem(QString("Moto"));
@@ -134,17 +138,29 @@ void newvehicle::addFieldsCombustione(){
     tipoAlimentazione->addItem(QString("BioDiesel"));
     tipoAlimentazione->addItem(QString("Idrogeno"));
     tipoAlimentazione->addItem(QString("Undefined"));
+
+
+
     layout->insertRow(5,new QLabel(tr("Cilindrata")), cilindrata = new QLineEdit());
     layout->insertRow(6,new QLabel(tr("Litri Carburante")), litri_carburante = new QLineEdit());
     layout->insertRow(7,new QLabel(tr("Carburante")), tipoAlimentazione);
     layout->insertRow(8,new QLabel(tr("Manutenzione")), manutenzione_bool = new QLineEdit());
     layout->insertRow(9,new QLabel(tr("Costo Manutenzione")), costo_manutenzione= new QLineEdit());
+
+    cilindrata->setValidator(new QIntValidator(0, INT_MAX, this));
+        litri_carburante->setValidator(new QIntValidator(0, INT_MAX, this));
+        manutenzione_bool->setValidator(new QIntValidator(0, 1, this));
+        costo_manutenzione->setValidator(new QDoubleValidator(0.0, INT_MAX, 2,this));
 }
 
 void newvehicle::addFieldsElettrico(){
     layout->insertRow(5,new QLabel(tr("KW Batteria")), kw =new QLineEdit());
     layout->insertRow(6,new QLabel(tr("Ricaricare")), ricaricare_bool = new QLineEdit());
     layout->insertRow(7,new QLabel(tr("Costo Ricarica")), costo_ricarica = new QLineEdit());
+
+    kw->setValidator(new QIntValidator(0, INT_MAX, this));
+        ricaricare_bool->setValidator(new QIntValidator(0, 1, this));
+        costo_ricarica->setValidator(new QDoubleValidator(0, INT_MAX, 2,this));
 }
 
 void newvehicle::firstSelection(int x){
@@ -199,14 +215,14 @@ QHBoxLayout *newvehicle::configureButtons()
 
 void newvehicle::closeEvent(QCloseEvent *event)
 {
-    num = 0;
-    qDebug() <<"numero"<< num;
     //Elaboro chiusura solo se intenzionata da evento esterno
         if(!event->spontaneous()) return;
+
+        if(!dialogPopUp_Question(2, "Annullamento", "Sei sicuro di voler annullare l'operazione?\n")){
+            event->ignore();
+        }
         else {
-            //Accetto l'evento di chiusura della finestra
             event->accept();
-            //Emetto segnale di chiusura della View
             emit viewClosed();
         }
 }

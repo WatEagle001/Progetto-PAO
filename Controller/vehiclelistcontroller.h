@@ -32,7 +32,7 @@ public:
 signals:
 
 public slots:
-    virtual void onClosedView() const override;
+    void onClosedView() const override;
     void loadVehicleSlot();
     void newVehicleSlot();
     void editVehicleSlot(veicolo* veic);

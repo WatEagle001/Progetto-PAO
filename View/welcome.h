@@ -21,6 +21,7 @@ private:
     QVBoxLayout* configureDescription();
     QHBoxLayout* configureButtons();
     void connectViewSignals() const override;
+
 protected:
     void closeEvent(QCloseEvent* event) override;
 
