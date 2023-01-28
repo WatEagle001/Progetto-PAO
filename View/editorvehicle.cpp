@@ -80,9 +80,13 @@ QFormLayout* editorvehicle::addMoreOptions(){
 void editorvehicle::checkIfDataIsModified() {
 
     qDebug() << "No modifiche";
-    if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true || cilindrata->isModified() == true
+    if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true
+            /*
+            || cilindrata->isModified() == true
             || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true
-            || kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true ){
+            || kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true
+            */
+            ){
         qDebug() << "Modifiche";
 
         qDebug() << "tipo veicolo dopo salvataggio";

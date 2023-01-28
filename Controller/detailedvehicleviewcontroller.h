@@ -13,8 +13,11 @@ class detailedvehicleviewcontroller : public controller
 private:
     void connectViewController() const;
     veicolo* veic;
+    garage* g;
+    CostiViaggio *c;
+
 public:
-    explicit detailedvehicleviewcontroller(detailedvehicleview* v, garage* m, controller* parent = nullptr);
+    explicit detailedvehicleviewcontroller(detailedvehicleview* v, garage* m, CostiViaggio* cost, controller* parent = nullptr);
     view* getView() const override;
     garage* getModel() const override;
     virtual ~detailedvehicleviewcontroller() = default;

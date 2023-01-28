@@ -7,7 +7,10 @@ void detailedvehicleviewcontroller::connectViewController() const
 {
 }
 
-detailedvehicleviewcontroller::detailedvehicleviewcontroller(detailedvehicleview *v, garage* m, controller *parent) : controller(v,m, parent){}
+detailedvehicleviewcontroller::detailedvehicleviewcontroller(detailedvehicleview *v, garage* m, CostiViaggio* cost, controller *parent) : controller(v,m, parent){
+    g = m;
+    c = cost;
+}
 
 
 view *detailedvehicleviewcontroller::getView() const
@@ -22,7 +25,13 @@ garage *detailedvehicleviewcontroller::getModel() const
 
 void detailedvehicleviewcontroller::onClosedView() const
 {
-    v->close();
-    delete this;
+
+    vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
+
+    vehiclecontroller->showView();
+
+    v->hide();
 }
 

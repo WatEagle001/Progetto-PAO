@@ -20,8 +20,9 @@ private:
     CostiViaggio* cost;
     vehiclelistcontroller* c;
     vehiclelist* vehicle;
+    garage * gar;
 public:
-    explicit detailedcostscontroller(detailedcosts* v,CostiViaggio* dati, controller* parent = nullptr);
+    explicit detailedcostscontroller(detailedcosts* v,CostiViaggio* dati, garage* g, controller* parent = nullptr);
     detailedcosts* getView() const override;
     model* getModel() const override;
     virtual ~detailedcostscontroller() = default;

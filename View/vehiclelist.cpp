@@ -36,7 +36,7 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
     aggiungiViaggio->setIcon(QIcon(":/Assets/image/icons/add.png"));
     aggiungiViaggio->setFixedSize(40, 40);
     modifica = new QPushButton;
-    modifica->setIcon(QIcon(":/Assets/image/icons/edit.png"));
+    modifica->setIcon(QIcon(":/Assets/image/icons/editing.png"));
     modifica->setFixedSize(40,40);
     elimina = new QPushButton;
     elimina->setIcon(QIcon(":/Assets/image/icons/delete.png"));
@@ -47,7 +47,7 @@ QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
 
 
     connect(elimina, &QPushButton::clicked, (bind(&vehiclelist::deleteVehicleSignal, this, veic)));
-    connect(aggiungiViaggio, &QPushButton::clicked, (bind(&vehiclelist::addNewViaggioSignal, this, veic, c)));
+    connect(aggiungiViaggio, &QPushButton::clicked, (bind(&vehiclelist::addNewViaggioSignal, this, veic)));
     connect(modifica, &QPushButton::clicked,(bind(&vehiclelist::editVehicleDetailsSignal, this, veic)));
     connect(detailedView, &QPushButton::clicked,(bind(&vehiclelist::showVehicleDetails, this, veic)));
 

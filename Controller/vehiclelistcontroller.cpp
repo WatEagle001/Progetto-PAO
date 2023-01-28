@@ -82,20 +82,21 @@ void vehiclelistcontroller::addViaggioSlot(veicolo* vec)
     v->hide();
 }
  */
-void vehiclelistcontroller::addViaggioSlot(veicolo* vec, CostiViaggio* c)
+void vehiclelistcontroller::addViaggioSlot(veicolo* vec)
 {
 
     DialogViaggio* dv = new DialogViaggio(vec, c, v->size(), v);
     dialogviaggiocontroller* dvc = new dialogviaggiocontroller(dv, veic, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
     dvc->showView();
-    v->hide();
+    v->close();
 }
 
 void vehiclelistcontroller::detailedCostsSlot()
 {
     detailedcosts* dc = new detailedcosts(c, v->size(), v);
-    detailedcostscontroller* dcc = new detailedcostscontroller(dc, c, const_cast<controller*>(static_cast<const controller*>(this)));
+    detailedcostscontroller* dcc = new detailedcostscontroller(dc, c, g, const_cast<controller*>(static_cast<const controller*>(this)));
     dcc->showView();
+    v->close();
 }
 
 void vehiclelistcontroller::editVehicleSlot(veicolo* veic)
@@ -113,7 +114,7 @@ void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
     g->deleteVeicolo(veic);
     g->printGarage();
 
-   v->close();
+    v->close();
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
@@ -126,26 +127,24 @@ void vehiclelistcontroller::deleteVehicleSlot(veicolo* veic)
 void vehiclelistcontroller::detailedVehicleViewSlot(veicolo *veic)
 {
     detailedvehicleview* vehicledetails = new detailedvehicleview(veic,v->size(), v);
-    detailedvehicleviewcontroller* detailedController = new detailedvehicleviewcontroller(vehicledetails, g, const_cast<controller*>(static_cast<const controller*>(this)));
+    detailedvehicleviewcontroller* detailedController = new detailedvehicleviewcontroller(vehicledetails, g, c,const_cast<controller*>(static_cast<const controller*>(this)));
     detailedController->showView();
-    v->hide();
+    v->close();
 }
 
 void vehiclelistcontroller::exportGarageSlot()
 {
-
-    JSONAgent::saveGarage(QFileDialog::getSaveFileName(nullptr, "Salva come", "../Progetto_PAO/Assets/doc", "JSON (*.json)"), g);
-
     bool tmp = JSONAgent::saveGarage(QFileDialog::getSaveFileName(nullptr, "Salva come", "../Progetto_PAO/Assets/doc", "JSON (*.json)"), g);
 
     if(!tmp){
         v->dialogPopUp_Warning("Errore", "Qualcosa è andato storto durante l'esportazione del file");
     }
 
+    v->hide();
+
     vehiclelist* vehicle = new vehiclelist(g,v->size(), v);
     vehicle->setTitle("Garage");
-    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c , const_cast<controller*>(static_cast<const controller*>(this)));
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
 
     vehiclecontroller->showView();
-    v->hide();
 }

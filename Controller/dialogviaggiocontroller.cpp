@@ -25,13 +25,16 @@ dialogviaggiocontroller::dialogviaggiocontroller(DialogViaggio *v, veicolo *vehi
 
 void dialogviaggiocontroller::saveViaggio(veicolo* veic, string partenza, string arrivo, int km_percorsi, double efficienza, double costo_carburante, double costo_elettricita)
 {
-    qDebug() << QString::fromStdString(veic->getTarga());
-    qDebug() << QString::fromStdString(partenza);
-    qDebug() << QString::fromStdString(arrivo);
-    qDebug() << QString::number(km_percorsi);
-    c->addViaggio(veic,partenza,arrivo,km_percorsi,efficienza,costo_carburante,costo_elettricita);
 
-    v->close();
+    c->addViaggio(veic,partenza,arrivo,km_percorsi,efficienza,costo_carburante,costo_elettricita);
+    veic->setKm_odometro(veic->getKm_odometro() + km_percorsi);
+
+    vehiclelist* vehicle = new vehiclelist(m,v->size(), v);
+    vehicle->setTitle("Garage");
+    vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, m, c, const_cast<controller*>(static_cast<const controller*>(this)));
+
+    vehiclecontroller->showView();
+    v->hide();
 
 }
 
