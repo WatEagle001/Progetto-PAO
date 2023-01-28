@@ -38,6 +38,7 @@ void newvehiclecontroller::saveSlot(veicolo* veic)
     vehiclelistcontroller* vehiclecontroller = new vehiclelistcontroller(vehicle, g, c, const_cast<controller*>(static_cast<const controller*>(this)));
 
     vehiclecontroller->showView();
+    v->close();
 
 }
 

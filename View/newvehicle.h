@@ -16,6 +16,8 @@
 class newvehicle:public view{
     Q_OBJECT
 private:
+    int num;
+    int selezione;
         veicolo* v;
         garage* g;
         QPushButton* save;

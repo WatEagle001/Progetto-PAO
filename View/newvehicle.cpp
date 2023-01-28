@@ -9,8 +9,11 @@
 using std::bind;
 #include <Model/veicolo.h>
 
+/*
 int num = 0;
 int selezione = 0;
+*/
+
 QLayout* newvehicle::configureFinalLayout(){
     // Creazione Layout
     QVBoxLayout* mainLayout = new QVBoxLayout();
@@ -24,10 +27,12 @@ QLayout* newvehicle::configureFinalLayout(){
 
 newvehicle::newvehicle(garage* gar,const QSize &s, view *parent) : view(s, parent)
 {
+    num = 0;
+    selezione = 0;
     g = gar;
     qDebug() << "tipo veicolo passato all'editor";
     QVBoxLayout* main = new QVBoxLayout;
-   // main->addLayout(configureFinalLayout());
+    // main->addLayout(configureFinalLayout());
     main->addLayout(configureEditor());
     main->addLayout(configureButtons());
 
@@ -40,18 +45,18 @@ newvehicle::newvehicle(garage* gar,const QSize &s, view *parent) : view(s, paren
 
 QFormLayout *newvehicle::configureEditor(){
 
-       layout = new QFormLayout;
-       tipoVeicolo = new QComboBox;
-       layout->addWidget(tipoVeicolo);
+    layout = new QFormLayout;
+    tipoVeicolo = new QComboBox;
+    layout->addWidget(tipoVeicolo);
 
-       layout->insertRow(1,new QLabel(tr("Marca")),  marca = new QLineEdit());
-       layout->insertRow(2,new QLabel(tr("Modello")), modello = new QLineEdit());
-       layout->insertRow(3,new QLabel(tr("Targa")), targa = new QLineEdit());
-       layout->insertRow(4,new QLabel(tr("Km Odometro")), km = new QLineEdit());
+    layout->insertRow(1,new QLabel(tr("Marca")),  marca = new QLineEdit());
+    layout->insertRow(2,new QLabel(tr("Modello")), modello = new QLineEdit());
+    layout->insertRow(3,new QLabel(tr("Targa")), targa = new QLineEdit());
+    layout->insertRow(4,new QLabel(tr("Km Odometro")), km = new QLineEdit());
 
-       marca->setValidator(new QRegularExpressionValidator(QRegularExpression("[A-Z]*[a-z]*[A-Z]*"), this));
-           modello->setValidator(new QRegularExpressionValidator(QRegularExpression("[0-9]*[A-Z]*[a-z]*[0-9]*"), this));
-           km->setValidator(new QIntValidator(0, INT_MAX, this));
+    marca->setValidator(new QRegularExpressionValidator(QRegularExpression("[A-Z]*[a-z]*[A-Z]*"), this));
+    modello->setValidator(new QRegularExpressionValidator(QRegularExpression("[0-9]*[A-Z]*[a-z]*[0-9]*"), this));
+    km->setValidator(new QIntValidator(0, INT_MAX, this));
 
     tipoVeicolo->addItem(QString("Seleziona un veicolo"));
     tipoVeicolo->addItem(QString("Automobile"));
@@ -70,59 +75,70 @@ QFormLayout *newvehicle::configureEditor(){
 
 
 void newvehicle::checkIfDataIsModified() {
+    qDebug() << "Inizio primo if";
     if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true || cilindrata->isModified() == true
             || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true
             || kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true ){
-
+        qDebug() << "Entrato nell'if";
         alimentazione carb = alimentazione::undefined;
+        if(tipoVeicolo->currentIndex() == 1 || tipoVeicolo->currentIndex() == 2 || tipoVeicolo->currentIndex() == 4){
 
-        if(tipoAlimentazione->currentIndex() == 0){
-            carb = alimentazione::benzina;
-        }
-        if(tipoAlimentazione->currentIndex() == 1){
-            carb = alimentazione::diesel;
-        }
-        if(tipoAlimentazione->currentIndex() == 2){
-            carb = alimentazione::metano;
-        }
-        if(tipoAlimentazione->currentIndex() == 3){
-            carb = alimentazione::gpl;
-        }
-        if(tipoAlimentazione->currentIndex() == 4){
-            carb = alimentazione::biodisel;
-        }
-        if(tipoAlimentazione->currentIndex() == 5){
-            carb = alimentazione::idrogeno;
+
+            qDebug() << "controllo il tipo di carburante";
+            if(tipoAlimentazione->currentIndex() == 0){
+                qDebug() << "entrato nel primo caso";
+                carb = alimentazione::benzina;
+            }
+            if(tipoAlimentazione->currentIndex() == 1){
+                carb = alimentazione::diesel;
+            }
+            if(tipoAlimentazione->currentIndex() == 2){
+                carb = alimentazione::metano;
+            }
+            if(tipoAlimentazione->currentIndex() == 3){
+                carb = alimentazione::gpl;
+            }
+            if(tipoAlimentazione->currentIndex() == 4){
+                carb = alimentazione::biodisel;
+            }
+            if(tipoAlimentazione->currentIndex() == 5){
+                carb = alimentazione::idrogeno;
+            }
         }
 
+        qDebug() << "controllo il tipo del veicolo";
         if(tipoVeicolo->currentIndex() == 1){
             v = new automobile(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
                                cilindrata->text().toUInt(),litri_carburante->text().toUInt(),carb,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt());
-       }
+        }
         if(tipoVeicolo->currentIndex() == 2){
             v = new moto(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
-            cilindrata->text().toUInt(),litri_carburante->text().toUInt(),carb,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt());
-       }
+                         cilindrata->text().toUInt(),litri_carburante->text().toUInt(),carb,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt());
+        }
         if(tipoVeicolo->currentIndex() == 3){
             v = new auto_elettrica(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt()
-            ,kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
-       }
+                                   ,kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
+        }
         if(tipoVeicolo->currentIndex() == 4){
             v = new auto_ibrida(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
-            cilindrata->text().toUInt(),litri_carburante->text().toUInt(),carb,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt(),
-                              kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
-       }
+                                cilindrata->text().toUInt(),litri_carburante->text().toUInt(),carb,manutenzione_bool->text().toInt(),costo_manutenzione->text().toInt(),
+                                kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
+        }
         if(tipoVeicolo->currentIndex() == 5){
             v = new moto_elettrica(marca->text().toStdString(), modello->text().toStdString(), km->text().toInt(),
                                    kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble(),targa->text().toStdString());
-       }
+        }
         if(tipoVeicolo->currentIndex() == 6){
             v = new monopattino_elettrico(marca->text().toStdString(), modello->text().toStdString(), targa->text().toStdString(),km->text().toInt(),
-                 kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
-       }
+                                          kw->text().toInt(),ricaricare_bool->text().toInt(),costo_ricarica->text().toDouble());
+        }
+        qDebug() << "fine controlli";
 
     }
+    qDebug() << "Fine if";
+    qDebug() << "inizio connessione pulsanti";
     connect(save, &QPushButton::clicked,(bind(&newvehicle::saveSignal, this, v)));
+    qDebug() << "fine connessione pulsanti";
 }
 
 void newvehicle::checkSignal(){
@@ -148,9 +164,9 @@ void newvehicle::addFieldsCombustione(){
     layout->insertRow(9,new QLabel(tr("Costo Manutenzione")), costo_manutenzione= new QLineEdit());
 
     cilindrata->setValidator(new QIntValidator(0, INT_MAX, this));
-        litri_carburante->setValidator(new QIntValidator(0, INT_MAX, this));
-        manutenzione_bool->setValidator(new QIntValidator(0, 1, this));
-        costo_manutenzione->setValidator(new QDoubleValidator(0.0, INT_MAX, 2,this));
+    litri_carburante->setValidator(new QIntValidator(0, INT_MAX, this));
+    manutenzione_bool->setValidator(new QIntValidator(0, 1, this));
+    costo_manutenzione->setValidator(new QDoubleValidator(0.0, INT_MAX, 2,this));
 }
 
 void newvehicle::addFieldsElettrico(){
@@ -159,8 +175,8 @@ void newvehicle::addFieldsElettrico(){
     layout->insertRow(7,new QLabel(tr("Costo Ricarica")), costo_ricarica = new QLineEdit());
 
     kw->setValidator(new QIntValidator(0, INT_MAX, this));
-        ricaricare_bool->setValidator(new QIntValidator(0, 1, this));
-        costo_ricarica->setValidator(new QDoubleValidator(0, INT_MAX, 2,this));
+    ricaricare_bool->setValidator(new QIntValidator(0, 1, this));
+    costo_ricarica->setValidator(new QDoubleValidator(0, INT_MAX, 2,this));
 }
 
 void newvehicle::firstSelection(int x){
@@ -170,7 +186,7 @@ void newvehicle::firstSelection(int x){
 void newvehicle::createOptions(int x)
 {
     if(num == 0){
-             firstSelection(x);
+        firstSelection(x);
     }
     if(num >= 1){
         tipoVeicolo->setCurrentIndex(selezione);
@@ -216,15 +232,15 @@ QHBoxLayout *newvehicle::configureButtons()
 void newvehicle::closeEvent(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno
-        if(!event->spontaneous()) return;
+    if(!event->spontaneous()) return;
 
-        if(!dialogPopUp_Question(2, "Annullamento", "Sei sicuro di voler annullare l'operazione?\n")){
-            event->ignore();
-        }
-        else {
-            event->accept();
-            emit viewClosed();
-        }
+    if(!dialogPopUp_Question(2, "Annullamento", "Sei sicuro di voler annullare l'operazione?\n")){
+        event->ignore();
+    }
+    else {
+        event->accept();
+        emit viewClosed();
+    }
 }
 
 void newvehicle::clearSlot(){
@@ -234,15 +250,15 @@ void newvehicle::clearSlot(){
     km->setText("");
 
     if(tipoVeicolo->currentIndex() == 1 || tipoVeicolo->currentIndex() == 2 || tipoVeicolo->currentIndex() == 4){
-     cilindrata->setText("");
-     litri_carburante->setText("");
-     manutenzione_bool->setText("");
-     costo_manutenzione->setText("");
+        cilindrata->setText("");
+        litri_carburante->setText("");
+        manutenzione_bool->setText("");
+        costo_manutenzione->setText("");
     }
     if(tipoVeicolo->currentIndex() == 3 || tipoVeicolo->currentIndex() == 5 ||tipoVeicolo->currentIndex() == 6 || tipoVeicolo->currentIndex() == 4){
-     kw ->setText("");
-     ricaricare_bool->setText("");
-     costo_ricarica->setText("");
+        kw ->setText("");
+        ricaricare_bool->setText("");
+        costo_ricarica->setText("");
     }
 
 }
