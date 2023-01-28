@@ -51,7 +51,6 @@ void newvehiclecontroller::onClosedView() const
     vehiclecontroller->showView();
     v->close();
 
-    delete this;
 }
 
 void newvehiclecontroller::clearSlot(){

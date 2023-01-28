@@ -25,7 +25,6 @@ detailedcosts::detailedcosts(CostiViaggio* cost,const QSize &s, view *parent) : 
     QVBoxLayout* main = new QVBoxLayout;
     main->addLayout(addIstogramma());
     setLayout(main);
-    setFixedSize(s);
     setTitle("Dettaglio Costi Viaggio");
 }
 

@@ -95,9 +95,8 @@ void editorvehicle::checkIfDataIsModified() {
     qDebug() << "No modifiche";
     if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true
             /*
-            || cilindrata->isModified() == true
-            || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true
-            || kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true
+
+
             */
             ){
         qDebug() << "Modifiche";
@@ -109,7 +108,8 @@ void editorvehicle::checkIfDataIsModified() {
         v->setTarga(v->getTarga());
         v->setKm_odometro(km->text().toInt());
         motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
-        if(ptr){
+        if(ptr  &&( cilindrata->isModified() == true
+                || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true)){
             qDebug() << "ok combustione";
             ptr->setCilindrata(cilindrata->text().toInt());
              ptr->setLitri_serbatoio(litri_carburante->text().toInt());
@@ -118,7 +118,7 @@ void editorvehicle::checkIfDataIsModified() {
         }
 
         motore_elettrico* e = dynamic_cast<motore_elettrico*>(v);
-        if(e){
+        if(e && ( kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true)){
             qDebug() << "ok elettrico";
             e->setKw_batteria(kw->text().toUInt());
             e->setRicaricare(ricaricare_bool->text().toInt());
