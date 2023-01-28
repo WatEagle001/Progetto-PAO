@@ -76,6 +76,6 @@ welcome::welcome(const QSize &s, view *parent) : view(s, parent)
 
     setLayout(main);
     setFixedSize(s);
-    connectViewSignals();
+    welcome::connectViewSignals();
     setTitle("QFleet Home");
 }

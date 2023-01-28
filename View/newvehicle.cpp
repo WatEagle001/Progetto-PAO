@@ -38,7 +38,7 @@ newvehicle::newvehicle(garage* gar,const QSize &s, view *parent) : view(s, paren
 
     setLayout(main);
     setFixedSize(s);
-    connectViewSignals();
+    newvehicle::connectViewSignals();
     setTitle("Editor Veicoli");
 
 }

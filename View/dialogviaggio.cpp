@@ -109,7 +109,7 @@ DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s,
 
 void DialogViaggio::checkifdataismodified()
 {
-    if(partenza->isModified() == true || km_partenza->isModified() == true || arrivo -> isModified() == true,
+    if(partenza->isModified() == true || km_partenza->isModified() == true || arrivo -> isModified() == true ||
             km_arrivo->isModified() == true|| costoCarburante->isModified() == true || costoElettricita->isModified() == true ){
         int km = (km_arrivo->text().toInt()) - (km_partenza->text().toInt());
         qDebug() << "km"<<km;

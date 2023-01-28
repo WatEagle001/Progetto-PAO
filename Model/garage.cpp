@@ -1,15 +1,16 @@
 #include "Model/garage.h"
 
-//garage::~garage()= default;
+
 
 Array<veicolo *> garage::getVeicoli(string targa) const
 {
+    Array<veicolo*> ret;
     for(int i = 0; i < _veicoli.size(); i++){
         if(_veicoli[i]->getTarga() == targa){
-            return _veicoli[i];
+            ret.push_back(_veicoli[i]);
         }
     }
-
+    return ret;
 }
 
 int garage::size() const

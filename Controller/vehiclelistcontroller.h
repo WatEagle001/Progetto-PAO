@@ -1,6 +1,7 @@
 #ifndef VEHICLELISTCONTROLLER_H
 #define VEHICLELISTCONTROLLER_H
 #pragma once
+
 #include "controller.h"
 #include "View/vehiclelist.h"
 #include "Model/garage.h"
@@ -9,7 +10,6 @@
 #include <iostream>
 #include <Model/CostiViaggio.h>
 #include <QInputDialog>
-
 
 class vehiclelistcontroller : public controller
 {

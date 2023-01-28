@@ -36,23 +36,29 @@ QHBoxLayout *veicoloWidget::configureVehicleView(veicolo *v)
 {
     QHBoxLayout* info = new QHBoxLayout;
     if(dynamic_cast<automobile*>(v)){
-     Qimg = QImage(":Assets/image/icons/automobile.png");
+        Qimg = QImage(":Assets/image/icons/automobile.png");
     }
-    if(dynamic_cast<auto_elettrica*>(v)){
-     Qimg = QImage(":Assets/image/icons/auto_elettrica.png");
-    }
-    if(dynamic_cast<auto_ibrida*>(v)){
-     Qimg = QImage(":Assets/image/icons/auto_ibrida.png");
-    }
-    if(dynamic_cast<moto*>(v)){
-     Qimg = QImage(":Assets/image/icons/moto.png");
-    }
-    if(dynamic_cast<moto_elettrica*>(v)){
-     Qimg = QImage(":Assets/image/icons/moto_elettrica.png");
-    }
-    if(dynamic_cast<monopattino_elettrico*>(v)){
-     Qimg = QImage(":Assets/image/icons/monopattino.png");
-    }
+    else
+        if(dynamic_cast<auto_elettrica*>(v)){
+            Qimg = QImage(":Assets/image/icons/auto_elettrica.png");
+        }
+        else
+            if(dynamic_cast<auto_ibrida*>(v)){
+                Qimg = QImage(":Assets/image/icons/auto_ibrida.png");
+            }
+            else
+                if(dynamic_cast<moto*>(v)){
+                    Qimg = QImage(":Assets/image/icons/moto.png");
+                }
+                else
+                    if(dynamic_cast<moto_elettrica*>(v)){
+                        Qimg = QImage(":Assets/image/icons/moto_elettrica.png");
+                    }
+                    else
+                        if(dynamic_cast<monopattino_elettrico*>(v)){
+                            Qimg = QImage(":Assets/image/icons/monopattino.png");
+                        }
+                        else Qimg = QImage();
     QPixmap image;
     QLabel* logo = new QLabel;
     image = image.fromImage(Qimg.scaled(40, 40, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));    //Conversione da Image a Pixmap senza perdita di qualità

@@ -6,8 +6,6 @@
 #include <Controller/welcomecontroller.h>
 #include <iostream>
 
-#include "View/detailedvehicleview.h"
-
 using std::bind;
 
 void vehiclelist::connectViewSignals() const{
@@ -138,5 +136,5 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s,p
     layout->addWidget(scrollArea);
 
     setLayout(layout);
-    connectViewSignals();
+    vehiclelist::connectViewSignals();
 }

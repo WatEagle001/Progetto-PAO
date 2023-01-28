@@ -49,7 +49,7 @@ public:
     DialogViaggio(veicolo* veic, CostiViaggio* costi, const QSize& s = QSize(), view* parent = nullptr);
 
 signals:
-    void tryAddViaggio(veicolo* veic, string partenza, string arrivo, int km_percorsi, double efficienza, double costo_carburante, double costo_elettricita);
+    void tryAddViaggio(veicolo* veic, std::string partenza, std::string arrivo, int km_percorsi, double efficienza, double costo_carburante, double costo_elettricita);
 
 public slots:
     void checkifdataismodified();

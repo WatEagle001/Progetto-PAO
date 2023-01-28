@@ -1,11 +1,10 @@
 #ifndef DETAILEDVEHICLEVIEWCONTROLLER_H
 #define DETAILEDVEHICLEVIEWCONTROLLER_H
 #include "controller.h"
-#include "View/vehiclelist.h"
 #include "Model/garage.h"
-#include "Controller/jsonagent.h"
 #include <iostream>
 #include <View/detailedvehicleview.h>
+#include <Model/CostiViaggio.h>
 
 class detailedvehicleviewcontroller : public controller
 {
