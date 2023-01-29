@@ -7,17 +7,16 @@ public:
     auto_elettrica(
         string _marca = "",
         string _modello = "",
-        string _paese = "",
-        string _descrizione = "",
-        double _rapp_peso_pot = 0,
-        unsigned int _cavalli = 0,
-        unsigned int _peso = 0,
-        unsigned int _nm = 0,
-        unsigned int _kw_batteria = 0
+        string _targa = "AA000BB",
+        int _km_odometro = 0,
+        unsigned int _kw_batteria = 0,
+        bool _ricaricare = 0,
+        double _costo_ricarica = 0
+
     );
 
 
-    ~auto_elettrica();
+    virtual ~auto_elettrica();
 };
 
 #endif // AUTO_ELETTRICA_H
