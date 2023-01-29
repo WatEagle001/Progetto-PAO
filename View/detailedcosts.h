@@ -1,3 +1,4 @@
+// Classe derivata da View che presenta un grafico a barre confrontante il costo dei viaggi
 #ifndef DETAILEDCOSTS_H
 #define DETAILEDCOSTS_H
 

@@ -1,3 +1,4 @@
+// Classe derivata da View che permette di modificare un veicolo
 #ifndef EDITORVEHICLE_H
 #define EDITORVEHICLE_H
 

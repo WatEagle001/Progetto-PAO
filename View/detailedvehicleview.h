@@ -1,3 +1,4 @@
+// Classe derivata da View che mostra i dettagli di un determinato veicolo
 #ifndef DETAILEDVEHICLEVIEW_H
 #define DETAILEDVEHICLEVIEW_H
 

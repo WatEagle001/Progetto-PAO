@@ -1,3 +1,4 @@
+// Classe derivata da View che permette di aggiungere un viaggio ad un determinato veicolo
 #ifndef DIALOGVIAGGIO_H
 #define DIALOGVIAGGIO_H
 

@@ -1,3 +1,4 @@
+// Classe derivata da View che permette di caricare un nuovo veicolo
 #ifndef NEWVEHICLE_H
 #define NEWVEHICLE_H
 
