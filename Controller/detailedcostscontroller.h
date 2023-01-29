@@ -1,16 +1,18 @@
 #ifndef DETAILEDCOSTSCONTROLLER_H
 #define DETAILEDCOSTSCONTROLLER_H
 
-#include "controller.h"
-#include "Model/model.h"
-#include "jsonagent.h"
-#include "View/vehiclelist.h"
-
 #include <QFileDialog>
 #include <QStringList>
 #include <QJsonDocument>
-#include <View/detailedcosts.h>
-#include <Model/CostiViaggio.h>
+
+#include <Controller/jsonagent.h>
+#include "Controller/controller.h"
+#include "View/vehiclelist.h"
+#include "View/detailedcosts.h"
+#include "Model/garage.h"
+#include "Model/CostiViaggio.h"
+#include "Model/model.h"
+
 class detailedcostscontroller : public controller
 {
     Q_OBJECT

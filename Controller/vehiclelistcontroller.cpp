@@ -1,14 +1,10 @@
 #include "vehiclelistcontroller.h"
-#include "QDebug"
-#include "View/editorvehicle.h"
-#include "Controller/editorvehiclecontroller.h"
-#include "View/detailedvehicleview.h"
-#include "Controller/detailedvehicleviewcontroller.h"
-#include <QInputDialog>
-#include "View/newvehicle.h"
-#include "Controller/newvehiclecontroller.h"
-#include <View/detailedcosts.h>
+
 #include <Controller/detailedcostscontroller.h>
+#include <Controller/detailedvehicleviewcontroller.h>
+#include <Controller/dialogviaggiocontroller.h>
+#include <Controller/editorvehiclecontroller.h>
+#include <Controller/newvehiclecontroller.h>
 
 void vehiclelistcontroller::connectViewController() const
 {

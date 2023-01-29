@@ -1,12 +1,7 @@
 #include "vehiclelist.h"
-#include <QTableView>
-#include <QLabel>
-#include <QScrollArea>
 #include <Controller/vehiclelistcontroller.h>
 #include <Controller/welcomecontroller.h>
-#include <iostream>
 
-using std::bind;
 
 void vehiclelist::connectViewSignals() const{
     connect(add, SIGNAL(clicked()), this, SIGNAL(newVehicleSignal()));
@@ -19,17 +14,17 @@ void vehiclelist::connectViewSignals() const{
 void vehiclelist::closeEvent(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno
-        if(!event->spontaneous()) return;
+    if(!event->spontaneous()) return;
 
-        if(!dialogPopUp_Question(2, "Uscita", "Sei sicuro di voler chiudere l'applicazione?\n")){
-            event->ignore();
-        }
-        else {
-            //Accetto l'evento di chiusura della finestra
-            event->accept();
-            //Emetto segnale di chiusura della View
-            emit viewClosed();
-        }
+    if(!dialogPopUp_Question(2, "Uscita", "Sei sicuro di voler chiudere l'applicazione?\n")){
+        event->ignore();
+    }
+    else {
+        //Accetto l'evento di chiusura della finestra
+        event->accept();
+        //Emetto segnale di chiusura della View
+        emit viewClosed();
+    }
 }
 
 QHBoxLayout *vehiclelist::configureButtons(veicolo* veic)
@@ -107,7 +102,7 @@ vehiclelist::vehiclelist(garage* garage,const QSize &s, view *parent) : view(s,p
             QWidget* wtmp  =configureVheicleItem(tmp2);
             l->addWidget(wtmp);
         }
-       if(dynamic_cast<moto_elettrica*>(g->getVeicolo(i))){
+        if(dynamic_cast<moto_elettrica*>(g->getVeicolo(i))){
             moto_elettrica* tmp = dynamic_cast<moto_elettrica*>(g->getVeicolo(i));
             QWidget* wtmp  =configureVheicleItem(tmp);
             l->addWidget(wtmp);

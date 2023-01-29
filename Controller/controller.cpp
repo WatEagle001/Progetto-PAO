@@ -1,7 +1,5 @@
 #include "controller.h"
 
-#include <iostream>
-
 void controller::connectViewController() const
 {
     connect(v, SIGNAL(viewClosed()), this, SLOT(onClosedView()));

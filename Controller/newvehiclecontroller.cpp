@@ -1,13 +1,9 @@
 #include "newvehiclecontroller.h"
-#include "View/editorvehicle.h"
-#include "vehiclelistcontroller.h"
-#include "Model/garage.h"
-#include <iostream>
-#include "QDebug"
+#include <Controller/vehiclelistcontroller.h>
 
 void newvehiclecontroller::connectViewController() const
 {
-   connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &newvehiclecontroller::saveSlot);
+    connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &newvehiclecontroller::saveSlot);
 }
 
 newvehiclecontroller::newvehiclecontroller(newvehicle *v,garage *m,CostiViaggio* cost,controller *parent, veicolo* veicol) : controller(v, m, parent)

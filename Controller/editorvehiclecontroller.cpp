@@ -1,13 +1,9 @@
 #include "editorvehiclecontroller.h"
-#include "View/editorvehicle.h"
-#include "vehiclelistcontroller.h"
-#include "Model/garage.h"
-#include <iostream>
-#include "QDebug"
+#include <Controller/vehiclelistcontroller.h>
 
 void editorvehiclecontroller::connectViewController() const
 {
-   connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &editorvehiclecontroller::saveSlot);
+    connect(static_cast<editorvehicle*>(v), &editorvehicle::saveSignal, this, &editorvehiclecontroller::saveSlot);
 
 }
 

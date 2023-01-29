@@ -1,18 +1,4 @@
 #include "newvehicle.h"
-#include <QItemEditorFactory>
-#include <QString>
-#include <iostream>
-#include <QLineEdit>
-#include <QComboBox>
-#include <Model/automobile.h>
-#include <QFormLayout>
-using std::bind;
-#include <Model/veicolo.h>
-
-/*
-int num = 0;
-int selezione = 0;
-*/
 
 QLayout* newvehicle::configureFinalLayout(){
     // Creazione Layout

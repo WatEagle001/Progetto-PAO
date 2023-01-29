@@ -1,7 +1,7 @@
 #ifndef EDITORVEHICLE_H
 #define EDITORVEHICLE_H
+
 #include <QPushButton>
-#include "view.h"
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -11,38 +11,49 @@
 #include <QCloseEvent>
 #include <QFormLayout>
 #include <QComboBox>
-#include <Model/garage.h>
-#include <Model/veicolo.h>
+#include <QItemEditorFactory>
+#include <QString>
+#include <QLineEdit>
+#include <QComboBox>
+#include <QFormLayout>
+
+#include "View/view.h"
+#include "Model/garage.h"
+#include "Model/veicolo.h"
+#include <Model/automobile.h>
+
+
+using std::bind;
 
 class editorvehicle:public view{
     Q_OBJECT
 private:
-        veicolo* v;
-        veicolo* nuovo;
-        garage* g;
-        QPushButton* save;
-        QPushButton* clear;
-        QPushButton* confermaDati;
-        QLineEdit* marca;
-        QLineEdit* modello;
-        QLineEdit* targa;
-        QLineEdit* km;
-        QLineEdit* cilindrata;
-        QLineEdit* manutenzione_bool;
-        QLineEdit* costo_manutenzione;
-        QLineEdit* kw;
-        QLineEdit* ricaricare_bool;
-        QLineEdit* costo_ricarica;
-        QLineEdit* litri_carburante;
-        QLineEdit* carburante;
-        QFormLayout* layout;
-        QComboBox* tipoAlimentazione;
-        QLayout* configureFinalLayout();
-        QFormLayout* configureEditor();
-        QHBoxLayout* configureButtons();
-        QFormLayout* addMoreOptions();
-        void deleteOptions();
-        void connectViewSignals() const override;
+    veicolo* v;
+    veicolo* nuovo;
+    garage* g;
+    QPushButton* save;
+    QPushButton* clear;
+    QPushButton* confermaDati;
+    QLineEdit* marca;
+    QLineEdit* modello;
+    QLineEdit* targa;
+    QLineEdit* km;
+    QLineEdit* cilindrata;
+    QLineEdit* manutenzione_bool;
+    QLineEdit* costo_manutenzione;
+    QLineEdit* kw;
+    QLineEdit* ricaricare_bool;
+    QLineEdit* costo_ricarica;
+    QLineEdit* litri_carburante;
+    QLineEdit* carburante;
+    QFormLayout* layout;
+    QComboBox* tipoAlimentazione;
+    QLayout* configureFinalLayout();
+    QFormLayout* configureEditor();
+    QHBoxLayout* configureButtons();
+    QFormLayout* addMoreOptions();
+    void deleteOptions();
+    void connectViewSignals() const override;
 protected:
     void closeEvent(QCloseEvent* event) override;
 public:

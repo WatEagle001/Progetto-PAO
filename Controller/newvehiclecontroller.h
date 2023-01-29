@@ -1,12 +1,11 @@
 #ifndef NEWVEHICLECONTROLLER_H
 #define NEWVEHICLECONTROLLER_H
-#include "controller.h"
-#include "View/vehiclelist.h"
-#include "Model/garage.h"
-#include "Controller/jsonagent.h"
-#include <iostream>
-#include "View/editorvehicle.h"
+
+#include "Controller/controller.h"
+#include <View/editorvehicle.h>
 #include "View/newvehicle.h"
+#include "Model/garage.h"
+#include "Model/CostiViaggio.h"
 
 class newvehiclecontroller : public controller
 {

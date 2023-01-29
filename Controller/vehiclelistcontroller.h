@@ -2,14 +2,11 @@
 #define VEHICLELISTCONTROLLER_H
 #pragma once
 
-#include "controller.h"
+#include "Controller/controller.h"
+#include <Controller/jsonagent.h>
 #include "View/vehiclelist.h"
+#include "Model/CostiViaggio.h"
 #include "Model/garage.h"
-#include "Controller/jsonagent.h"
-#include "Controller/dialogviaggiocontroller.h"
-#include <iostream>
-#include <Model/CostiViaggio.h>
-#include <QInputDialog>
 
 class vehiclelistcontroller : public controller
 {

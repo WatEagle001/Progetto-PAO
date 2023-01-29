@@ -1,12 +1,11 @@
 #ifndef EDITORVEHICLECONTROLLER_H
 #define EDITORVEHICLECONTROLLER_H
-#include "controller.h"
-#include "View/vehiclelist.h"
-#include "Model/garage.h"
-#include "Controller/jsonagent.h"
-#include <iostream>
+
+#include "Controller/controller.h"
+#include "View/editorvehicle.h"
 #include "View/editorvehicle.h"
 #include "Model/CostiViaggio.h"
+#include "Model/garage.h"
 
 class editorvehiclecontroller : public controller
 {

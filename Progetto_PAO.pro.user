@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 9.0.1, 2023-01-28T12:47:59. -->
+<!-- Written by QtCreator 9.0.1, 2023-01-28T17:35:47. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -76,7 +76,9 @@
     <value type="bool" key="ClangTools.BuildBeforeAnalysis">true</value>
     <value type="QString" key="ClangTools.DiagnosticConfig">Builtin.DefaultTidyAndClazy</value>
     <value type="int" key="ClangTools.ParallelJobs">8</value>
-    <valuelist type="QVariantList" key="ClangTools.SelectedDirs"/>
+    <valuelist type="QVariantList" key="ClangTools.SelectedDirs">
+     <value type="QString">C:/Users/Matteo/Desktop/Universita/Programmazione ad oggetti/progetto/Progetto-PAO/Progetto_PAO.pro</value>
+    </valuelist>
     <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
     <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
     <value type="bool" key="ClangTools.UseGlobalSettings">true</value>

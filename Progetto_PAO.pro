@@ -41,7 +41,7 @@ SOURCES += \
     Model/veicolo.cpp \
     Model/model.cpp \
     Model/CostiViaggio.cpp \
-    Model/veicolowidget.cpp \
+    View/veicolowidget.cpp \
     main.cpp
 
 HEADERS += \
@@ -63,7 +63,7 @@ HEADERS += \
     View/view.h \
     View/welcome.h \
     Model/model.h \
-    Model/veicolowidget.h \
+    View/veicolowidget.h \
     Model/CostiViaggio.h \
     Model/array.h \
     Model/auto_elettrica.h \

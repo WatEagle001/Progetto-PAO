@@ -1,6 +1,7 @@
 // Classe derivata da View che mostra i veicoli presenti nel garage, permettendo di crearne o caricare di nuovi e di visionare/modificare i veicoli esistenti
 #ifndef VEHICLELIST_H
 #define VEHICLELIST_H
+
 #include <QAction>
 #include <QDialog>
 #include <QFileDialog>
@@ -13,12 +14,16 @@
 #include <QWidget>
 #include <QGridLayout>
 #include <QListWidget>
+#include <QTableView>
+#include <QLabel>
+#include <QScrollArea>
+
 #include "Model/garage.h"
-#include "view.h"
-#include <Model/veicolowidget.h>
-#include <Model/CostiViaggio.h>
+#include "View/view.h"
+#include "Model/CostiViaggio.h"
+#include <View/veicolowidget.h>
 
-
+using std::bind;
 
 class vehiclelistcontroller;
 

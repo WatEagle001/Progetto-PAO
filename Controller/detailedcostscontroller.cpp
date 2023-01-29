@@ -1,9 +1,5 @@
 #include "detailedcostscontroller.h"
-#include "vehiclelistcontroller.h"
-#include "Model/garage.h"
-#include <iostream>
-#include "QDebug"
-#include <View/detailedcosts.h>
+#include <Controller/vehiclelistcontroller.h>
 
 detailedcostscontroller::detailedcostscontroller(detailedcosts *v, CostiViaggio* dati, garage* g, controller *parent) : controller(v, dati, parent)
 {

@@ -103,17 +103,17 @@ void DialogViaggio::checkifdataismodified()
             km_arrivo->isModified() == true|| costoCarburante->isModified() == true || costoElettricita->isModified() == true ){
         int km = (km_arrivo->text().toInt()) - (km_partenza->text().toInt());
         connect(aggiungi, &QPushButton::clicked, (bind(
-                                                          &DialogViaggio::tryAddViaggio,
-                                                          this,
-                                                          vec,
-                                                          partenza->text().toStdString(),
-                                                          arrivo->text().toStdString(),
-                                                          km,
-                                                          efficienza->text().toDouble(),
-                                                          costoCarburante->text().toDouble(),
-                                                          costoElettricita->text().toDouble()
-                                                          )
+                                                      &DialogViaggio::tryAddViaggio,
+                                                      this,
+                                                      vec,
+                                                      partenza->text().toStdString(),
+                                                      arrivo->text().toStdString(),
+                                                      km,
+                                                      efficienza->text().toDouble(),
+                                                      costoCarburante->text().toDouble(),
+                                                      costoElettricita->text().toDouble()
                                                       )
+                                                  )
                 );
     }
 }
@@ -121,16 +121,16 @@ void DialogViaggio::checkifdataismodified()
 void DialogViaggio::closeEvent(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno
-        if(!event->spontaneous()) return;
+    if(!event->spontaneous()) return;
 
-        if(!dialogPopUp_Question(2, "Annullamento", "Sei sicuro di voler annullare l'operazione?\n")){
-            event->ignore();
-        }
-        else {
-            //Accetto l'evento di chiusura della finestra
-            event->accept();
-            //Emetto segnale di chiusura della View
-            emit viewClosed();
-        }
+    if(!dialogPopUp_Question(2, "Annullamento", "Sei sicuro di voler annullare l'operazione?\n")){
+        event->ignore();
+    }
+    else {
+        //Accetto l'evento di chiusura della finestra
+        event->accept();
+        //Emetto segnale di chiusura della View
+        emit viewClosed();
+    }
 }
 

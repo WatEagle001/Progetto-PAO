@@ -1,6 +1,4 @@
 #include "welcome.h"
-#include <QString>
-#include <iostream>
 
 QLayout *welcome::configureFinalLayout(){
     // Creazione Layout
@@ -56,17 +54,17 @@ void welcome::connectViewSignals() const
 void welcome::closeEvent(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno
-        if(!event->spontaneous()) return;
+    if(!event->spontaneous()) return;
 
-        if(!dialogPopUp_Question(2, "Uscita", "Sei sicuro di voler chiudere l'applicazione?\n")){
-            event->ignore();
-        }
-        else {
-            //Accetto l'evento di chiusura della finestra
-            event->accept();
-            //Emetto segnale di chiusura della View
-            emit viewClosed();
-        }
+    if(!dialogPopUp_Question(2, "Uscita", "Sei sicuro di voler chiudere l'applicazione?\n")){
+        event->ignore();
+    }
+    else {
+        //Accetto l'evento di chiusura della finestra
+        event->accept();
+        //Emetto segnale di chiusura della View
+        emit viewClosed();
+    }
 }
 
 welcome::welcome(const QSize &s, view *parent) : view(s, parent)

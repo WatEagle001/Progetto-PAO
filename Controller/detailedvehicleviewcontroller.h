@@ -1,10 +1,11 @@
 #ifndef DETAILEDVEHICLEVIEWCONTROLLER_H
 #define DETAILEDVEHICLEVIEWCONTROLLER_H
-#include "controller.h"
+
+#include "Controller/controller.h"
+#include "View/detailedvehicleview.h"
+#include "View/detailedvehicleview.h"
+#include "Model/CostiViaggio.h"
 #include "Model/garage.h"
-#include <iostream>
-#include <View/detailedvehicleview.h>
-#include <Model/CostiViaggio.h>
 
 class detailedvehicleviewcontroller : public controller
 {

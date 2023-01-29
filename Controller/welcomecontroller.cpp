@@ -1,9 +1,5 @@
-
 #include "welcomecontroller.h"
-#include "vehiclelistcontroller.h"
-#include "Model/garage.h"
-#include <iostream>
-#include "QDebug"
+#include <Controller/vehiclelistcontroller.h>
 
 void welcomeController::connectViewController() const
 {

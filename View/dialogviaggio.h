@@ -1,4 +1,3 @@
-
 #ifndef DIALOGVIAGGIO_H
 #define DIALOGVIAGGIO_H
 

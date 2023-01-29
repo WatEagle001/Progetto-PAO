@@ -1,17 +1,16 @@
 #ifndef WELCOMECONTROLLER_H
 #define WELCOMECONTROLLER_H
 
-#include "controller.h"
-#include "View/welcome.h"
-#include "Model/model.h"
-#include "jsonagent.h"
-#include "View/vehiclelist.h"
-
 #include <QFileDialog>
 #include <QStringList>
 #include <QJsonDocument>
 #include <QCoreApplication>
 
+#include "Controller/controller.h"
+#include "View/welcome.h"
+#include "View/vehiclelist.h"
+#include "Model/model.h"
+#include "Model/garage.h"
 
 class welcomeController : public controller
 {

@@ -1,4 +1,5 @@
 #include "dialogviaggiocontroller.h"
+#include <Controller/vehiclelistcontroller.h>
 
 void dialogviaggiocontroller::connectViewController() const
 {

@@ -1,6 +1,6 @@
 #ifndef DETAILEDVEHICLEVIEW_H
 #define DETAILEDVEHICLEVIEW_H
-#include "View/view.h"
+
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -9,9 +9,22 @@
 #include <QPixmap>
 #include <QCloseEvent>
 #include <QBoxLayout>
-#include <Model/veicolo.h>
 #include <QFormLayout>
 #include <QComboBox>
+#include <QString>
+#include <QFormLayout>
+#include <QLineEdit>
+#include <QComboBox>
+
+#include "View/view.h"
+#include "Model/veicolo.h"
+#include <Model/automobile.h>
+#include <Model/moto.h>
+#include <Model/auto_ibrida.h>
+#include <Model/moto_elettrica.h>
+#include <Model/monopattino_elettrico.h>
+#include <Model/auto_elettrica.h>
+
 class detailedvehicleview : public view
 {
     Q_OBJECT

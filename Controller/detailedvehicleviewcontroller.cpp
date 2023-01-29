@@ -1,7 +1,5 @@
 #include "detailedvehicleviewcontroller.h"
-#include "vehiclelistcontroller.h"
-#include "QDebug"
-#include "View/detailedvehicleview.h"
+#include <Controller/vehiclelistcontroller.h>
 
 void detailedvehicleviewcontroller::connectViewController() const
 {

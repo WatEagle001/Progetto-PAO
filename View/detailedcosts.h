@@ -1,6 +1,6 @@
 #ifndef DETAILEDCOSTS_H
 #define DETAILEDCOSTS_H
-#include "view.h"
+
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -9,11 +9,12 @@
 #include <QPixmap>
 #include <QCloseEvent>
 #include <QBoxLayout>
-#include <Model/CostiViaggio.h>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QtCharts>
 #include <QChart>
 
+#include "View/view.h"
+#include "Model/CostiViaggio.h"
 
 class detailedcosts : public view
 {

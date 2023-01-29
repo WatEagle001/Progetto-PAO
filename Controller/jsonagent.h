@@ -5,12 +5,11 @@
 #include <QFileDialog>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QDebug>
 #include <QJsonObject>
 #include <string>
-#include <QDebug>
 
 #include "Model/garage.h"
-#include "Model/veicolo.h"
 
 class JSONAgent{
 
