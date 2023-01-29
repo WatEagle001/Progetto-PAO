@@ -73,7 +73,7 @@ QFormLayout* detailedvehicleview::addMoreOptions(){
 
 void detailedvehicleview::connectViewSignals() const
 {
-
+    // Connessioni Effettuate Manualmente per Insorgenza Errori
 }
 
 void detailedvehicleview::closeEvent(QCloseEvent *event)

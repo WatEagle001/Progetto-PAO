@@ -2,7 +2,7 @@
 #define DIALOGVIAGGIOCONTROLLER_H
 
 #include "Controller/controller.h"
-#include "View/vehiclelist.h"
+#include <View/vehiclelist.h>
 #include "View/dialogviaggio.h"
 #include "Model/garage.h"
 #include "Model/CostiViaggio.h"

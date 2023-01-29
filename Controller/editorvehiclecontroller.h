@@ -3,7 +3,6 @@
 
 #include "Controller/controller.h"
 #include "View/editorvehicle.h"
-#include "View/editorvehicle.h"
 #include "Model/CostiViaggio.h"
 #include "Model/garage.h"
 
@@ -31,7 +30,7 @@ signals:
 public slots:
     virtual void onClosedView() const override;
     void saveSlot(veicolo* veic,veicolo* nuovo);
-    void editVehicleSlot();
+
 };
 
 

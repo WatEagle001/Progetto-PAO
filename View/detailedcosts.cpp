@@ -2,8 +2,9 @@
 
 void detailedcosts::connectViewSignals() const
 {
-
+    // L Vista Non Possiede Segnali Propri
 }
+
 void detailedcosts::closeEvent(QCloseEvent *event)
 {
     //Elaboro chiusura solo se intenzionata da evento esterno

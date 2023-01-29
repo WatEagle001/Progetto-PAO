@@ -49,7 +49,3 @@ void newvehiclecontroller::onClosedView() const
 
 }
 
-void newvehiclecontroller::clearSlot(){
-
-}
-

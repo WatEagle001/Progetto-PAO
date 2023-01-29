@@ -48,7 +48,7 @@ void DialogViaggio::configureEditor(veicolo *veic)
 
 void DialogViaggio::connectViewSignals() const
 {
-
+    // Connessioni Effettuate Manualmente per Insorgenza Errori
 }
 
 
@@ -92,9 +92,6 @@ DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s,
 
     layout->addItem(buttons);
     connect(conferma,SIGNAL(clicked()), this, SLOT(checkifdataismodified()));
-
-
-
 }
 
 void DialogViaggio::checkifdataismodified()

@@ -52,6 +52,3 @@ void editorvehiclecontroller::onClosedView() const
     v->hide();
 }
 
-void editorvehiclecontroller::editVehicleSlot(){
-
-}

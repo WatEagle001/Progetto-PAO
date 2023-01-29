@@ -3,6 +3,7 @@
 
 void detailedvehicleviewcontroller::connectViewController() const
 {
+    // Questo Controller Non Possiede Slot Propri
 }
 
 detailedvehicleviewcontroller::detailedvehicleviewcontroller(detailedvehicleview *v, garage* m, CostiViaggio* cost, controller *parent) : controller(v,m, parent){

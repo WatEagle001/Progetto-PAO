@@ -69,7 +69,6 @@ void vehiclelistcontroller::newVehicleSlot()
     vehiclecontroller->showView();
     v->hide();
 
-
 }
 
 void vehiclelistcontroller::addViaggioSlot(veicolo* vec)
