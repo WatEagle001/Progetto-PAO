@@ -69,7 +69,7 @@ DialogViaggio::DialogViaggio(veicolo *veic, CostiViaggio* costi, const QSize &s,
     arrivo = new QLineEdit(this);
     arrivo->setValidator(new QRegularExpressionValidator(QRegularExpression("[A-Z]*[a-z]*[A-Z]*"), this));
     km_arrivo = new QLineEdit(this);
-    km_arrivo->setValidator(new QIntValidator(0, INT_MAX, this));
+    km_arrivo->setValidator(new QIntValidator(km_partenza->text().toInt(), INT_MAX, this));
     efficienza = new QLineEdit(this);
 
 
@@ -99,6 +99,9 @@ void DialogViaggio::checkifdataismodified()
     if(partenza->isModified() == true || km_partenza->isModified() == true || arrivo -> isModified() == true ||
             km_arrivo->isModified() == true|| costoCarburante->isModified() == true || costoElettricita->isModified() == true ){
         int km = (km_arrivo->text().toInt()) - (km_partenza->text().toInt());
+        if(km  < 0){
+            km = 0;
+        }
         connect(aggiungi, &QPushButton::clicked, (bind(
                                                       &DialogViaggio::tryAddViaggio,
                                                       this,

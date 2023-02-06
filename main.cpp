@@ -13,7 +13,6 @@ int main(int argc, char* argv[]){
     garage* g = new garage;
     CostiViaggio* costi = new CostiViaggio;
     welcomeController* c = new welcomeController(w,g,costi);
-
     c->showView();
     return app.exec();
 }

@@ -66,7 +66,7 @@ QFormLayout* editorvehicle::addMoreOptions(){
         cilindrata->setValidator(new QIntValidator(ptr->getCilindrata(), INT_MAX, this));
         litri_carburante->setValidator(new QIntValidator(0, INT_MAX, this));
         manutenzione_bool->setValidator(new QIntValidator(0, 1, this));
-        costo_manutenzione->setValidator(new QDoubleValidator(0.0, INT_MAX, 2,this));
+       costo_manutenzione->setValidator(new QDoubleValidator(0.0, INT_MAX, 2,this));
     }
     motore_elettrico* e = dynamic_cast<motore_elettrico*>(v);
     if(dynamic_cast<auto_elettrica*>(e) || dynamic_cast<moto_elettrica*>(e) || dynamic_cast<monopattino_elettrico*>(e) || dynamic_cast<auto_ibrida*>(e)){
@@ -82,28 +82,38 @@ QFormLayout* editorvehicle::addMoreOptions(){
     return layout;
 }
 void editorvehicle::checkIfDataIsModified() {
-
-    if(marca->isModified() == true || modello->isModified() == true || km->isModified() == true){
+    if(dynamic_cast<motore_combustione*>(v)){
+     motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
+    if(dynamic_cast<automobile*>(ptr) || dynamic_cast<moto*>(ptr) || dynamic_cast<auto_ibrida*>(ptr) || litri_carburante->isModified() == true
+            || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true ||
+            marca->isModified() == true || modello->isModified() == true || km->isModified() == true ||
+            cilindrata->isModified() == true){
         v->setMarca(marca->text().toStdString());
         v->setModello(modello->text().toStdString());
         v->setTarga(v->getTarga());
         v->setKm_odometro(km->text().toInt());
-        motore_combustione* ptr = dynamic_cast<motore_combustione*>(v);
-        if(ptr  &&( cilindrata->isModified() == true
-                    || litri_carburante->isModified() == true || manutenzione_bool->isModified() == true || costo_manutenzione->isModified() == true)){
-            ptr->setCilindrata(cilindrata->text().toInt());
-            ptr->setLitri_serbatoio(litri_carburante->text().toInt());
-            ptr->setManutenzione(manutenzione_bool->text().toInt());
-            ptr->setCosto_manutenzione(costo_manutenzione->text().toInt());
-        }
-
+        ptr->setCilindrata(cilindrata->text().toInt());
+        ptr->setLitri_serbatoio(litri_carburante->text().toInt());
+        ptr->setManutenzione(manutenzione_bool->text().toInt());
+        ptr->setCosto_manutenzione(costo_manutenzione->text().toInt());
+    }
+    }
+    else{
         motore_elettrico* e = dynamic_cast<motore_elettrico*>(v);
-        if(e && ( kw->isModified() == true || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true)){
+        if((dynamic_cast<auto_elettrica*>(e) || dynamic_cast<moto_elettrica*>(e) || dynamic_cast<monopattino_elettrico*>(e) || dynamic_cast<auto_ibrida*>(e))
+                &&  (marca->isModified() == true || modello->isModified() == true || km->isModified() == true || kw->isModified() == true
+                     || ricaricare_bool->isModified() == true || costo_ricarica->isModified() == true)){
+            v->setMarca(marca->text().toStdString());
+            v->setModello(modello->text().toStdString());
+            v->setTarga(v->getTarga());
+            v->setKm_odometro(km->text().toInt());
             e->setKw_batteria(kw->text().toUInt());
             e->setRicaricare(ricaricare_bool->text().toInt());
             e->setCosto_ricarica(costo_ricarica->text().toDouble());
         }
     }
+
+
 
     connect(save, &QPushButton::clicked,(bind(&editorvehicle::saveSignal, this, v,v)));
 }
