@@ -1,16 +1,18 @@
 # Progetto-PAO
 
-Funzionalità
-- comparazione tra tutti i parametri di performance di un veicolo: usiamo diagramma cartesiano, istogramma e (pie chart per le prformance di gruppi) barchart con visualizzazione incrementi/decrementi performance in base alle modifiche
-- visualizzazione dati singolo veicolo
-- aggiunta veicoli (immagini, dati...)
-- rimozione veicolo
-- modifica dati veicoli
-- dati salvati, caricati ed esportati in JSON
+QFleet è un progetto che permette di:
+- inserire, rimuovere, modificare veicoli
+- creare e/o importare un garage esistente in formato JSON
+- visualizzare le informazioni dettagliate di un veicolo
+- visualizzare una grafica diversa a seconda della tipologia del veicolo
+- registrare i viaggi effettuati e calcolarne il relativo costo (carburante/elettricità a seconda del motore del veicolo)
+- visualizzare graficamente il costo sostenuto dalla flotta per i viaggi effettuati
+- calcolare e tenere traccia del costo di manutenzione per i motori tradizionali (cambi olio, manutenzioni varie..)
 
 
 
 
+[Relazione Progetto PAO.pdf](https://github.com/WatEagle001/Progetto-PAO/files/11069133/Relazione.Progetto.PAO.pdf)
 
 
-![image](https://user-images.githubusercontent.com/93330631/205664281-8f6cfce4-dcc3-4e67-9da5-ed13c620244a.png)
+
